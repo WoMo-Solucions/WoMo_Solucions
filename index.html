@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WoMo Studio | Transformación Digital Inteligente</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --verde: #10B981;
+            --azul: #2563EB;
+            --morado: #7C3AED;
+            --naranja: #F59E0B;
+            --gris-oscuro: #1F2937;
+            --blanco: #FFFFFF;
+            --sombra: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: var(--blanco);
+            color: var(--gris-oscuro);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .hero {
+            background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
+            padding: 2rem 1rem 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Burbujas de diálogo */
+        .dialog-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            height: 220px;
+            margin: 0 auto;
+        }
+
+        .dialog-bubble {
+            position: absolute;
+            background: var(--blanco);
+            border-radius: 20px;
+            padding: 1.2rem 1.5rem;
+            box-shadow: var(--sombra);
+            width: 220px;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+            transition: all 0.6s ease;
+        }
+
+        .dialog-bubble::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            border: 12px solid transparent;
+        }
+
+        /* Posiciones específicas */
+        .bubble-1 {
+            top: 10px;
+            left: 50px;
+        }
+        .bubble-1::after {
+            border-right-color: var(--blanco);
+            border-left: 0;
+            right: 100%;
+            top: 30%;
+        }
+
+        .bubble-2 {
+            top: 40px;
+            right: 50px;
+        }
+        .bubble-2::after {
+            border-left-color: var(--blanco);
+            border-right: 0;
+            left: 100%;
+            top: 40%;
+        }
+
+        .bubble-3 {
+            bottom: 10px;
+            left: 35%;
+        }
+        .bubble-3::after {
+            border-top-color: var(--blanco);
+            border-bottom: 0;
+            bottom: 100%;
+            left: 30%;
+        }
+
+        .dialog-bubble h3 {
+            margin: 0 0 0.3rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .dialog-bubble p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: #64748B;
+            line-height: 1.4;
+        }
+
+        @keyframes subtleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        .dialog-bubble {
+            animation: subtleFloat 4s ease-in-out infinite;
+        }
+
+        .bubble-2 {
+            animation-delay: 0.3s;
+        }
+
+        .bubble-3 {
+            animation-delay: 0.6s;
+        }
+
+        .slogan {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 1rem auto 0;
+        }
+
+        .brand {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--morado);
+            font-weight: 600;
+            margin-top: 0.3rem;
+        }
+
+        /* Todo el resto de estilos se mantiene IGUAL */
+        .process-container {
+            display: flex;
+            justify-content: center;
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        .process-card {
+            background: var(--blanco);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--sombra);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            border-top: 4px solid var(--verde);
+            width: 220px;
+            margin: 0 10px;
+        }
+        .process-card:nth-child(2) {
+            border-top-color: var(--azul);
+        }
+        .process-card:nth-child(3) {
+            border-top-color: var(--morado);
+        }
+        .process-card:nth-child(4) {
+            border-top-color: var(--naranja);
+        }
+        .process-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        .process-icon {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Popup Centrado (para procesos) */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .centered-popup {
+            background: var(--blanco);
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Popup de Contacto Compacto Inferior Derecho */
+        .side-popup {
+            position: fixed;
+            bottom: -400px;
+            right: 20px;
+            width: 350px;
+            height: auto;
+            max-height: 80vh;
+            background: var(--blanco);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            z-index: 1001;
+            padding: 1.5rem;
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+            transform: translateY(100%);
+        }
+        .side-popup.active {
+            bottom: 20px;
+            transform: translateY(0);
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gris-oscuro);
+        }
+        .chart-container {
+            width: 100%;
+            height: 160px;
+            margin: 1.5rem 0;
+            background: #f5f7fa;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 0 0.5rem;
+        }
+        .chart-bar {
+            width: 40px;
+            background: linear-gradient(to top, var(--verde), var(--azul));
+            border-radius: 4px 4px 0 0;
+            animation: grow 0.8s ease-out forwards;
+            position: relative;
+        }
+        .chart-bar::after {
+            content: attr(data-value);
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        @keyframes grow {
+            from { height: 0; }
+            to { height: var(--height); }
+        }
+        .process-details {
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        .process-details li {
+            margin-bottom: 0.6rem;
+            position: relative;
+            padding-left: 1.2rem;
+            text-align: left;
+        }
+        .process-details li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--verde);
+            font-weight: bold;
+        }
+        
+        /* Botones y formularios */
+        .contact-form {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 0.6rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+        }
+        .form-footer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 0.8rem;
+        }
+        .submit-btn {
+            background: var(--verde);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            flex: 1;
+        }
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 0.6rem;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+        }
+        
+        /* Botón flotante */
+        .contact-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--verde);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--sombra);
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s;
+        }
+        .contact-float:hover {
+            transform: scale(1.1);
+        }
+        
+        /* WhatsApp en popup de procesos */
+        .whatsapp-bottom {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+        }
+        .small-whatsapp {
+            width: 30px;
+            height: 30px;
+        }
+        
+        /* Texto de contacto */
+        .contact-subtitle {
+            font-size: 0.85rem;
+            color: #64748B;
+            margin-bottom: 1rem;
+        }
+        
+        /* Popup de confirmación */
+        .confirmation-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--blanco);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 1002;
+            display: none;
+            max-width: 300px;
+            text-align: center;
+        }
+        .confirmation-popup.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section con Burbujas -->
+    <section class="hero">
+        <div class="dialog-container">
+            <div class="dialog-bubble bubble-1">
+                <h3>Vende más<br>Trabaja menos</h3>
+                <p>Herramientas que optimizan tu tiempo</p>
+            </div>
+            
+            <div class="dialog-bubble bubble-2">
+                <h3>Gestión sin estrés</h3>
+                <p>Automatizamos tus procesos operativos</p>
+            </div>
+            
+            <div class="dialog-bubble bubble-3">
+                <h3>Control total</h3>
+                <p>Todo tu negocio en tiempo real</p>
+            </div>
+        </div>
+        
+        <p class="slogan">Implementamos soluciones digitales inteligentes que automatizan y optimizan tus operaciones</p>
+        <span class="brand">WoMo Studio</span>
+    </section>
+
+    <!-- Sección de Procesos - 4 cajones en una línea (MANTENIDO IGUAL) -->
+    <section class="process-container">
+        <div class="process-card" onclick="openProcessPopup('time')">
+            <div class="process-icon">⏱️</div>
+            <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Transformación de Tiempo</h3>
+            <p style="font-size: 0.8rem;">Convierte horas en minutos</p>
+        </div>
+        <div class="process-card" onclick="openProcessPopup('workflow')">
+            <div class="process-icon">⚡</div>
+            <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Flujos Inteligentes</h3>
+            <p style="font-size: 0.8rem;">Automatización adaptativa</p>
+        </div>
+        <div class="process-card" onclick="openProcessPopup('profit')">
+            <div class="process-icon">💰</div>
+            <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Impulso Rentable</h3>
+            <p style="font-size: 0.8rem;">Maximiza tus ganancias</p>
+        </div>
+        <div class="process-card" onclick="openProcessPopup('analytics')">
+            <div class="process-icon">🔍</div>
+            <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Análisis Predictivo</h3>
+            <p style="font-size: 0.8rem;">Anticipa tendencias</p>
+        </div>
+    </section>
+
+    <!-- Popup Centrado para Procesos (MANTENIDO IGUAL) -->
+    <div id="process-popup-overlay" class="popup-overlay" onclick="closeProcessPopup()">
+        <div id="process-popup" class="centered-popup" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="closeProcessPopup()">×</button>
+            <div id="process-popup-content"></div>
+            
+            <div class="whatsapp-bottom">
+                <a href="https://wa.me/573183863532">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="small-whatsapp">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup de Contacto (MANTENIDO IGUAL) -->
+    <div id="contact-popup" class="side-popup">
+        <button class="close-btn" onclick="closeContactPopup()">×</button>
+        <h2 style="font-size: 1.3rem; margin-bottom: 0.3rem;">Contáctame</h2>
+        <p class="contact-subtitle">Déjame saber en qué puedo colaborar</p>
+        
+        <div class="contact-form">
+            <input type="text" id="contact-name" placeholder="Nombre">
+            <input type="email" id="contact-email" placeholder="Email">
+            <textarea id="contact-message" placeholder="¿Cómo podemos ayudarte?" rows="2"></textarea>
+            
+            <div class="form-footer">
+                <button class="submit-btn" onclick="sendContactRequest()">Enviar</button>
+                <a href="https://wa.me/573183863532" class="whatsapp-btn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="20">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup de Confirmación (MANTENIDO IGUAL) -->
+    <div id="confirmation-popup" class="confirmation-popup">
+        <h3 style="margin-top: 0;">¡Gracias por contactarnos!</h3>
+        <p>Nos comunicaremos contigo en la menor brevedad posible. Nos interesa hacer negocios contigo.</p>
+        <button class="submit-btn" onclick="closeConfirmationPopup()" style="margin-top: 1rem;">Aceptar</button>
+    </div>
+
+    <!-- Botón Flotante de Contacto (MANTENIDO IGUAL) -->
+    <div class="contact-float" onclick="openContactPopup()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+
+    <!-- EmailJS Script -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Inicializar EmailJS con tu Public Key
+        (function() {
+            emailjs.init('RRR4M2sCr-NgEf8ul');
+        })();
+
+        // Datos para los popups de procesos (MANTENIDO IGUAL)
+        const processPopupData = {
+            time: {
+                title: "Transformación de Tiempo",
+                content: `
+                    <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Transformamos horas en minutos</h2>
+                    <p style="color: var(--verde); font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem;">Ahorro de tiempo comprobado</p>
+                    
+                    <div class="chart-container">
+                        <div class="chart-bar" style="--height: 90%; background: linear-gradient(to top, var(--verde), var(--azul));" data-value="10h"></div>
+                        <div class="chart-bar" style="--height: 20%; background: linear-gradient(to top, var(--verde), var(--azul));" data-value="2h"></div>
+                    </div>
+                    
+                    <div class="process-details">
+                        <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Nuestros clientes reducen en promedio un 80% el tiempo en:</p>
+                        <ul class="process-details">
+                            <li>Gestión de inventarios</li>
+                            <li>Procesamiento de pedidos</li>
+                            <li>Reportes manuales</li>
+                            <li>Coordinación entre equipos</li>
+                        </ul>
+                    </div>
+                `
+            },
+            workflow: {
+                title: "Flujos Inteligentes",
+                content: `
+                    <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Flujos de trabajo inteligentes</h2>
+                    <p style="color: var(--azul); font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem;">Eficiencia operativa</p>
+                    
+                    <div class="chart-container">
+                        <div class="chart-bar" style="--height: 30%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="-25%"></div>
+                        <div class="chart-bar" style="--height: 70%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="+30%"></div>
+                        <div class="chart-bar" style="--height: 45%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="+15%"></div>
+                    </div>
+                    
+                    <div class="process-details">
+                        <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Automatizamos tus operaciones clave:</p>
+                        <ul class="process-details">
+                            <li>Gestión de stock en tiempo real</li>
+                            <li>Seguimiento automatizado de ventas</li>
+                            <li>Comunicación entre equipos</li>
+                            <li>Integración de sistemas</li>
+                        </ul>
+                    </div>
+                `
+            },
+            profit: {
+                title: "Impulso Rentable",
+                content: `
+                    <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Más ganancias, menos pérdidas</h2>
+                    <p style="color: var(--morado); font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem;">Rentabilidad medida</p>
+                    
+                    <div class="chart-container">
+                        <div class="chart-bar" style="--height: 30%; background: linear-gradient(to top, var(--morado), #6D28D9);" data-value="+30%"></div>
+                        <div class="chart-bar" style="--height: 25%; background: linear-gradient(to top, var(--morado), #6D28D9);" data-value="-25%"></div>
+                        <div class="chart-bar" style="--height: 15%; background: linear-gradient(to top, var(--morado), #6D28D9);" data-value="+15%"></div>
+                    </div>
+                    
+                    <div class="process-details">
+                        <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Impacto medible en tu negocio:</p>
+                        <ul class="process-details">
+                            <li>+30% eficiencia operativa</li>
+                            <li>-25% en errores costosos</li>
+                            <li>+15% en ventas recurrentes</li>
+                            <li>Reducción de costos operativos</li>
+                        </ul>
+                    </div>
+                `
+            },
+            analytics: {
+                title: "Análisis Predictivo",
+                content: `
+                    <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Anticipa tendencias</h2>
+                    <p style="color: var(--naranja); font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem;">Inteligencia de negocios</p>
+                    
+                    <div class="chart-container">
+                        <div class="chart-bar" style="--height: 40%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value="40%"></div>
+                        <div class="chart-bar" style="--height: 60%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value="60%"></div>
+                        <div class="chart-bar" style="--height: 85%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value="85%"></div>
+                    </div>
+                    
+                    <div class="process-details">
+                        <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Transformamos tus datos en insights:</p>
+                        <ul class="process-details">
+                            <li>Dashboards interactivos</li>
+                            <li>Alertas inteligentes</li>
+                            <li>Patrones ocultos revelados</li>
+                            <li>Recomendaciones automatizadas</li>
+                        </ul>
+                    </div>
+                `
+            }
+        };
+
+        // Control de popups de procesos (MANTENIDO IGUAL)
+        function openProcessPopup(type) {
+            const overlay = document.getElementById('process-popup-overlay');
+            const contentDiv = document.getElementById('process-popup-content');
+            
+            contentDiv.innerHTML = processPopupData[type].content;
+            overlay.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProcessPopup() {
+            document.getElementById('process-popup-overlay').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Control de popup de contacto lateral (MANTENIDO IGUAL)
+        function openContactPopup() {
+            document.getElementById('contact-popup').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeContactPopup() {
+            document.getElementById('contact-popup').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Control de popup de confirmación (MANTENIDO IGUAL)
+        function openConfirmationPopup() {
+            document.getElementById('confirmation-popup').classList.add('active');
+        }
+
+        function closeConfirmationPopup() {
+            document.getElementById('confirmation-popup').classList.remove('active');
+        }
+
+        // Función de enviar contacto MODIFICADA SOLO PARA EMAILJS
+        function sendContactRequest() {
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const message = document.getElementById('contact-message').value;
+            
+            // Validación básica
+            if (!name || !email || !message) {
+                alert('Por favor completa todos los campos');
+                return;
+            }
+            
+            // Enviar con EmailJS
+            emailjs.send('service_42rjl6k', 'template_iszllup', {
+                from_name: name,
+                from_email: email,
+                message: message
+            }).then(function() {
+                // Limpiar formulario
+                document.getElementById('contact-name').value = '';
+                document.getElementById('contact-email').value = '';
+                document.getElementById('contact-message').value = '';
+                
+                // Mostrar confirmación
+                closeContactPopup();
+                openConfirmationPopup();
+            }, function(error) {
+                console.error('Error al enviar:', error);
+                alert('Hubo un error al enviar el mensaje. Por favor inténtalo de nuevo.');
+            });
+        }
+
+        // Cerrar popups con ESC (MANTENIDO IGUAL)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeProcessPopup();
+                closeContactPopup();
+                closeConfirmationPopup();
+            }
+        });
+
+        // Rotación de burbujas (MANTENIDO IGUAL)
+        const bubbleContent = [
+            ["Vende más<br>Trabaja menos", "Herramientas que optimizan tu tiempo"],
+            ["Gestión sin estrés", "Automatizamos tus procesos operativos"],
+            ["Control total", "Todo tu negocio en tiempo real"]
+        ];
+        
+        const bubbles = document.querySelectorAll('.dialog-bubble');
+        let currentIndex = 0;
+        
+        function rotateBubbles() {
+            currentIndex = (currentIndex + 1) % bubbleContent.length;
+            
+            bubbles.forEach((bubble, i) => {
+                const [title, text] = bubbleContent[(currentIndex + i) % bubbleContent.length];
+                bubble.innerHTML = `<h3>${title}</h3><p>${text}</p>`;
+            });
+        }
+        
+        setInterval(rotateBubbles, 5000);
+    </script>
+</body>
+</html>
