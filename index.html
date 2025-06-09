@@ -476,6 +476,10 @@
         color: transparent;
         text-align: center;
     }
+	
+	.contact-form input:invalid {
+		border-color: red;
+	}
     </style>
 </head>
 <body>
@@ -546,12 +550,13 @@
     <!-- Popup de Contacto -->
     <div id="contact-popup" class="side-popup">
         <button class="close-btn" onclick="closeContactPopup()">×</button>
-        <h2 style="font-size: 1.3rem; margin-bottom: 0.3rem;"></h2>
-        <p class="contact-subtitle">Déjame saber en qué puedo colaborar</p>
+        <h2 style="font-size: 1.3rem; margin-bottom: 0.3rem;">¡Transformemos tu negocio!</h2>
+        <p class="contact-subtitle">Agenda tu consultoría hoy mismo y lleva tu negocio al siguiente nivel.</p>
         
         <div class="contact-form">
             <input type="text" id="contact-name" placeholder="Nombre">
             <input type="email" id="contact-email" placeholder="Email">
+            <input type="tel" id="contact-celular" placeholder="celular">
             <textarea id="contact-message" placeholder="¿Cómo podemos ayudarte?" rows="2"></textarea>
             
             <div class="form-footer">
@@ -718,27 +723,71 @@
             document.getElementById('confirmation-popup').classList.remove('active');
         }
 
+		// Funciones de validación
+		function isValidName(name) {
+			// Nombre debe tener al menos 2 caracteres, solo letras y espacios
+			return /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,}$/.test(name);
+		}
+
+		function isValidEmail(email) {
+			// Validación básica de email
+			return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+		}
+
+		function isValidPhone(phone) {
+			// Validación para celular colombiano (10 dígitos)
+			return /^[0-9]{10}$/.test(phone);
+		}
+
         // Función de enviar contacto
         function sendContactRequest() {
             const name = document.getElementById('contact-name').value;
             const email = document.getElementById('contact-email').value;
+			const celular = document.getElementById('contact-celular').value;
             const message = document.getElementById('contact-message').value;
             
             // Validación básica
-            if (!name || !email || !message) {
+            if (!name || !email || !celular || !message) {
                 alert('Por favor completa todos los campos');
                 return;
             }
-            
+
+			// Validaciones específicas
+			if (!isValidName(name)) {
+				alert('Por favor ingresa un nombre válido (mínimo 2 letras, sin caracteres especiales)');
+				return;
+			}
+			
+			if (!isValidEmail(email)) {
+				alert('Por favor ingresa un email válido (ejemplo: tu@email.com)');
+				return;
+			}
+			
+			if (!isValidPhone(celular)) {
+				alert('Por favor ingresa un número de celular válido (10 dígitos)');
+				return;
+			}
+
+			// Agregar después de las funciones de validación
+			document.getElementById('contact-name').addEventListener('blur', function() {
+				if (!isValidName(this.value.trim())) {
+					this.style.borderColor = 'red';
+				} else {
+					this.style.borderColor = '#e2e8f0';
+				}
+			});
+						
             // Enviar con EmailJS
             emailjs.send('service_42rjl6k', 'template_iszllup', {
                 from_name: name,
                 from_email: email,
+				from_phone: celular,  // Asegúrate de que este campo existe en tu template de EmailJS
                 message: message
             }).then(function() {
                 // Limpiar formulario
                 document.getElementById('contact-name').value = '';
                 document.getElementById('contact-email').value = '';
+				document.getElementById('contact-celular').value = '';
                 document.getElementById('contact-message').value = '';
                 
                 // Mostrar confirmación
