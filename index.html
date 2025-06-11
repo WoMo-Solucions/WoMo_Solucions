@@ -673,6 +673,65 @@
 		input:invalid, textarea:invalid {
 			border-color: #e2e8f0; /* Mantener el color normal por defecto */
 		}
+		
+		    /* ESTILOS PARA LOS POPUPS DE PROCESOS */
+		.popup-overlay {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0,0,0,0.7);
+			display: none;
+			justify-content: center;
+			align-items: center;
+			z-index: 1001;
+		}
+		
+		.centered-popup {
+			background: white;
+			border-radius: 16px;
+			box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+			width: 90%;
+			max-width: 500px;
+			padding: 2rem;
+			position: relative;
+		}
+		
+		.process-chart {
+			width: 100%;
+			height: 200px;
+			margin: 1.5rem 0;
+			background: #f5f7fa;
+			border-radius: 8px;
+			display: flex;
+			align-items: flex-end;
+			justify-content: space-around;
+			padding: 0 1rem;
+		}
+		
+		.chart-bar {
+			width: 40px;
+			background: linear-gradient(to top, var(--verde), var(--azul));
+			border-radius: 4px 4px 0 0;
+			animation: grow 1s ease-out forwards;
+			position: relative;
+		}
+		
+		.chart-bar::after {
+			content: attr(data-value);
+			position: absolute;
+			top: -25px;
+			left: 50%;
+			transform: translateX(-50%);
+			font-size: 0.8rem;
+			font-weight: 600;
+		}
+		
+		@keyframes grow {
+			from { height: 0; }
+			to { height: var(--height); }
+		}
     </style>
 </head>
 <body>
@@ -719,29 +778,37 @@
     </section>
     
     <!-- Sección de 4 Procesos -->
+        <!-- Tarjeta 1 -->
     <section class="process-container">
-        <div class="process-card">
+        <div class="process-card" onclick="openProcessPopup('time')">
             <div class="process-icon">⏱️</div>
-            <h3>Transformación de Tiempo</h3>
-            <p>Convierte horas en minutos</p>
+            <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Transformación de Tiempo</h3>
+            <p style="font-size: 0.8rem;">Convierte horas en minutos</p>
         </div>
-        <div class="process-card">
+        <div class="process-card" onclick="openProcessPopup('workflow')">
             <div class="process-icon">⚡</div>
-            <h3>Flujos Inteligentes</h3>
-            <p>Automatización adaptativa</p>
+            <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Flujos Inteligentes</h3>
+            <p style="font-size: 0.8rem;">Automatización adaptativa</p>
         </div>
-        <div class="process-card">
+        <div class="process-card" onclick="openProcessPopup('profit')">
             <div class="process-icon">💰</div>
-            <h3>Impulso Rentable</h3>
-            <p>Maximiza tus ganancias</p>
+            <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Impulso Rentable</h3>
+            <p style="font-size: 0.8rem;">Maximiza tus ganancias</p>
         </div>
-        <div class="process-card">
+        <div class="process-card" onclick="openProcessPopup('analytics')">
             <div class="process-icon">🔍</div>
-            <h3>Análisis Predictivo</h3>
-            <p>Anticipa tendencias</p>
+            <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Análisis Predictivo</h3>
+            <p style="font-size: 0.8rem;">Anticipa tendencias</p>
         </div>
-    </section>
+	</section>
     
+		<!-- Popup de Procesos (oculto inicialmente) -->
+		<div id="process-popup-overlay" class="popup-overlay" onclick="closeProcessPopup()">
+			<div id="process-popup" class="centered-popup" onclick="event.stopPropagation()">
+				<button class="close-btn" onclick="closeProcessPopup()">×</button>
+				<div id="process-popup-content"></div>
+			</div>
+		</div>
     <!-- Sección de Beneficios -->
     <section class="benefits-section">
         <h2 class="benefits-title">El poder de la automatización</h2>
@@ -1028,6 +1095,128 @@
             // Mostrar modal explicativo siempre al cargar
             openModal();
         });
+		
+		    // Datos para los popups de procesos
+    const processPopupData = {
+        time: {
+            title: "Transformación de Tiempo",
+            content: `
+                <h2 style="color: var(--verde); margin-bottom: 0.5rem;">Transformamos horas en minutos</h2>
+                <p style="color: #64748B; margin-bottom: 1.5rem;">Ahorro de tiempo comprobado con nuestros clientes</p>
+                
+                <div class="process-chart">
+                    <div class="chart-bar" style="--height: 90%;" data-value="10h"></div>
+                    <div class="chart-bar" style="--height: 20%;" data-value="2h"></div>
+                </div>
+                
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--verde);">•</span> 
+                        Reducción del 80% en tiempos de procesamiento
+                    </li>
+                    <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--verde);">•</span> 
+                        Tareas repetitivas completadas en segundos
+                    </li>
+                </ul>
+            `
+        },
+        workflow: {
+            title: "Flujos Inteligentes",
+            content: `
+                <h2 style="color: var(--azul); margin-bottom: 0.5rem;">Automatización adaptativa</h2>
+                <p style="color: #64748B; margin-bottom: 1.5rem;">Eficiencia operativa mejorada</p>
+                
+                <div class="process-chart">
+                    <div class="chart-bar" style="--height: 30%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="-25%"></div>
+                    <div class="chart-bar" style="--height: 70%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="+30%"></div>
+                    <div class="chart-bar" style="--height: 45%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="+15%"></div>
+                </div>
+                
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--azul);">•</span> 
+                        Integración perfecta con tus sistemas actuales
+                    </li>
+                    <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--azul);">•</span> 
+                        Adaptable a cambios en tus procesos
+                    </li>
+                </ul>
+            `
+        },
+        profit: {
+            title: "Impulso Rentable",
+            content: `
+                <h2 style="color: var(--morado); margin-bottom: 0.5rem;">Maximiza tus ganancias</h2>
+                <p style="color: #64748B; margin-bottom: 1.5rem;">Resultados financieros típicos</p>
+                
+                <div class="process-chart">
+                    <div class="chart-bar" style="--height: 60%; background: linear-gradient(to top, var(--morado), #6D28D9);" data-value="+60%"></div>
+                    <div class="chart-bar" style="--height: 40%; background: linear-gradient(to top, var(--morado), #6D28D9);" data-value="-40%"></div>
+                </div>
+                
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--morado);">•</span> 
+                        Aumento promedio del 60% en margen de beneficio
+                    </li>
+                    <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--morado);">•</span> 
+                        Reducción del 40% en costos operativos
+                    </li>
+                </ul>
+            `
+        },
+        analytics: {
+            title: "Análisis Predictivo",
+            content: `
+                <h2 style="color: var(--naranja); margin-bottom: 0.5rem;">Anticipa tendencias</h2>
+                <p style="color: #64748B; margin-bottom: 1.5rem;">Toma decisiones basadas en datos</p>
+                
+                <div class="process-chart">
+                    <div class="chart-bar" style="--height: 85%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value="85%"></div>
+                    <div class="chart-bar" style="--height: 55%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value="55%"></div>
+                </div>
+                
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--naranja);">•</span> 
+                        85% de precisión en pronósticos
+                    </li>
+                    <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--naranja);">•</span> 
+                        55% más rápido en detectar oportunidades
+                    </li>
+                </ul>
+            `
+        }
+    };
+
+    // Funciones para controlar los popups
+	function openProcessPopup(type) {
+		const popup = document.getElementById('process-popup-content');
+		popup.innerHTML = `
+			<h2 style="font-size: 1.5rem; margin-bottom: 1rem;">${processPopupData[type].title}</h2>
+			${processPopupData[type].content}
+			<div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
+				<button class="hero-cta" 
+						style="padding: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"
+						onclick="closeProcessPopup(); openContactPopup();">
+					<img src="https://cdn-icons-png.flaticon.com/512/4494/4494494.png" 
+						 alt="WhatsApp" 
+						 style="width: 24px; height: 24px;">
+				</button>
+			</div>
+		`;
+		document.getElementById('process-popup-overlay').style.display = 'flex';
+		document.body.style.overflow = 'hidden';
+	}
+
+    function closeProcessPopup() {
+        document.getElementById('process-popup-overlay').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
     </script>
 </body>
 </html>
