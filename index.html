@@ -394,16 +394,34 @@
             }
         }
         
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--gris-oscuro);
-        }
+        /* Estilo para todos los botones de cerrar */
+		.modal-close, .close-btn {
+			position: absolute;
+			top: 1rem;
+			right: 1rem;
+			background: none;
+			border: none;
+			padding: 0.5rem;
+			cursor: pointer;
+			color: var(--gris-oscuro);
+			transition: all 0.3s ease;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+		}
+
+		.modal-close:hover, .close-btn:hover {
+			background: rgba(0, 0, 0, 0.05);
+			color: #EF4444; /* Rojo suave al hover */
+		}
+
+		.modal-close svg, .close-btn svg {
+			width: 20px;
+			height: 20px;
+		}
         
         .modal-title {
             font-size: 2rem;
@@ -738,13 +756,18 @@
     <!-- Popup de Explicación (siempre visible al inicio) -->
     <div class="modal-overlay" id="explanation-modal">
         <div class="modal-container">
-            <button class="modal-close" id="modal-close">&times;</button>
+            <button class="modal-close" id="modal-close">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+				</svg>
+			</button>
+
             <div class="modal-content">
-                <h2 class="modal-title">Cómo WoMo Studio Transforma tu Negocio</h2>
+                <h2 class="modal-title">¿Cómo puede WoMo Studio Transforma tu Negocio?</h2>
                 <div class="modal-visual">
                     <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Proceso de automatización">
                 </div>
-                <p class="modal-text"><strong>WoMo Studio</strong> es tu aliado estratégico en la transformación digital. Automatizamos tus procesos operativos para que puedas enfocarte en lo que realmente importa: hacer crecer tu negocio.</p>
+<p class="modal-text"><strong>WoMo Studio</strong> es tu aliado estratégico en la transformación digital, analizando tus necesidades y desafíos operativos para implementar soluciones de automatización que revolucionan tu negocio.</p>
                 <p class="modal-text">En WoMo Studio desarrollamos soluciones personalizadas que identifican los cuellos de botella en tus operaciones y los convertimos en procesos automatizados eficientes.</p>
                 
                 <div class="modal-steps">
@@ -773,13 +796,17 @@
         <div class="hero-content">
             <h1 class="hero-title">Transforma tu negocio con automatización inteligente</h1>
             <p class="hero-subtitle">WoMo Studio convierte tus procesos manuales en sistemas automatizados que ahorran tiempo, reducen errores y aumentan tus ganancias</p>
+			<p style="font-size: 1.1rem; margin: 1.5rem 0; font-weight: 400; color: rgba(255,255,255,0.9)">Nos enfocamos en tus necesidades específicas y desafíos únicos para diseñar soluciones personalizadas que impulsen tu productividad.</p>
             <button class="hero-cta" id="discover-btn" onclick="openModal()">Descubre cómo funciona</button>
         </div>
     </section>
     
     <!-- Sección de 4 Procesos -->
         <!-- Tarjeta 1 -->
-    <section class="process-container">
+		<section id="services" style="padding: 2rem; max-width: 1200px; margin: 0 auto; text-align: center;">
+		<h2 class="services-title">Nuestros servicios</h2>
+		<div class="process-container"  id="services">
+
         <div class="process-card" onclick="openProcessPopup('time')">
             <div class="process-icon">⏱️</div>
             <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Transformación de Tiempo</h3>
@@ -805,12 +832,16 @@
 		<!-- Popup de Procesos (oculto inicialmente) -->
 		<div id="process-popup-overlay" class="popup-overlay" onclick="closeProcessPopup()">
 			<div id="process-popup" class="centered-popup" onclick="event.stopPropagation()">
-				<button class="close-btn" onclick="closeProcessPopup()">×</button>
+				<button class="close-btn" onclick="closeProcessPopup()">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+					</svg>
+				</button>
 				<div id="process-popup-content"></div>
 			</div>
 		</div>
     <!-- Sección de Beneficios -->
-    <section class="benefits-section">
+    <section class="benefits-section" id="benefits">
         <h2 class="benefits-title">El poder de la automatización</h2>
         <div class="benefits-grid">
             <div class="benefit-card">
@@ -885,8 +916,9 @@
         <p class="footer-text">Automatización inteligente para negocios que quieren crecer sin límites</p>
         <div class="footer-links">
             <a href="#" class="footer-link">Inicio</a>
-            <a href="#" class="footer-link">Servicios</a>
-            <a href="javascript:void(0);" class="footer-link" onclick="openContactPopup()">Contacto</a>
+			<a href="#services" class="footer-link">Servicios</a>
+			<a href="#benefits" class="footer-link">Beneficios</a>
+           <a href="javascript:void(0);" class="footer-link" onclick="openContactPopup()">Contacto</a>
 
         </div>
         <p class="copyright">© 2023 WoMo Studio. Todos los derechos reservados.</p>
@@ -1217,6 +1249,7 @@
         document.getElementById('process-popup-overlay').style.display = 'none';
         document.body.style.overflow = 'auto';
     }
+
     </script>
 </body>
 </html>
