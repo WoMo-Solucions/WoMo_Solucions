@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>WoMo Studio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WoMo Studio | Automatización Inteligente</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -15,267 +15,467 @@
             --blanco: #FFFFFF;
             --sombra: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Poppins', sans-serif;
-            margin: 0;
-            background: var(--blanco);
+            background-color: var(--blanco);
             color: var(--gris-oscuro);
-            line-height: 1.6;
             overflow-x: hidden;
+            line-height: 1.6;
         }
-        .hero {
-            background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
-            padding: 2rem 1rem 3rem;
-            text-align: center;
-            position: relative;
-
-			display: flex;
-			flex-direction: column;
-			justify-content: center; /* centra verticalmente */
-			align-items: center;     /* centra horizontalmente */
-			padding-bottom: 30px;    /* espacio para el logo */
-	}
-		    /* Botón/logo visual dentro de hero */
-		.logo-fijo {
-		  width: 160px;
-		  height: 85px;
-		  background-color: white;
-		  border-radius: 15%;
-		  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-		  overflow: hidden;
-		  display: flex;
-		  align-items: center;
-		  justify-content: center;
-		  cursor: pointer;
-		  transition: transform 0.3s ease, box-shadow 0.3s ease;
-		}
-
-		.logo-fijo:hover {
-		  transform: scale(1.1);
-		  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-		}
-
-		.logo-fijo img {
-		  width: 120%;
-		  height: auto;
-		  object-fit: contain;
-		}
-		.hero h1 {
-			font-size: 2rem;
-			margin-bottom: 0.5rem;
-			background: linear-gradient(90deg, var(--azul), var(--verde));
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
-			text-align: center;
-		}
-        /* Burbujas de diálogo - Responsive */
-        .dialog-container {
-            position: relative;
-            width: 100%;
-            max-width: 900px;
-            height: auto;
-            min-height: 220px;
-            margin: 0 auto;
-        }
-
-        .dialog-bubble {
-            position: relative;
-            background: var(--blanco);
-            border-radius: 20px;
-            padding: 1.2rem 1.5rem;
-            box-shadow: var(--sombra);
-            width: 80%;
-            max-width: 220px;
-            margin: 0 auto 1rem;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
-            transition: all 0.6s ease;
-            animation: subtleFloat 4s ease-in-out infinite;
-        }
-
-        .dialog-bubble::after {
-            display: none;
-        }
-
-        @media (min-width: 768px) {
-            .dialog-bubble {
-                position: absolute;
-                width: 220px;
-                margin: 0;
-            }
-            .dialog-bubble::after {
-                display: block;
-                content: "";
-                position: absolute;
-                width: 0;
-                height: 0;
-                border: 12px solid transparent;
-            }
-            .bubble-1 {
-                top: 10px;
-                left: 50px;
-            }
-            .bubble-1::after {
-                border-right-color: var(--blanco);
-                border-left: 0;
-                right: 100%;
-                top: 30%;
-            }
-            .bubble-2 {
-                top: 40px;
-                right: 50px;
-            }
-            .bubble-2::after {
-                border-left-color: var(--blanco);
-                border-right: 0;
-                left: 100%;
-                top: 40%;
-            }
-            .bubble-3 {
-                bottom: 10px;
-                left: 35%;
-            }
-            .bubble-3::after {
-                border-top-color: var(--blanco);
-                border-bottom: 0;
-                bottom: 100%;
-                left: 30%;
-            }
-        }
-
-        .dialog-bubble h3 {
-            margin: 0 0 0.3rem 0;
-            font-size: 1.1rem;
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        .dialog-bubble p {
-            margin: 0;
-            font-size: 0.85rem;
-            color: #64748B;
-            line-height: 1.4;
-        }
-
-        @keyframes subtleFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
-        }
-
-        .bubble-2 {
-            animation-delay: 0.3s;
-        }
-
-        .bubble-3 {
-            animation-delay: 0.6s;
-        }
-
-        .slogan {
-            font-size: 1rem;
-            max-width: 600px;
-            margin: 1rem auto 0;
-            padding: 0 1rem;
-        }
-
-        @media (min-width: 768px) {
-            .slogan {
-                font-size: 1.1rem;
-            }
-        }
-
-        .brand {
-            display: block;
-            font-size: 1.5rem;
-            color: var(--negro);
-            font-weight: 600;
-            margin-top: 0.3rem;
-        }
-
-        /* Sección de Procesos - Responsive */
-        .process-container {
+        
+        /* Hero Section Impactante */
+        .hero-impact {
+            height: 100vh;
+            min-height: 700px;
+            background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+            color: white;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 2rem 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            gap: 1rem;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
         }
-
-        @media (min-width: 768px) {
-            .process-container {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                padding: 3rem 2rem;
-                gap: 0;
+        
+        .hero-impact::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(16, 185, 129, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(37, 99, 235, 0.15) 0%, transparent 30%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--verde), var(--azul));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-cta {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--azul), var(--verde));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 1rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Animación de partículas */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float-up linear infinite;
+        }
+        
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-20vh) scale(1);
+                opacity: 0;
             }
         }
-
+        
+        /* Sección de 4 Procesos */
+        .process-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 1.5rem;
+        }
+        
         .process-card {
             background: var(--blanco);
             border-radius: 12px;
-            padding: 1.5rem;
+            padding: 2rem 1.5rem;
             box-shadow: var(--sombra);
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
             border-top: 4px solid var(--verde);
             width: 100%;
-            max-width: 300px;
-            margin: 0 0 1rem 0;
+            max-width: 250px;
         }
-
-        @media (min-width: 768px) {
-            .process-card {
-                width: 220px;
-                margin: 0 10px;
-            }
-        }
-
+        
         .process-card:nth-child(2) {
             border-top-color: var(--azul);
         }
+        
         .process-card:nth-child(3) {
             border-top-color: var(--morado);
         }
+        
         .process-card:nth-child(4) {
             border-top-color: var(--naranja);
         }
+        
         .process-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
+        
         .process-icon {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
         }
         
-        /* Popup Centrado (para procesos) */
-        .popup-overlay {
+        .process-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .process-card p {
+            font-size: 0.9rem;
+            color: #64748B;
+        }
+        
+        /* Sección de Beneficios */
+        .benefits-section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .benefits-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--gris-oscuro);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .benefits-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .benefit-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--sombra);
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gris-oscuro);
+        }
+        
+        .benefit-card p {
+            color: #64748B;
+            line-height: 1.6;
+        }
+        
+        /* Sección Antes/Después */
+        .comparison-section {
+            background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        
+        .comparison-title {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: var(--gris-oscuro);
+        }
+        
+        .comparison-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @media (min-width: 768px) {
+            .comparison-container {
+                flex-direction: row;
+            }
+        }
+        
+        .comparison-column {
+            flex: 1;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .comparison-column:first-child::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 80%;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, #CBD5E0, transparent);
+        }
+        
+        @media (max-width: 767px) {
+            .comparison-column:first-child::after {
+                display: none;
+            }
+        }
+        
+        .column-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .before .column-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: #EF4444;
+        }
+        
+        .after .column-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--verde);
+        }
+        
+        .comparison-list {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .comparison-list li {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .comparison-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+        }
+        
+        .before .comparison-list li::before {
+            background-color: #EF4444;
+        }
+        
+        .after .comparison-list li::before {
+            background-color: var(--verde);
+        }
+        
+        /* Popup de Explicación */
+        .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            z-index: 1000;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
             justify-content: center;
             align-items: center;
-        }
-        .centered-popup {
-            background: var(--blanco);
-            border-radius: 16px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-            width: 90%;
-            max-width: 500px;
-            max-height: 90vh;
-            padding: 2rem;
-            position: relative;
-            overflow-y: auto;
+            z-index: 1000;
         }
         
-        /* Popup de Contacto Compacto Inferior Derecho */
+        .modal-container {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            padding: 3rem 2rem;
+            animation: modalFadeIn 0.4s ease-out;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gris-oscuro);
+        }
+        
+        .modal-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--gris-oscuro);
+            text-align: center;
+        }
+        
+        .modal-visual {
+			margin: 1.5rem auto; /* Centrar la imagen */
+			max-width: 70%; /* Hacerla más pequeña (ajusta este porcentaje) */
+			border-radius: 10px;
+			box-shadow: var(--sombra);
+			overflow: hidden; /* Para mantener el borde redondeado */
+        }
+        
+        .modal-visual img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--sombra);
+        }
+        
+        .modal-text {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .modal-steps {
+            margin: 2rem 0;
+        }
+        
+        .modal-step {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 2.5rem;
+        }
+        
+        .modal-step::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.8rem;
+            height: 1.8rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--azul), var(--verde));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .modal-step:nth-child(1)::before {
+            content: "1";
+        }
+        
+        .modal-step:nth-child(2)::before {
+            content: "2";
+        }
+        
+        .modal-step:nth-child(3)::before {
+            content: "3";
+        }
+        
+        .modal-step h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--gris-oscuro);
+        }
+        
+        /* Popup de Contacto */
         .side-popup {
             position: fixed;
             bottom: -400px;
@@ -287,83 +487,29 @@
             background: var(--blanco);
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            z-index: 1001;
+            z-index: 1002;
             padding: 1.5rem;
             border-radius: 12px 12px 0 0;
             overflow: hidden;
             transform: translateY(100%);
         }
+        
         .side-popup.active {
             bottom: 10px;
             transform: translateY(0);
         }
         
-        .close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--gris-oscuro);
-        }
-        .chart-container {
-            width: 100%;
-            height: 160px;
-            margin: 1.5rem 0;
-            background: #f5f7fa;
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-around;
-            padding: 0 0.5rem;
-        }
-        .chart-bar {
-            width: 40px;
-            background: linear-gradient(to top, var(--verde), var(--azul));
-            border-radius: 4px 4px 0 0;
-            animation: grow 0.8s ease-out forwards;
-            position: relative;
-        }
-        .chart-bar::after {
-            content: attr(data-value);
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
-        @keyframes grow {
-            from { height: 0; }
-            to { height: var(--height); }
-        }
-        .process-details {
-            margin: 1rem 0;
-            font-size: 0.9rem;
-        }
-        .process-details li {
-            margin-bottom: 0.6rem;
-            position: relative;
-            padding-left: 1.2rem;
-            text-align: left;
-        }
-        .process-details li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--verde);
-            font-weight: bold;
+        .contact-subtitle {
+            font-size: 0.85rem;
+            color: #64748B;
+            margin-bottom: 1rem;
         }
         
-        /* Botones y formularios */
         .contact-form {
             margin-top: 1rem;
             font-size: 0.85rem;
         }
+        
         .contact-form input, .contact-form textarea {
             width: 100%;
             padding: 0.5rem;
@@ -373,12 +519,14 @@
             font-family: 'Poppins', sans-serif;
             font-size: 0.85rem;
         }
+        
         .form-footer {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-top: 0.8rem;
         }
+        
         .submit-btn {
             background: var(--verde);
             color: white;
@@ -390,6 +538,7 @@
             font-size: 0.85rem;
             flex: 1;
         }
+        
         .whatsapp-btn {
             display: flex;
             align-items: center;
@@ -404,12 +553,20 @@
             height: 40px;
         }
         
-        /* Botón flotante */
-        .contact-float {
+        /* Botón Flotante de Contacto */
+        .contact-float-wrapper {
             position: fixed;
             bottom: 1rem;
             right: 1rem;
-            background: var(--verde);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 999;
+            cursor: pointer;
+        }
+        
+        .contact-float {
+            background: linear-gradient(90deg, var(--azul), var(--verde));
             color: white;
             width: 50px;
             height: 50px;
@@ -418,169 +575,256 @@
             align-items: center;
             justify-content: center;
             box-shadow: var(--sombra);
-            cursor: pointer;
-            z-index: 999;
             transition: all 0.3s;
         }
+        
         .contact-float:hover {
             transform: scale(1.1);
         }
         
-        /* WhatsApp en popup de procesos */
-        .whatsapp-bottom {
-            position: absolute;
-            bottom: 1.5rem;
-            right: 1.5rem;
-        }
-        .small-whatsapp {
-            width: 30px;
-            height: 30px;
-        }
-        
-        /* Texto de contacto */
-        .contact-subtitle {
-            font-size: 0.85rem;
-            color: #64748B;
-            margin-bottom: 1rem;
-        }
-        
-        /* Popup de confirmación */
-        .confirmation-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--blanco);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            z-index: 1002;
-            display: none;
-            width: 90%;
-            max-width: 300px;
+        .contact-float-label {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: linear-gradient(90deg, var(--azul), var(--verde));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             text-align: center;
         }
-        .confirmation-popup.active {
-            display: block;
+        
+        /* Footer */
+        .footer {
+            background: var(--gris-oscuro);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
         }
-		
-		    /* Contenedor principal */
-    .contact-float-wrapper {
-        position: fixed;
-        bottom: 1rem;
-        right: 1rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        z-index: 999;
-        cursor: pointer;
-    }
-    
-    /* Botón circular */
-    .contact-float {
-        background: linear-gradient(90deg, var(--azul), var(--verde));
-        color: white;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: var(--sombra);
-        transition: all 0.3s;
-        margin-bottom: 1.3rem; /* Añadí este margen inferior para separar del texto */
-    }
-    
-    .contact-float:hover {
-        transform: scale(1.1);
-    }
-    
-    /* Texto con gradiente */
-    .contact-float-label {
-        margin-top: 0.5rem;
-        font-size: 0.8rem;
-        font-weight: 600;
-        background: linear-gradient(90deg, var(--azul), var(--verde));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        text-align: center;
-    }
-	
-	.contact-form input:invalid {
-		border-color: red;
-	}
-	
+        
+        .footer-logo {
+            max-width: 150px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-text {
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            color: #9CA3AF;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+		    cursor: pointer;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: var(--verde);
+        }
+        
+        .copyright {
+            color: #9CA3AF;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .benefits-title, .comparison-title {
+                font-size: 1.8rem;
+            }
+            
+            .comparison-container {
+                flex-direction: column;
+            }
+            
+            .comparison-column:first-child {
+                margin-bottom: 3rem;
+            }
+            
+            .comparison-column:first-child::after {
+                display: block;
+                right: auto;
+                left: 50%;
+                transform: translateX(-50%);
+                top: auto;
+                bottom: -1.5rem;
+                height: 2px;
+                width: 80%;
+                background: linear-gradient(to right, transparent, #CBD5E0, transparent);
+            }
+        }
+		input:invalid, textarea:invalid {
+			border-color: #e2e8f0; /* Mantener el color normal por defecto */
+		}
     </style>
 </head>
 <body>
-    <!-- Hero Section con Burbujas -->
-    <section class="hero">
-        <h1>¿Está maximizando la generación de valor o gestionando ineficiencias?</h1>
-        <p class="slogan"><h3>Implementamos soluciones digitales inteligentes que automatizan y optimizan tus operaciones de tu negocio</h3></p>
-	
-        <div class="dialog-container">
-            <div class="dialog-bubble bubble-1">
-                <h3>Vende más<br>Trabaja menos</h3>
-                <p>Herramientas que optimizan tu tiempo</p>
-            </div>
-            
-            <div class="dialog-bubble bubble-2">
-                <h3>Gestión sin estrés</h3>
-                <p>Automatizamos tus procesos operativos</p>
-            </div>
-            
-            <div class="dialog-bubble bubble-3">
-                <h3>Control total</h3>
-                <p>Todo tu negocio en tiempo real</p>
-            </div>
-        </div>
-
-        <span class="brand">
-    <div class="logo-fijo" title="Inicio">
-      <img src="LogoTipo..png" alt="Logotipo">
-    </div> </span>
-
-    </section>
-
-    <!-- Sección de Procesos -->
-    <section class="process-container">
-        <div class="process-card" onclick="openProcessPopup('time')">
-            <div class="process-icon">⏱️</div>
-            <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Transformación de Tiempo</h3>
-            <p style="font-size: 0.8rem;">Convierte horas en minutos</p>
-        </div>
-        <div class="process-card" onclick="openProcessPopup('workflow')">
-            <div class="process-icon">⚡</div>
-            <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Flujos Inteligentes</h3>
-            <p style="font-size: 0.8rem;">Automatización adaptativa</p>
-        </div>
-        <div class="process-card" onclick="openProcessPopup('profit')">
-            <div class="process-icon">💰</div>
-            <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Impulso Rentable</h3>
-            <p style="font-size: 0.8rem;">Maximiza tus ganancias</p>
-        </div>
-        <div class="process-card" onclick="openProcessPopup('analytics')">
-            <div class="process-icon">🔍</div>
-            <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Análisis Predictivo</h3>
-            <p style="font-size: 0.8rem;">Anticipa tendencias</p>
-        </div>
-    </section>
-
-    <!-- Popup Centrado para Procesos -->
-    <div id="process-popup-overlay" class="popup-overlay" onclick="closeProcessPopup()">
-        <div id="process-popup" class="centered-popup" onclick="event.stopPropagation()">
-            <button class="close-btn" onclick="closeProcessPopup()">×</button>
-            <div id="process-popup-content"></div>
-            
-            <div class="whatsapp-bottom">
-                <a href="https://wa.me/573183863532">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="small-whatsapp">
-                </a>
+    <!-- Popup de Explicación (siempre visible al inicio) -->
+    <div class="modal-overlay" id="explanation-modal">
+        <div class="modal-container">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="modal-content">
+                <h2 class="modal-title">Cómo WoMo Studio Transforma tu Negocio</h2>
+                <div class="modal-visual">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Proceso de automatización">
+                </div>
+                <p class="modal-text"><strong>WoMo Studio</strong> es tu aliado estratégico en la transformación digital. Automatizamos tus procesos operativos para que puedas enfocarte en lo que realmente importa: hacer crecer tu negocio.</p>
+                <p class="modal-text">En WoMo Studio desarrollamos soluciones personalizadas que identifican los cuellos de botella en tus operaciones y los convertimos en procesos automatizados eficientes.</p>
+                
+                <div class="modal-steps">
+                    <div class="modal-step">
+                        <h4>Diagnóstico</h4>
+                        <p>Analizamos tus procesos actuales para identificar oportunidades</p>
+                    </div>
+                    <div class="modal-step">
+                        <h4>Diseño</h4>
+                        <p>Creamos flujos de trabajo optimizados para tus necesidades</p>
+                    </div>
+                    <div class="modal-step">
+                        <h4>Implementación</h4>
+                        <p>Desplegamos la solución con capacitación incluida</p>
+                    </div>
+                </div>
+                
+                <button class="hero-cta" style="display: block; margin: 2rem auto 0; width: 80%;" onclick="closeModal(); openContactPopup();">Quiero transformar mi negocio</button>
             </div>
         </div>
     </div>
 
+    <!-- Hero Section Impactante -->
+    <section class="hero-impact">
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Transforma tu negocio con automatización inteligente</h1>
+            <p class="hero-subtitle">WoMo Studio convierte tus procesos manuales en sistemas automatizados que ahorran tiempo, reducen errores y aumentan tus ganancias</p>
+            <button class="hero-cta" id="discover-btn" onclick="openModal()">Descubre cómo funciona</button>
+        </div>
+    </section>
+    
+    <!-- Sección de 4 Procesos -->
+    <section class="process-container">
+        <div class="process-card">
+            <div class="process-icon">⏱️</div>
+            <h3>Transformación de Tiempo</h3>
+            <p>Convierte horas en minutos</p>
+        </div>
+        <div class="process-card">
+            <div class="process-icon">⚡</div>
+            <h3>Flujos Inteligentes</h3>
+            <p>Automatización adaptativa</p>
+        </div>
+        <div class="process-card">
+            <div class="process-icon">💰</div>
+            <h3>Impulso Rentable</h3>
+            <p>Maximiza tus ganancias</p>
+        </div>
+        <div class="process-card">
+            <div class="process-icon">🔍</div>
+            <h3>Análisis Predictivo</h3>
+            <p>Anticipa tendencias</p>
+        </div>
+    </section>
+    
+    <!-- Sección de Beneficios -->
+    <section class="benefits-section">
+        <h2 class="benefits-title">El poder de la automatización</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">⏱️</div>
+                <h3>Ahorro de tiempo</h3>
+                <p>Convierte horas de trabajo manual en minutos con nuestros sistemas automatizados.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">📈</div>
+                <h3>Más productividad</h3>
+                <p>Tu equipo se enfoca en lo importante mientras nosotros optimizamos los procesos.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <h3>Mayores ganancias</h3>
+                <p>Reduce costos operativos y aumenta tu margen de beneficio con cada proceso automatizado.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección de Beneficios Adicionales -->
+    <section class="benefits-section" style="background: #F9FAFB; padding: 3rem 2rem;">
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">🚀</div>
+                <h3>Eficiencia Operativa</h3>
+                <p>Optimizamos tus procesos para que tu equipo sea más productivo y pueda enfocarse en tareas de mayor valor.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">📊</div>
+                <h3>Datos en Tiempo Real</h3>
+                <p>Accede a información actualizada para tomar mejores decisiones estratégicas en tu negocio.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💡</div>
+                <h3>Innovación Continua</h3>
+                <p>Implementamos soluciones tecnológicas que mantienen tu negocio a la vanguardia.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección Antes/Después -->
+    <section class="comparison-section">
+        <h2 class="comparison-title">Antes y después de WoMo Studio</h2>
+        <div class="comparison-container">
+            <div class="comparison-column before">
+                <h3 class="column-title">Sin Automatización</h3>
+                <ul class="comparison-list">
+                    <li>Pérdida de horas en tareas repetitivas</li>
+                    <li>Errores humanos frecuentes</li>
+                    <li>Procesos lentos e ineficientes</li>
+                    <li>Dificultad para escalar el negocio</li>
+                    <li>Falta de visibilidad en operaciones</li>
+                </ul>
+            </div>
+            <div class="comparison-column after">
+                <h3 class="column-title">Con WoMo Studio</h3>
+                <ul class="comparison-list">
+                    <li>Procesos completados en minutos</li>
+                    <li>Precisión digital sin errores</li>
+                    <li>Flujos de trabajo optimizados</li>
+                    <li>Escalabilidad inmediata</li>
+                    <li>Datos en tiempo real</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <img src="LogoTipo..png" alt="WoMo Studio" class="footer-logo">
+        <p class="footer-text">Automatización inteligente para negocios que quieren crecer sin límites</p>
+        <div class="footer-links">
+            <a href="#" class="footer-link">Inicio</a>
+            <a href="#" class="footer-link">Servicios</a>
+            <a href="javascript:void(0);" class="footer-link" onclick="openContactPopup()">Contacto</a>
+
+        </div>
+        <p class="copyright">© 2023 WoMo Studio. Todos los derechos reservados.</p>
+    </footer>
+    
     <!-- Popup de Contacto -->
     <div id="contact-popup" class="side-popup">
         <button class="close-btn" onclick="closeContactPopup()">×</button>
@@ -588,37 +832,30 @@
         <p class="contact-subtitle">Agenda tu consultoría hoy mismo y lleva tu negocio al siguiente nivel.</p>
         
         <div class="contact-form">
-            <input type="text" id="contact-name" placeholder="Nombre">
-            <input type="email" id="contact-email" placeholder="Email">
-            <input type="tel" id="contact-celular" placeholder="celular">
-            <textarea id="contact-message" placeholder="¿Cómo podemos ayudarte?" rows="2"></textarea>
+            <input type="text" id="contact-name" placeholder="Nombre" required>
+            <input type="email" id="contact-email" placeholder="Email" required>
+            <input type="tel" id="contact-celular" placeholder="Celular" required>
+            <textarea id="contact-message" placeholder="¿Cómo podemos ayudarte?" rows="2" required></textarea>
             
             <div class="form-footer">
                 <button class="submit-btn" onclick="sendContactRequest()">Enviar</button>
-                <a href="https://wa.me/573183863532" class="whatsapp-btn">
+                <a href="https://wa.me/573180401930" class="whatsapp-btn">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="20">
                 </a>
             </div>
         </div>
     </div>
-
-    <!-- Popup de Confirmación -->
-    <div id="confirmation-popup" class="confirmation-popup">
-        <h3 style="margin-top: 0;">¡Gracias por contactarnos!</h3>
-        <p>Nos comunicaremos contigo en la menor brevedad posible. Nos interesa hacer negocios contigo.</p>
-        <button class="submit-btn" onclick="closeConfirmationPopup()" style="margin-top: 1rem;">Aceptar</button>
-    </div>
-
+    
     <!-- Botón Flotante de Contacto -->
-	<div class="contact-float-wrapper" onclick="openContactPopup()">
-		<div class="contact-float">
-			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-			</svg>
-		</div>
-		<span class="contact-float-label">Contáctame</span>
-	</div>
-
+    <div class="contact-float-wrapper" onclick="openContactPopup()">
+        <div class="contact-float">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <span class="contact-float-label">Contáctame</span>
+    </div>
+    
     <!-- EmailJS Script -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
@@ -627,115 +864,28 @@
             emailjs.init('RRR4M2sCr-NgEf8ul');
         })();
 
-        // Datos para los popups de procesos
-        const processPopupData = {
-            time: {
-                title: "Transformación de Tiempo",
-                content: `
-                    <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Transformamos horas en minutos</h2>
-                    <p style="color: var(--verde); font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem;">Ahorro de tiempo comprobado</p>
-                    
-                    <div class="chart-container">
-                        <div class="chart-bar" style="--height: 90%; background: linear-gradient(to top, var(--verde), var(--azul));" data-value="10h"></div>
-                        <div class="chart-bar" style="--height: 20%; background: linear-gradient(to top, var(--verde), var(--azul));" data-value="2h"></div>
-                    </div>
-                    
-                    <div class="process-details">
-                        <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Nuestros clientes reducen en promedio un 80% el tiempo en:</p>
-                        <ul class="process-details">
-                            <li>Gestión de inventarios</li>
-                            <li>Procesamiento de pedidos</li>
-                            <li>Reportes manuales</li>
-                            <li>Coordinación entre equipos</li>
-                        </ul>
-                    </div>
-                `
-            },
-            workflow: {
-                title: "Flujos Inteligentes",
-                content: `
-                    <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Flujos de trabajo inteligentes</h2>
-                    <p style="color: var(--azul); font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem;">Eficiencia operativa</p>
-                    
-                    <div class="chart-container">
-                        <div class="chart-bar" style="--height: 30%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="-25%"></div>
-                        <div class="chart-bar" style="--height: 70%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="+30%"></div>
-                        <div class="chart-bar" style="--height: 45%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="+15%"></div>
-                    </div>
-                    
-                    <div class="process-details">
-                        <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Automatizamos tus operaciones clave:</p>
-                        <ul class="process-details">
-                            <li>Gestión de stock en tiempo real</li>
-                            <li>Seguimiento automatizado de ventas</li>
-                            <li>Comunicación entre equipos</li>
-                            <li>Integración de sistemas</li>
-                        </ul>
-                    </div>
-                `
-            },
-            profit: {
-                title: "Impulso Rentable",
-                content: `
-                    <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Más ganancias, menos pérdidas</h2>
-                    <p style="color: var(--morado); font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem;">Rentabilidad medida</p>
-                    
-                    <div class="chart-container">
-                        <div class="chart-bar" style="--height: 30%; background: linear-gradient(to top, var(--morado), #6D28D9);" data-value="+30%"></div>
-                        <div class="chart-bar" style="--height: 25%; background: linear-gradient(to top, var(--morado), #6D28D9);" data-value="-25%"></div>
-                        <div class="chart-bar" style="--height: 15%; background: linear-gradient(to top, var(--morado), #6D28D9);" data-value="+15%"></div>
-                    </div>
-                    
-                    <div class="process-details">
-                        <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Impacto medible en tu negocio:</p>
-                        <ul class="process-details">
-                            <li>+30% eficiencia operativa</li>
-                            <li>-25% en errores costosos</li>
-                            <li>+15% en ventas recurrentes</li>
-                            <li>Reducción de costos operativos</li>
-                        </ul>
-                    </div>
-                `
-            },
-            analytics: {
-                title: "Análisis Predictivo",
-                content: `
-                    <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Anticipa tendencias</h2>
-                    <p style="color: var(--naranja); font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem;">Inteligencia de negocios</p>
-                    
-                    <div class="chart-container">
-                        <div class="chart-bar" style="--height: 40%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value="40%"></div>
-                        <div class="chart-bar" style="--height: 60%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value="60%"></div>
-                        <div class="chart-bar" style="--height: 85%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value="85%"></div>
-                    </div>
-                    
-                    <div class="process-details">
-                        <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Transformamos tus datos en insights:</p>
-                        <ul class="process-details">
-                            <li>Dashboards interactivos</li>
-                            <li>Alertas inteligentes</li>
-                            <li>Patrones ocultos revelados</li>
-                            <li>Recomendaciones automatizadas</li>
-                        </ul>
-                    </div>
-                `
-            }
-        };
-
-        // Control de popups de procesos
-        function openProcessPopup(type) {
-            const overlay = document.getElementById('process-popup-overlay');
-            const contentDiv = document.getElementById('process-popup-content');
-            
-            contentDiv.innerHTML = processPopupData[type].content;
-            overlay.style.display = 'flex';
+        // Control del modal explicativo
+        const modal = document.getElementById('explanation-modal');
+        const closeButton = document.getElementById('modal-close');
+        
+        function openModal() {
+            modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
-
-        function closeProcessPopup() {
-            document.getElementById('process-popup-overlay').style.display = 'none';
+        
+        function closeModal() {
+            modal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
+        
+        closeButton.addEventListener('click', closeModal);
+        
+        // Cerrar al hacer click fuera del modal
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
 
         // Control de popup de contacto lateral
         function openContactPopup() {
@@ -748,120 +898,136 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Control de popup de confirmación
-        function openConfirmationPopup() {
-            document.getElementById('confirmation-popup').classList.add('active');
-        }
+		// Función para validar campos (solo bordes rojos)
+		function validarCampos() {
+			let valido = true;
+			const nombre = document.getElementById('contact-name').value.trim();
+			const email = document.getElementById('contact-email').value.trim();
+			const celular = document.getElementById('contact-celular').value.trim();
+			const mensaje = document.getElementById('contact-message').value.trim();
 
-        function closeConfirmationPopup() {
-            document.getElementById('confirmation-popup').classList.remove('active');
-        }
-
-		// Funciones de validación
-		function isValidName(name) {
-			// Nombre debe tener al menos 2 caracteres, solo letras y espacios
-			return /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,}$/.test(name);
-		}
-
-		function isValidEmail(email) {
-			// Validación básica de email
-			return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-		}
-
-		function isValidPhone(phone) {
-			// Validación para celular colombiano (10 dígitos)
-			return /^[0-9]{10}$/.test(phone);
-		}
-
-        // Función de enviar contacto
-        function sendContactRequest() {
-            const name = document.getElementById('contact-name').value;
-            const email = document.getElementById('contact-email').value;
-			const celular = document.getElementById('contact-celular').value;
-            const message = document.getElementById('contact-message').value;
-            
-            // Validación básica
-            if (!name || !email || !celular || !message) {
-                alert('Por favor completa todos los campos');
-                return;
-            }
-
-			// Validaciones específicas
-			if (!isValidName(name)) {
-				alert('Por favor ingresa un nombre válido (mínimo 2 letras, sin caracteres especiales)');
-				return;
-			}
-			
-			if (!isValidEmail(email)) {
-				alert('Por favor ingresa un email válido (ejemplo: tu@email.com)');
-				return;
-			}
-			
-			if (!isValidPhone(celular)) {
-				alert('Por favor ingresa un número de celular válido (10 dígitos)');
-				return;
-			}
-
-			// Agregar después de las funciones de validación
-			document.getElementById('contact-name').addEventListener('blur', function() {
-				if (!isValidName(this.value.trim())) {
-					this.style.borderColor = 'red';
-				} else {
-					this.style.borderColor = '#e2e8f0';
-				}
+			// Resetear bordes
+			document.querySelectorAll('input, textarea').forEach(el => {
+				el.style.borderColor = '#e2e8f0';
 			});
-						
-            // Enviar con EmailJS
-            emailjs.send('service_42rjl6k', 'template_iszllup', {
-                from_name: name,
-                from_email: email,
-				from_phone: celular,  // Asegúrate de que este campo existe en tu template de EmailJS
-                message: message
-            }).then(function() {
-                // Limpiar formulario
-                document.getElementById('contact-name').value = '';
-                document.getElementById('contact-email').value = '';
-				document.getElementById('contact-celular').value = '';
-                document.getElementById('contact-message').value = '';
+
+			// Validar nombre (mínimo 3 caracteres)
+			if (nombre.length < 3) {
+				document.getElementById('contact-name').style.borderColor = '#EF4444';
+				valido = false;
+			}
+
+			// Validar email (formato básico)
+			if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+				document.getElementById('contact-email').style.borderColor = '#EF4444';
+				valido = false;
+			}
+
+			// Validar celular (10 dígitos)
+			if (!/^\d{10}$/.test(celular)) {
+				document.getElementById('contact-celular').style.borderColor = '#EF4444';
+				valido = false;
+			}
+
+			// Validar mensaje (mínimo 10 caracteres)
+			if (mensaje.length < 10) {
+				document.getElementById('contact-message').style.borderColor = '#EF4444';
+				valido = false;
+			}
+
+			return valido;
+		}
+
+		// Función para enviar el formulario
+		function sendContactRequest() {
+			if (!validarCampos()) {
+				// Mostrar popup de error
+				const errorPopup = document.createElement('div');
+				errorPopup.style.position = 'fixed';
+				errorPopup.style.top = '20px';
+				errorPopup.style.left = '50%';
+				errorPopup.style.transform = 'translateX(-50%)';
+				errorPopup.style.backgroundColor = '#EF4444';
+				errorPopup.style.color = 'white';
+				errorPopup.style.padding = '10px 20px';
+				errorPopup.style.borderRadius = '5px';
+				errorPopup.style.zIndex = '10000';
+				errorPopup.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+				errorPopup.textContent = 'Por favor digite bien la información';
+				
+				document.body.appendChild(errorPopup);
+				
+				// Remover después de 3 segundos
+				setTimeout(() => {
+					errorPopup.remove();
+				}, 3000);
+				
+				return;
+			}
+
+			// Si todo está válido, proceder con el envío
+			const name = document.getElementById('contact-name').value.trim();
+			const email = document.getElementById('contact-email').value.trim();
+			const celular = document.getElementById('contact-celular').value.trim();
+			const message = document.getElementById('contact-message').value.trim();
+
+			emailjs.send('service_42rjl6k', 'template_iszllup', {
+				from_name: name,
+				from_email: email,
+				from_phone: celular,
+				message: message
+			}).then(function() {
+				alert('¡Gracias por contactarnos! Nos comunicaremos contigo pronto.');
+				closeContactPopup();
+			}, function(error) {
+				alert('Hubo un error al enviar el mensaje. Por favor inténtalo de nuevo.');
+			});
+		}
+
+		// Autoformatear teléfono (solo números, máximo 10 dígitos)
+		document.getElementById('contact-celular').addEventListener('input', function(e) {
+			this.value = this.value.replace(/\D/g, '').slice(0, 10);
+		});
+
+        // Animación de partículas
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
                 
-                // Mostrar confirmación
-                closeContactPopup();
-                openConfirmationPopup();
-            }, function(error) {
-                console.error('Error al enviar:', error);
-                alert('Hubo un error al enviar el mensaje. Por favor inténtalo de nuevo.');
-            });
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                particle.style.left = `${Math.random() * 100}%`;
+                
+                const duration = Math.random() * 10 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
         }
 
-        // Cerrar popups con ESC
+        // Cerrar con tecla ESC
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                closeProcessPopup();
+                closeModal();
                 closeContactPopup();
-                closeConfirmationPopup();
             }
         });
 
-        // Rotación de burbujas
-        const bubbleContent = [
-            ["Vende más<br>Trabaja menos", "Herramientas que optimizan tu tiempo"],
-            ["Gestión sin estrés", "Automatizamos tus procesos operativos"],
-            ["Control total", "Todo tu negocio en tiempo real"]
-        ];
-        
-        const bubbles = document.querySelectorAll('.dialog-bubble');
-        let currentIndex = 0;
-        
-        function rotateBubbles() {
-            currentIndex = (currentIndex + 1) % bubbleContent.length;
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
             
-            bubbles.forEach((bubble, i) => {
-                const [title, text] = bubbleContent[(currentIndex + i) % bubbleContent.length];
-                bubble.innerHTML = `<h3>${title}</h3><p>${text}</p>`;
-            });
-        }
-        
-        setInterval(rotateBubbles, 20000);
+            // Mostrar modal explicativo siempre al cargar
+            openModal();
+        });
     </script>
 </body>
 </html>
