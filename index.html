@@ -2,855 +2,1521 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>WoMo Studio | Automatización Inteligente</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --verde: #10B981;
-            --azul: #2563EB;
-            --morado: #7C3AED;
-            --naranja: #F59E0B;
-            --gris-oscuro: #1F2937;
-            --blanco: #FFFFFF;
-            --sombra: 0 10px 30px rgba(0, 0, 0, 0.1);
+<style>
+    :root {
+        --verde: #10B981;
+        --azul: #2563EB;
+        --morado: #7C3AED;
+        --naranja: #F59E0B;
+        --gris-oscuro: #1F2937;
+        --blanco: #FFFFFF;
+        --sombra: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    html {
+        font-size: 16px;
+    }
+    
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--blanco);
+        color: var(--gris-oscuro);
+        overflow-x: hidden;
+        line-height: 1.6;
+    }
+    
+    /* Hero Section Impactante */
+    .hero-impact {
+        height: 100vh;
+        min-height: 700px;
+        background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero-impact::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            radial-gradient(circle at 20% 30%, rgba(16, 185, 129, 0.15) 0%, transparent 30%),
+            radial-gradient(circle at 80% 70%, rgba(37, 99, 235, 0.15) 0%, transparent 30%),
+            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="white" opacity="0.5"/></svg>');
+        z-index: 1;
+    }
+    
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 900px;
+        margin-top: -50px; /* Ajustado para subir el texto */
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(90deg, var(--verde), var(--azul));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        font-weight: 300;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .hero-cta {
+        display: inline-block;
+        background: linear-gradient(90deg, var(--azul), var(--verde));
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        margin-top: 1rem;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 1.1rem;
+    }
+    
+    .hero-cta:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Animación de partículas */
+    .particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        overflow: hidden;
+    }
+    
+    .particle {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        animation: float-up linear infinite;
+    }
+    
+    @keyframes float-up {
+        0% {
+            transform: translateY(100vh) scale(0);
+            opacity: 0;
+        }
+        20% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-20vh) scale(1);
+            opacity: 0;
+        }
+    }
+    
+    /* Sección de 4 Procesos */
+    .process-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 2rem 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        gap: 1rem;
+    }
+    
+    .process-card {
+        background: var(--blanco);
+        border-radius: 12px;
+        padding: 1.5rem 1rem;
+        box-shadow: var(--sombra);
+        cursor: pointer;
+        transition: all 0.3s;
+        text-align: center;
+        border-top: 4px solid var(--verde);
+        width: 100%;
+        max-width: 220px;
+    }
+    
+    .process-card:nth-child(2) {
+        border-top-color: var(--azul);
+    }
+    
+    .process-card:nth-child(3) {
+        border-top-color: var(--morado);
+    }
+    
+    .process-card:nth-child(4) {
+        border-top-color: var(--naranja);
+    }
+    
+    .process-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .process-icon {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .process-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .process-card p {
+        font-size: 0.8rem;
+        color: #64748B;
+    }
+    
+    /* Sección de Beneficios Compacta */
+    .benefits-section {
+        padding: 1.5rem 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .benefits-title {
+        font-size: 1.8rem;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: var(--gris-oscuro);
+    }
+    
+    .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .services-title {
+        font-size: 1.8rem;
+        text-align: center;
+        margin-bottom: 1rem;
+        color: var(--gris-oscuro);
+    }
+    
+    /* Sección Antes/Después */
+    .comparison-section {
+        background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
+        padding: 3rem 1rem;
+        text-align: center;
+    }
+    
+    .comparison-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        color: var(--gris-oscuro);
+    }
+    
+    .comparison-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    @media (min-width: 768px) {
+        .comparison-container {
+            flex-direction: row;
+        }
+    }
+    
+    .comparison-column {
+        flex: 1;
+        padding: 1.5rem;
+        position: relative;
+    }
+    
+    .comparison-column:first-child::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 80%;
+        width: 2px;
+        background: linear-gradient(to bottom, transparent, #CBD5E0, transparent);
+    }
+    
+    @media (max-width: 767px) {
+        .comparison-column:first-child::after {
+            display: none;
+        }
+    }
+    
+    .column-title {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .before .column-title::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background: #EF4444;
+    }
+    
+    .after .column-title::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background: var(--verde);
+    }
+    
+    .comparison-list {
+        list-style: none;
+        text-align: left;
+    }
+    
+    .comparison-list li {
+        margin-bottom: 0.8rem;
+        position: relative;
+        padding-left: 1.8rem;
+        font-size: 0.95rem;
+    }
+    
+    .comparison-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.5rem;
+        width: 0.8rem;
+        height: 0.8rem;
+        border-radius: 50%;
+    }
+    
+    .before .comparison-list li::before {
+        background-color: #EF4444;
+    }
+    
+    .after .comparison-list li::before {
+        background-color: var(--verde);
+    }
+    
+    /* Modal tipo carrusel mejorado */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        backdrop-filter: blur(5px);
+    }
+
+    .modal-container {
+        background: white;
+        border-radius: 20px;
+        width: 90%;
+        max-width: 800px;
+        height: 80vh;
+        max-height: 700px;
+        position: relative;
+        overflow: hidden;
+        animation: modalFadeIn 0.4s ease-out;
+    }
+
+    .modal-carousel {
+        display: flex;
+        width: 300%;
+        height: 100%;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .modal-slide {
+        width: 33.333%;
+        height: 100%;
+        padding: 2rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        position: relative;
+    }    
+    
+    .modal-slide img {
+        max-width: 100%;
+        max-height: 300px;
+        border-radius: 10px;
+        margin-bottom: 1.5rem;
+        object-fit: cover;
+    }
+    
+    .modal-slide h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        color: #2b6cb0;
+    }
+    
+    .modal-slide p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        max-width: 600px;
+        color: #334155;
+    }
+    
+    .modal-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin: 1.5rem 0;
+        width: 100%;
+        max-width: 500px;
+    }
+    
+    .modal-step {
+        background: rgba(245, 245, 245, 0.8);
+        padding: 1rem;
+        border-radius: 8px;
+        border-left: 4px solid var(--verde);
+        text-align: left;
+    }
+    
+    .modal-step h4 {
+        font-size: 1.1rem;
+        color: var(--gris-oscuro);
+        margin-bottom: 0.5rem;
+    }
+    
+    .modal-step p {
+        font-size: 0.9rem;
+        color: #64748B;
+        margin-bottom: 0;
+    }
+    
+    /* Botón de play para el video */
+    .play-button {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 60px;
+		height: 60px;
+		background-color: rgba(255, 255, 255, 0.5);
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		z-index: 2;
+		transition: all 0.3s ease;
+		font-size: 24px;
+		color: var(--black);
+	}
+    
+    .play-button:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    /* Video container */
+    .video-container {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto 1.5rem;
+    }
+    
+    @keyframes modalFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Estilo para todos los botones de cerrar */
+    .modal-close, .close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        padding: 0.5rem;
+        cursor: pointer;
+        color: var(--gris-oscuro);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        z-index: 10;
+    }
+
+    .modal-close:hover, .close-btn:hover {
+        background: rgba(0, 0, 0, 0.05);
+        color: #EF4444;
+    }
+
+    .modal-close svg, .close-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    /* Popup de Contacto */
+    .side-popup {
+        position: fixed;
+        bottom: -400px;
+        right: 10px;
+        width: calc(100% - 20px);
+        max-width: 350px;
+        height: auto;
+        max-height: 80vh;
+        background: var(--blanco);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        z-index: 1002;
+        padding: 1.5rem;
+        border-radius: 12px 12px 0 0;
+        overflow: hidden;
+        transform: translateY(100%);
+    }
+    
+    .side-popup.active {
+        bottom: 10px;
+        transform: translateY(0);
+    }
+    
+    .contact-subtitle {
+        font-size: 0.85rem;
+        color: #64748B;
+        margin-bottom: 1rem;
+    }
+    
+    .contact-form {
+        margin-top: 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .contact-form input, .contact-form textarea {
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 0.6rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.85rem;
+    }
+    
+    .form-footer {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 0.8rem;
+    }
+    
+    .submit-btn {
+        background: var(--verde);
+        color: white;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.85rem;
+        flex: 1;
+    }
+    
+    .whatsapp-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #25D366;
+        color: white;
+        border: none;
+        padding: 0.6rem;
+        border-radius: 6px;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+    }
+    
+    /* Botón Flotante de Contacto */
+    .contact-float-wrapper {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 999;
+        cursor: pointer;
+    }
+    
+    .contact-float {
+        background: linear-gradient(90deg, var(--azul), var(--verde));
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--sombra);
+        transition: all 0.3s;
+    }
+    
+    .contact-float:hover {
+        transform: scale(1.1);
+    }
+    
+    .contact-float-label {
+        margin-top: 0.5rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        background: linear-gradient(90deg, var(--azul), var(--verde));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-align: center;
+    }
+    
+    /* Footer */
+    .footer {
+        background: var(--gris-oscuro);
+        color: white;
+        padding: 2rem 1rem;
+        text-align: center;
+    }
+    
+    .footer-logo {
+        max-width: 150px;
+        margin-bottom: 1.5rem;
+    }
+    
+    .footer-text {
+        max-width: 600px;
+        margin: 0 auto 1.5rem;
+        color: #9CA3AF;
+    }
+    
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .footer-link {
+        cursor: pointer;
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-size: 0.9rem;
+    }
+    
+    .footer-link:hover {
+        color: var(--verde);
+    }
+    
+    .copyright {
+        color: #9CA3AF;
+        font-size: 0.8rem;
+    }
+    
+    /* ESTILOS PARA LOS POPUPS DE PROCESOS */
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.7);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1001;
+    }
+    
+    .centered-popup {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        width: 90%;
+        max-width: 500px;
+        padding: 1.5rem;
+        position: relative;
+    }
+    
+    .process-chart {
+        width: 100%;
+        height: 180px;
+        margin: 1.2rem 0;
+        background: #f5f7fa;
+        border-radius: 8px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-around;
+        padding: 0 1rem;
+    }
+    
+    .chart-bar {
+        width: 35px;
+        background: linear-gradient(to top, var(--verde), var(--azul));
+        border-radius: 4px 4px 0 0;
+        animation: grow 1s ease-out forwards;
+        position: relative;
+    }
+    
+    .chart-bar::after {
+        content: attr(data-value);
+        position: absolute;
+        top: -22px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.7rem;
+        font-weight: 600;
+    }
+    
+    @keyframes grow {
+        from { height: 0; }
+        to { height: var(--height); }
+    }
+    
+    .notification {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px 20px;
+        border-radius: 8px;
+        z-index: 10000;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        font-weight: 500;
+        animation: slideIn 0.3s ease-out;
+        color: white;
+        max-width: 90%;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    .notification.success { background-color: #10B981; }
+    .notification.warning { background-color: #F59E0B; }
+    .notification.error { background-color: #EF4444; }
+
+    @keyframes slideIn {
+        from { top: -50px; opacity: 0; }
+        to { top: 20px; opacity: 1; }
+    }
+    
+    /* Estilos del Chatbot Mejorado */
+    #chatbot-wrapper {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 10px;
+    }
+
+    .chatbot-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--azul), var(--verde));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+    }
+
+    .chatbot-icon:hover {
+        transform: scale(1.1);
+        box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
+    }
+
+    .chatbot-icon img {
+        width: 60%;
+        height: 60%;
+        object-fit: contain;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        transition: all 0.3s ease;
+    }
+
+    .chatbot-icon:hover img {
+        transform: scale(1.1);
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    #chatbot-window {
+        width: 350px;
+        max-width: 90vw;
+        height: 500px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.3s ease;
+        z-index: 10000;
+        display: none;
+    }
+
+    #chatbot-window.active {
+        transform: translateY(0);
+        opacity: 1;
+        display: flex;
+    }
+
+    .chatbot-header {
+        background: linear-gradient(135deg, var(--azul), var(--verde));
+        color: white;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        position: relative;
+    }
+
+    .chatbot-avatar {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .chatbot-avatar img {
+        width: 70%;
+        height: 70%;
+        object-fit: contain;
+    }
+
+    .chatbot-title {
+        flex: 1;
+    }
+
+    .chatbot-title h3 {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 1.3;
+    }
+
+    .chatbot-title p {
+        margin: 0;
+        font-size: 11px;
+        opacity: 0.9;
+        font-weight: 300;
+    }
+
+    .chatbot-close {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 5px;
+        opacity: 0.8;
+        transition: opacity 0.2s;
+        flex-shrink: 0;
+    }
+
+    .chatbot-close:hover {
+        opacity: 1;
+    }
+
+    .chatbot-messages {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+        background: #f8fafc;
+        scrollbar-width: thin;
+        scrollbar-color: var(--azul) #f1f5f9;
+    }
+
+    .chatbot-messages::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .chatbot-messages::-webkit-scrollbar-track {
+        background: #f1f5f9;
+    }
+
+    .chatbot-messages::-webkit-scrollbar-thumb {
+        background-color: var(--azul);
+        border-radius: 3px;
+    }
+
+    .message {
+        margin-bottom: 12px;
+        max-width: 85%;
+        font-size: 13px;
+        line-height: 1.5;
+        position: relative;
+        animation: fadeIn 0.3s ease;
+        word-wrap: break-word;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(5px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .user-message {
+        margin-left: auto;
+        background: linear-gradient(135deg, var(--azul), var(--verde));
+        color: white;
+        padding: 10px 14px;
+        border-radius: 18px 18px 0 18px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .bot-message {
+        margin-right: auto;
+        background: white;
+        padding: 10px 14px;
+        border-radius: 18px 18px 18px 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .quick-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 12px;
+        background: #f1f5f9;
+        border-top: 1px solid #e2e8f0;
+    }
+
+    .quick-option {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 18px;
+        padding: 7px 12px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .quick-option:hover {
+        background: var(--azul);
+        color: white;
+        border-color: var(--azul);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 10px rgba(37, 99, 235, 0.2);
+    }
+
+    .input-wrapper {
+        display: flex;
+        padding: 12px;
+        background: white;
+        border-top: 1px solid #e2e8f0;
+    }
+
+    #chatbot-input {
+        flex: 1;
+        padding: 10px 15px;
+        border: 1px solid #e2e8f0;
+        border-radius: 25px;
+        outline: none;
+        font-family: 'Poppins', sans-serif;
+        font-size: 13px;
+        transition: all 0.3s;
+    }
+
+    #chatbot-input:focus {
+        border-color: var(--azul);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .input-wrapper button {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, var(--azul), var(--verde));
+        border: none;
+        border-radius: 50%;
+        margin-left: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+    }
+
+    .input-wrapper button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+    }
+
+    .input-wrapper button svg {
+        width: 18px;
+        height: 18px;
+        color: white;
+    }
+
+    .lead-form {
+        padding: 12px;
+        background: white;
+        border-radius: 10px;
+        margin: 8px 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0,0,0,0.05);
+        animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .lead-form h4 {
+        margin-top: 0;
+        margin-bottom: 12px;
+        color: var(--gris-oscuro);
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .lead-form input, 
+    .lead-form select, 
+    .lead-form textarea {
+        width: 100%;
+        padding: 8px 12px;
+        margin-bottom: 10px;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        font-size: 13px;
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.3s;
+    }
+
+    .lead-form input:focus, 
+    .lead-form select:focus, 
+    .lead-form textarea:focus {
+        border-color: var(--azul);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        outline: none;
+    }
+
+    .lead-form textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+
+    .lead-form button {
+        background: linear-gradient(135deg, var(--azul), var(--verde));
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 13px;
+        cursor: pointer;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        transition: all 0.3s;
+        margin-top: 5px;
+    }
+
+    .lead-form button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+    }
+
+    .typing-indicator {
+        display: flex;
+        padding: 10px 14px;
+        background: white;
+        border-radius: 18px 18px 18px 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0,0,0,0.05);
+        width: fit-content;
+        margin-bottom: 12px;
+    }
+
+    .typing-dot {
+        width: 6px;
+        height: 6px;
+        background: #64748B;
+        border-radius: 50%;
+        margin: 0 2px;
+        animation: typingAnimation 1.4s infinite ease-in-out;
+    }
+
+    .typing-dot:nth-child(1) { animation-delay: 0s; }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes typingAnimation {
+        0%, 60%, 100% { transform: translateY(0); }
+        30% { transform: translateY(-4px); background: var(--azul); }
+    }
+
+    /* Ajustes para cuando el popup de contacto está activo */
+    #contact-popup.active ~ #chatbot-wrapper {
+        right: 380px;
+        bottom: 20px;
+        transition: all 0.3s ease;
+    }
+
+    /* ============================================= */
+    /* MEDIA QUERIES PARA DISPOSITIVOS MÓVILES */
+    /* ============================================= */
+
+    @media (max-width: 768px) {
+        html {
+            font-size: 14px;
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--blanco);
-            color: var(--gris-oscuro);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-        
-        /* Hero Section Impactante */
+        /* Hero Section */
         .hero-impact {
-            height: 100vh;
-            min-height: 700px;
-            background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-impact::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(16, 185, 129, 0.15) 0%, transparent 30%),
-                radial-gradient(circle at 80% 70%, rgba(37, 99, 235, 0.15) 0%, transparent 30%);
-            z-index: 1;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
+            min-height: 90vh;
+            padding: 1rem;
         }
         
         .hero-title {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(90deg, var(--verde), var(--azul));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1.2;
+            font-size: 2rem !important;
+            line-height: 1.3 !important;
+            margin-bottom: 1rem !important;
         }
         
         .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            font-weight: 300;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 1.1rem !important;
         }
         
         .hero-cta {
-            display: inline-block;
-            background: linear-gradient(90deg, var(--azul), var(--verde));
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            margin-top: 1rem;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1.1rem;
+            padding: 0.8rem 1.5rem !important;
+            font-size: 1rem !important;
         }
         
-        .hero-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Animación de partículas */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            overflow: hidden;
-        }
-        
-        .particle {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            animation: float-up linear infinite;
-        }
-        
-        @keyframes float-up {
-            0% {
-                transform: translateY(100vh) scale(0);
-                opacity: 0;
-            }
-            20% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-20vh) scale(1);
-                opacity: 0;
-            }
-        }
-        
-        /* Sección de 4 Procesos */
+        /* Procesos */
         .process-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            gap: 1.5rem;
+            flex-direction: column;
+            align-items: center;
         }
         
         .process-card {
-            background: var(--blanco);
-            border-radius: 12px;
-            padding: 2rem 1.5rem;
-            box-shadow: var(--sombra);
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-            border-top: 4px solid var(--verde);
-            width: 100%;
-            max-width: 250px;
+            max-width: 100% !important;
+            width: 90% !important;
+            margin-bottom: 1rem;
         }
         
-        .process-card:nth-child(2) {
-            border-top-color: var(--azul);
-        }
-        
-        .process-card:nth-child(3) {
-            border-top-color: var(--morado);
-        }
-        
-        .process-card:nth-child(4) {
-            border-top-color: var(--naranja);
-        }
-        
-        .process-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .process-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .process-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .process-card p {
-            font-size: 0.9rem;
-            color: #64748B;
-        }
-        
-        /* Sección de Beneficios */
-        .benefits-section {
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .benefits-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: var(--gris-oscuro);
-        }
-        
+        /* Beneficios */
         .benefits-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-        
-        @media (min-width: 768px) {
-            .benefits-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            grid-template-columns: 1fr !important;
+            gap: 1rem;
         }
         
         .benefit-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: var(--sombra);
-            transition: all 0.3s ease;
+            padding: 1rem !important;
         }
         
-        .benefit-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .benefit-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .benefit-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--gris-oscuro);
-        }
-        
-        .benefit-card p {
-            color: #64748B;
-            line-height: 1.6;
-        }
-        
-        /* Sección Antes/Después */
-        .comparison-section {
-            background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
-            padding: 5rem 2rem;
-            text-align: center;
-        }
-        
-        .comparison-title {
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            color: var(--gris-oscuro);
-        }
-        
-        .comparison-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        @media (min-width: 768px) {
-            .comparison-container {
-                flex-direction: row;
-            }
-        }
-        
-        .comparison-column {
-            flex: 1;
-            padding: 2rem;
-            position: relative;
-        }
-        
-        .comparison-column:first-child::after {
-            content: "";
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            height: 80%;
-            width: 2px;
-            background: linear-gradient(to bottom, transparent, #CBD5E0, transparent);
-        }
-        
-        @media (max-width: 767px) {
-            .comparison-column:first-child::after {
-                display: none;
-            }
-        }
-        
-        .column-title {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .before .column-title::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background: #EF4444;
-        }
-        
-        .after .column-title::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background: var(--verde);
-        }
-        
-        .comparison-list {
-            list-style: none;
-            text-align: left;
-        }
-        
-        .comparison-list li {
-            margin-bottom: 1rem;
-            position: relative;
-            padding-left: 2rem;
-        }
-        
-        .comparison-list li::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0.5rem;
-            width: 1rem;
-            height: 1rem;
-            border-radius: 50%;
-        }
-        
-        .before .comparison-list li::before {
-            background-color: #EF4444;
-        }
-        
-        .after .comparison-list li::before {
-            background-color: var(--verde);
-        }
-        
-        /* Popup de Explicación */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        
+        /* Modal */
         .modal-container {
-            background: white;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 800px;
-            max-height: 90vh;
+            width: 95% !important;
+            height: 90vh !important;
+            max-height: none !important;
+        }
+        
+        .modal-slide {
+            padding: 1rem !important;
             overflow-y: auto;
-            position: relative;
-            padding: 3rem 2rem;
-            animation: modalFadeIn 0.4s ease-out;
+            padding-bottom: 50px;
         }
         
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .modal-slide h2 {
+            font-size: 1.5rem !important;
         }
         
-        /* Estilo para todos los botones de cerrar */
-		.modal-close, .close-btn {
-			position: absolute;
-			top: 1rem;
-			right: 1rem;
-			background: none;
-			border: none;
-			padding: 0.5rem;
-			cursor: pointer;
-			color: var(--gris-oscuro);
-			transition: all 0.3s ease;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 40px;
-			height: 40px;
-			border-radius: 50%;
-		}
-
-		.modal-close:hover, .close-btn:hover {
-			background: rgba(0, 0, 0, 0.05);
-			color: #EF4444; /* Rojo suave al hover */
-		}
-
-		.modal-close svg, .close-btn svg {
-			width: 20px;
-			height: 20px;
-		}
-        
-        .modal-title {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--gris-oscuro);
-            text-align: center;
+        .modal-slide p {
+            font-size: 0.95rem !important;
         }
         
-        .modal-visual {
-			margin: 1.5rem auto; /* Centrar la imagen */
-			max-width: 70%; /* Hacerla más pequeña (ajusta este porcentaje) */
-			border-radius: 10px;
-			box-shadow: var(--sombra);
-			overflow: hidden; /* Para mantener el borde redondeado */
+        /* Chatbot */
+        #chatbot-wrapper {
+            right: 10px !important;
+            bottom: 10px !important;
         }
         
-        .modal-visual img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: var(--sombra);
+        #chatbot-window {
+            width: 95vw !important;
+            height: 70vh !important;
+            max-height: none !important;
+            bottom: 70px !important;
         }
         
-        .modal-text {
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
+        .chatbot-messages {
+            padding: 10px !important;
         }
         
-        .modal-steps {
-            margin: 2rem 0;
+        .message {
+            max-width: 90% !important;
+            font-size: 0.9rem !important;
+            padding: 8px 12px !important;
         }
         
-        .modal-step {
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-left: 2.5rem;
+        .quick-option {
+            font-size: 0.8rem !important;
+            padding: 5px 10px !important;
         }
         
-        .modal-step::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 1.8rem;
-            height: 1.8rem;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--azul), var(--verde));
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-        
-        .modal-step:nth-child(1)::before {
-            content: "1";
-        }
-        
-        .modal-step:nth-child(2)::before {
-            content: "2";
-        }
-        
-        .modal-step:nth-child(3)::before {
-            content: "3";
-        }
-        
-        .modal-step h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--gris-oscuro);
-        }
-        
-        /* Popup de Contacto */
-        .side-popup {
-            position: fixed;
-            bottom: -400px;
-            right: 10px;
-            width: calc(100% - 20px);
-            max-width: 350px;
-            height: auto;
-            max-height: 80vh;
-            background: var(--blanco);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            z-index: 1002;
-            padding: 1.5rem;
-            border-radius: 12px 12px 0 0;
-            overflow: hidden;
-            transform: translateY(100%);
-        }
-        
-        .side-popup.active {
-            bottom: 10px;
-            transform: translateY(0);
-        }
-        
-        .contact-subtitle {
-            font-size: 0.85rem;
-            color: #64748B;
-            margin-bottom: 1rem;
-        }
-        
-        .contact-form {
-            margin-top: 1rem;
-            font-size: 0.85rem;
-        }
-        
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 0.5rem;
-            margin-bottom: 0.6rem;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.85rem;
-        }
-        
-        .form-footer {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 0.8rem;
+        /* Formularios */
+        .contact-form input, 
+        .contact-form textarea {
+            font-size: 1rem !important;
+            padding: 0.8rem !important;
         }
         
         .submit-btn {
-            background: var(--verde);
-            color: white;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.85rem;
-            flex: 1;
+            padding: 0.8rem !important;
         }
         
-        .whatsapp-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #25D366;
-            color: white;
-            border: none;
-            padding: 0.6rem;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
+        .side-popup {
+            max-width: 90% !important;
+            right: 5% !important;
         }
         
-        /* Botón Flotante de Contacto */
-        .contact-float-wrapper {
-            position: fixed;
-            bottom: 1rem;
-            right: 1rem;
-            display: flex;
+        /* Comparación */
+        .comparison-container {
             flex-direction: column;
-            align-items: center;
-            z-index: 999;
-            cursor: pointer;
         }
         
-        .contact-float {
-            background: linear-gradient(90deg, var(--azul), var(--verde));
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--sombra);
-            transition: all 0.3s;
-        }
-        
-        .contact-float:hover {
-            transform: scale(1.1);
-        }
-        
-        .contact-float-label {
-            margin-top: 0.5rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            background: linear-gradient(90deg, var(--azul), var(--verde));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-align: center;
-        }
-        
-        /* Footer */
-        .footer {
-            background: var(--gris-oscuro);
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-        
-        .footer-logo {
-            max-width: 150px;
-            margin-bottom: 1.5rem;
-        }
-        
-        .footer-text {
-            max-width: 600px;
-            margin: 0 auto 1.5rem;
-            color: #9CA3AF;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
+        .comparison-column:first-child {
             margin-bottom: 2rem;
-            flex-wrap: wrap;
         }
         
-        .footer-link {
-		    cursor: pointer;
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s ease;
+        .comparison-column:first-child::after {
+            display: block;
+            right: auto;
+            left: 50%;
+            transform: translateX(-50%);
+            top: auto;
+            bottom: -1rem;
+            height: 2px;
+            width: 80%;
+            background: linear-gradient(to right, transparent, #CBD5E0, transparent);
         }
-        
-        .footer-link:hover {
-            color: var(--verde);
-        }
-        
-        .copyright {
-            color: #9CA3AF;
-            font-size: 0.9rem;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.2rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .benefits-title, .comparison-title {
-                font-size: 1.8rem;
-            }
-            
-            .comparison-container {
-                flex-direction: column;
-            }
-            
-            .comparison-column:first-child {
-                margin-bottom: 3rem;
-            }
-            
-            .comparison-column:first-child::after {
-                display: block;
-                right: auto;
-                left: 50%;
-                transform: translateX(-50%);
-                top: auto;
-                bottom: -1.5rem;
-                height: 2px;
-                width: 80%;
-                background: linear-gradient(to right, transparent, #CBD5E0, transparent);
-            }
-        }
-		input:invalid, textarea:invalid {
-			border-color: #e2e8f0; /* Mantener el color normal por defecto */
-		}
-		
-		    /* ESTILOS PARA LOS POPUPS DE PROCESOS */
-		.popup-overlay {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: rgba(0,0,0,0.7);
-			display: none;
-			justify-content: center;
-			align-items: center;
-			z-index: 1001;
-		}
-		
-		.centered-popup {
-			background: white;
-			border-radius: 16px;
-			box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-			width: 90%;
-			max-width: 500px;
-			padding: 2rem;
-			position: relative;
-		}
-		
-		.process-chart {
-			width: 100%;
-			height: 200px;
-			margin: 1.5rem 0;
-			background: #f5f7fa;
-			border-radius: 8px;
-			display: flex;
-			align-items: flex-end;
-			justify-content: space-around;
-			padding: 0 1rem;
-		}
-		
-		.chart-bar {
-			width: 40px;
-			background: linear-gradient(to top, var(--verde), var(--azul));
-			border-radius: 4px 4px 0 0;
-			animation: grow 1s ease-out forwards;
-			position: relative;
-		}
-		
-		.chart-bar::after {
-			content: attr(data-value);
-			position: absolute;
-			top: -25px;
-			left: 50%;
-			transform: translateX(-50%);
-			font-size: 0.8rem;
-			font-weight: 600;
-		}
-		
-		@keyframes grow {
-			from { height: 0; }
-			to { height: var(--height); }
-		}
-		
-		.notification {
-			position: fixed;
-			top: 20px;
-			left: 50%;
-			transform: translateX(-50%);
-			padding: 12px 24px;
-			border-radius: 8px;
-			z-index: 10000;
-			box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-			font-weight: 500;
-			animation: slideIn 0.3s ease-out;
-			color: white;
-			max-width: 90%;
-			text-align: center;
-		}
+    }
+	
+@media (max-width: 768px) {
+    .modal-container {
+        width: 95% !important;
+        height: auto !important;
+        max-height: 90vh !important;
+    }
+    
+    .modal-slide {
+        padding: 15px !important;
+        height: auto !important;
+    }
+    
+    .modal-slide img {
+        max-height: 200px !important;
+        object-fit: contain !important;
+    }
+    
+    html {
+        font-size: 14px;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem !important;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem !important;
+    }
+    
+    .services-title, .benefits-title, .comparison-title {
+        font-size: 1.5rem !important;
+    }
+    
+    .process-card {
+        padding: 1rem !important;
+        width: 90% !important;
+        margin-bottom: 1rem;
+    }
+}
 
-		.notification.success { background-color: #10B981; }
-		.notification.warning { background-color: #F59E0B; }
-		.notification.error { background-color: #EF4444; }
+@media (max-width: 480px) {
+    html {
+        font-size: 13px;
+    }
+    
+    .modal-slide {
+        padding: 10px !important;
+    }
+    
+    .modal-slide h2 {
+        font-size: 1.3rem !important;
+    }
+    
+    .play-button {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 20px !important;
+    }
+    
+    .process-card {
+        padding: 1rem 0.8rem !important;
+    }
+    
+    .process-icon {
+        font-size: 1.8rem !important;
+    }
+    
+    .process-card h3 {
+        font-size: 1rem !important;
+    }
+    
+    .process-card p {
+        font-size: 0.75rem !important;
+    }
+}
 
-		@keyframes slideIn {
-			from { top: -50px; opacity: 0; }
-			to { top: 20px; opacity: 1; }
-		}
-    </style>
+/* Validación de campos */
+input:invalid, textarea:invalid {
+    border-color: #e2e8f0;
+}
+
+/* Ocultar icono del chatbot cuando está abierto */
+#chatbot-window.active ~ .chatbot-icon {
+    display: none;
+}
+
+/* Ocultar botón de contacto cuando chatbot está activo */
+#chatbot-wrapper.active ~ .contact-float-wrapper {
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+/* Ajustes para el tercer slide del modal */
+.modal-slide:nth-child(3) {
+    overflow-y: auto;
+    padding-bottom: 70px; /* Espacio para los dots de navegación */
+}
+
+.modal-slide:nth-child(3) .modal-steps {
+    margin-bottom: 1.5rem;
+}
+
+.modal-slide:nth-child(3) button {
+    margin-top: auto;
+    margin-bottom: 1.5rem;
+}
+    /* Validación de campos */
+    input:invalid, textarea:invalid {
+        border-color: #e2e8f0;
+    }
+
+    /* Ocultar icono del chatbot cuando está abierto */
+    #chatbot-window.active ~ .chatbot-icon {
+        display: none;
+    }
+
+    /* Ocultar botón de contacto cuando chatbot está activo */
+    #chatbot-wrapper.active ~ .contact-float-wrapper {
+        flex-direction: row;
+        align-items: flex-end;
+    }
+
+    /* Ajustes para el tercer slide del modal */
+    .modal-slide:nth-child(3) {
+        overflow-y: auto;
+        padding-bottom: 70px; /* Espacio para los dots de navegación */
+    }
+
+    .modal-slide:nth-child(3) .modal-steps {
+        margin-bottom: 1.5rem;
+    }
+
+    .modal-slide:nth-child(3) button {
+        margin-top: auto;
+        margin-bottom: 1.5rem;
+    }
+</style>
 </head>
 <body>
-    <!-- Popup de Explicación (siempre visible al inicio) -->
-    <div class="modal-overlay" id="explanation-modal">
-        <div class="modal-container">
-            <button class="modal-close" id="modal-close">
-				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-				</svg>
-			</button>
 
-            <div class="modal-content">
-                <h2 class="modal-title">¿Cómo puede WoMo Studio Transforma tu Negocio?</h2>
-                <div class="modal-visual">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Proceso de automatización">
+<div class="modal-overlay" id="explanation-modal">
+    <div class="modal-container">
+        <!-- Botón cerrar actualizado (solo diseño) -->
+        <button class="modal-close" id="modal-close" style="background: none; border: none; cursor: pointer; position: absolute; top: 15px; right: 15px; z-index: 10;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18M6 6L18 18" stroke="#2b6cb0" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+        </button>
+
+        <div class="modal-carousel" id="modal-carousel">
+<!-- Slide 1 - Imagen mejorada -->
+<div class="modal-slide" style="background: #e2e8f0; padding: 20px; height: 100%; box-sizing: border-box;">
+    <h2 style="margin: 15px 0 20px; color: #2b6cb0; font-size: 1.7rem; text-align: center; line-height: 1.3;">
+        ¿Cómo puede <strong>WoMo Studio</strong> transformar tu negocio?
+    </h2>
+    <div style="width: 100%; height: calc(100% - 80px); max-width: 650px; margin: 0 auto; border-radius: 8px; overflow: hidden; position: relative;">
+        <img src="img_princ.png" 
+             alt="Transformación digital WoMo Studio" 
+             style="width: 100%; height: 100%; object-fit: contain; object-position: center;">
+        <div class="play-button" id="play-button" style="font-size: 24px; color: var(--black);">▶</div>
+    </div>
+</div>
+            
+            <!-- Slide 2 - Sin recuadro blanco -->
+            <div class="modal-slide" style="background: #e2e8f0; padding: 25px 20px; height: 100%; box-sizing: border-box;">
+                <div style="max-width: 600px; margin: 0 auto;">
+                    <h2 style="color: #2b6cb0; margin-bottom: 20px; font-size: 1.5rem; text-align: center;">
+                        Tu aliado en automatización inteligente
+                    </h2>
+                    <p style="font-size: 1.05rem; line-height: 1.6; margin-bottom: 20px; color: #334155;">
+                        <strong>WoMo Studio</strong> es tu aliado estratégico en la transformación digital, analizando tus necesidades y desafíos operativos para implementar soluciones de automatización que revolucionan tu negocio.
+                    </p>
+                    <p style="font-size: 1.05rem; line-height: 1.6; color: #334155;">
+                        Desarrollamos soluciones personalizadas que identifican los cuellos de botella en tus operaciones y los convertimos en procesos automatizados eficientes.
+                    </p>
                 </div>
-<p class="modal-text"><strong>WoMo Studio</strong> es tu aliado estratégico en la transformación digital, analizando tus necesidades y desafíos operativos para implementar soluciones de automatización que revolucionan tu negocio.</p>
-                <p class="modal-text">En WoMo Studio desarrollamos soluciones personalizadas que identifican los cuellos de botella en tus operaciones y los convertimos en procesos automatizados eficientes.</p>
-                
-                <div class="modal-steps">
-                    <div class="modal-step">
-                        <h4>Diagnóstico</h4>
-                        <p>Analizamos tus procesos actuales para identificar oportunidades</p>
+            </div>
+            
+            <!-- Slide 3 - Versión compacta -->
+            <div class="modal-slide" style="background: #e2e8f0; padding: 20px; height: 100%; box-sizing: border-box;">
+                <div style="max-width: 500px; margin: 0 auto;">
+                    <h2 style="color: #2b6cb0; margin-bottom: 20px; font-size: 1.5rem; text-align: center;">
+                        Nuestro proceso de transformación
+                    </h2>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="color: #2b6cb0; margin: 0 0 5px; font-size: 1.1rem;">Diagnóstico</h3>
+                        <p style="color: #64748B; font-size: 0.95rem; line-height: 1.5; margin: 0 0 15px;">
+                            Analizamos tus procesos actuales para identificar oportunidades
+                        </p>
+                        
+                        <h3 style="color: #2b6cb0; margin: 0 0 5px; font-size: 1.1rem;">Diseño</h3>
+                        <p style="color: #64748B; font-size: 0.95rem; line-height: 1.5; margin: 0 0 15px;">
+                            Creamos flujos de trabajo optimizados para tus necesidades
+                        </p>
+                        
+                        <h3 style="color: #2b6cb0; margin: 0 0 5px; font-size: 1.1rem;">Implementación</h3>
+                        <p style="color: #64748B; font-size: 0.95rem; line-height: 1.5; margin: 0;">
+                            Desplegamos la solución con capacitación incluida
+                        </p>
                     </div>
-                    <div class="modal-step">
-                        <h4>Diseño</h4>
-                        <p>Creamos flujos de trabajo optimizados para tus necesidades</p>
-                    </div>
-                    <div class="modal-step">
-                        <h4>Implementación</h4>
-                        <p>Desplegamos la solución con capacitación incluida</p>
-                    </div>
+                    
+                    <button class="hero-cta" style="margin: 15px auto 0; display: block;" id="transform-btn">
+                        Quiero transformar mi negocio
+                    </button>
                 </div>
-                
-                <button class="hero-cta" style="display: block; margin: 2rem auto 0; width: 80%;" onclick="closeModal(); openContactPopup();">Quiero transformar mi negocio</button>
             </div>
         </div>
+
+        <!-- Navegación (se mantiene igual) LOS 3 PUNTOS
+        <div class="modal-nav" style="position: absolute; bottom: 20px; left: 0; right: 0; display: flex; justify-content: center; gap: 10px;">
+            <div class="modal-dot active" onclick="goToSlide(0)" style="width: 12px; height: 12px; border-radius: 50%; background: #2b6cb0; cursor: pointer;"></div>
+            <div class="modal-dot" onclick="goToSlide(1)" style="width: 12px; height: 12px; border-radius: 50%; background: #CBD5E0; cursor: pointer;"></div>
+            <div class="modal-dot" onclick="goToSlide(2)" style="width: 12px; height: 12px; border-radius: 50%; background: #CBD5E0; cursor: pointer;"></div>
+        </div>-->
     </div>
+</div>
 
     <!-- Hero Section Impactante -->
     <section class="hero-impact">
         <div class="particles" id="particles"></div>
         <div class="hero-content">
             <h1 class="hero-title">Transforma tu negocio con automatización inteligente</h1>
-            <p class="hero-subtitle">WoMo Studio convierte tus procesos manuales en sistemas automatizados que ahorran tiempo, reducen errores y aumentan tus ganancias</p>
+            <p class="hero-subtitle"><strong>WoMo Studio</strong> convierte tus procesos manuales en sistemas automatizados que ahorran tiempo, reducen errores y aumentan tus ganancias</p>
 			<p style="font-size: 1.1rem; margin: 1.5rem 0; font-weight: 400; color: rgba(255,255,255,0.9)">Nos enfocamos en tus necesidades específicas y desafíos únicos para diseñar soluciones personalizadas que impulsen tu productividad.</p>
-            <button class="hero-cta" id="discover-btn" onclick="openModal()">Descubre cómo funciona</button>
+            <button class="hero-cta" id="discover-btn">Descubre cómo funciona</button>
         </div>
     </section>
     
     <!-- Sección de 4 Procesos -->
-        <!-- Tarjeta 1 -->
-		<section id="services" style="padding: 2rem; max-width: 1200px; margin: 0 auto; text-align: center;">
+    <section id="services" style="padding: 1.5rem 1rem; max-width: 1200px; margin: 0 auto; text-align: center;">
 		<h2 class="services-title">Nuestros servicios</h2>
-		<div class="process-container"  id="services">
-
-        <div class="process-card" onclick="openProcessPopup('time')">
-            <div class="process-icon">⏱️</div>
-            <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Transformación de Tiempo</h3>
-            <p style="font-size: 0.8rem;">Convierte horas en minutos</p>
-        </div>
-        <div class="process-card" onclick="openProcessPopup('workflow')">
-            <div class="process-icon">⚡</div>
-            <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Flujos Inteligentes</h3>
-            <p style="font-size: 0.8rem;">Automatización adaptativa</p>
-        </div>
-        <div class="process-card" onclick="openProcessPopup('profit')">
-            <div class="process-icon">💰</div>
-            <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Impulso Rentable</h3>
-            <p style="font-size: 0.8rem;">Maximiza tus ganancias</p>
-        </div>
-        <div class="process-card" onclick="openProcessPopup('analytics')">
-            <div class="process-icon">🔍</div>
-            <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Análisis Predictivo</h3>
-            <p style="font-size: 0.8rem;">Anticipa tendencias</p>
+		<div class="process-container">
+            <div class="process-card" onclick="openProcessPopup('time')">
+                <div class="process-icon">⏱️</div>
+                <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Transformación de Tiempo</h3>
+                <p style="font-size: 0.8rem;">Convierte horas en minutos</p>
+            </div>
+            <div class="process-card" onclick="openProcessPopup('workflow')">
+                <div class="process-icon">⚡</div>
+                <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Flujos Inteligentes</h3>
+                <p style="font-size: 0.8rem;">Automatización adaptativa</p>
+            </div>
+            <div class="process-card" onclick="openProcessPopup('profit')">
+                <div class="process-icon">💰</div>
+                <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Impulso Rentable</h3>
+                <p style="font-size: 0.8rem;">Maximiza tus ganancias</p>
+            </div>
+            <div class="process-card" onclick="openProcessPopup('analytics')">
+                <div class="process-icon">📊</div>
+                <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Análisis Predictivo</h3>
+                <p style="font-size: 0.8rem;">Anticipa tendencias</p>
+            </div>
         </div>
 	</section>
     
@@ -865,52 +1531,70 @@
 				<div id="process-popup-content"></div>
 			</div>
 		</div>
-    <!-- Sección de Beneficios -->
+    
+    <!-- Sección de Beneficios Compacta -->
     <section class="benefits-section" id="benefits">
         <h2 class="benefits-title">El poder de la automatización</h2>
         <div class="benefits-grid">
-            <div class="benefit-card">
-                <div class="benefit-icon">⏱️</div>
-                <h3>Ahorro de tiempo</h3>
-                <p>Convierte horas de trabajo manual en minutos con nuestros sistemas automatizados.</p>
+            <!-- Beneficio 1 -->
+            <div class="benefit-card" style="padding: 1.2rem; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                <div style="font-size: 1.8rem; margin-bottom: 0.8rem;">⏱️</div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: #2b6cb0;">Ahorro de tiempo</h3>
+                <p style="font-size: 0.85rem; color: #64748b; line-height: 1.5; margin: 0;">
+                    Convierte horas de trabajo manual en minutos con nuestros sistemas automatizados.
+                </p>
             </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">📈</div>
-                <h3>Más productividad</h3>
-                <p>Tu equipo se enfoca en lo importante mientras nosotros optimizamos los procesos.</p>
+            
+            <!-- Beneficio 2 -->
+            <div class="benefit-card" style="padding: 1.2rem; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                <div style="font-size: 1.8rem; margin-bottom: 0.8rem;">📈</div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: #2b6cb0;">Más productividad</h3>
+                <p style="font-size: 0.85rem; color: #64748b; line-height: 1.5; margin: 0;">
+                    Tu equipo se enfoca en lo importante mientras optimizamos los procesos.
+                </p>
             </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">💰</div>
-                <h3>Mayores ganancias</h3>
-                <p>Reduce costos operativos y aumenta tu margen de beneficio con cada proceso automatizado.</p>
+            
+            <!-- Beneficio 3 -->
+            <div class="benefit-card" style="padding: 1.2rem; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                <div style="font-size: 1.8rem; margin-bottom: 0.8rem;">💰</div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: #2b6cb0;">Mayores ganancias</h3>
+                <p style="font-size: 0.85rem; color: #64748b; line-height: 1.5; margin: 0;">
+                    Reduce costos operativos y aumenta tu margen de beneficio.
+                </p>
             </div>
-        </div>
-    </section>
-    
-    <!-- Sección de Beneficios Adicionales -->
-    <section class="benefits-section" style="background: #F9FAFB; padding: 3rem 2rem;">
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <div class="benefit-icon">🚀</div>
-                <h3>Eficiencia Operativa</h3>
-                <p>Optimizamos tus procesos para que tu equipo sea más productivo y pueda enfocarse en tareas de mayor valor.</p>
+            
+            <!-- Beneficio 4 -->
+            <div class="benefit-card" style="padding: 1.2rem; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                <div style="font-size: 1.8rem; margin-bottom: 0.8rem;">🚀</div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: #2b6cb0;">Eficiencia Operativa</h3>
+                <p style="font-size: 0.85rem; color: #64748b; line-height: 1.5; margin: 0;">
+                    Optimizamos tus procesos para mayor productividad.
+                </p>
             </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">📊</div>
-                <h3>Datos en Tiempo Real</h3>
-                <p>Accede a información actualizada para tomar mejores decisiones estratégicas en tu negocio.</p>
+            
+            <!-- Beneficio 5 -->
+            <div class="benefit-card" style="padding: 1.2rem; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                <div style="font-size: 1.8rem; margin-bottom: 0.8rem;">📊</div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: #2b6cb0;">Datos en Tiempo Real</h3>
+                <p style="font-size: 0.85rem; color: #64748b; line-height: 1.5; margin: 0;">
+                    Información actualizada para mejores decisiones.
+                </p>
             </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">💡</div>
-                <h3>Innovación Continua</h3>
-                <p>Implementamos soluciones tecnológicas que mantienen tu negocio a la vanguardia.</p>
+            
+            <!-- Beneficio 6 -->
+            <div class="benefit-card" style="padding: 1.2rem; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                <div style="font-size: 1.8rem; margin-bottom: 0.8rem;">💡</div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: #2b6cb0;">Innovación Continua</h3>
+                <p style="font-size: 0.85rem; color: #64748b; line-height: 1.5; margin: 0;">
+                    Soluciones tecnológicas que mantienen tu negocio a la vanguardia.
+                </p>
             </div>
         </div>
     </section>
     
     <!-- Sección Antes/Después -->
     <section class="comparison-section">
-        <h2 class="comparison-title">Antes y después de WoMo Studio</h2>
+        <h2 class="comparison-title">Antes y después de <strong>WoMo Studio</strong></h2>
         <div class="comparison-container">
             <div class="comparison-column before">
                 <h3 class="column-title">Sin Automatización</h3>
@@ -943,15 +1627,18 @@
             <a href="#" class="footer-link">Inicio</a>
 			<a href="#services" class="footer-link">Servicios</a>
 			<a href="#benefits" class="footer-link">Beneficios</a>
-           <a href="javascript:void(0);" class="footer-link" onclick="openContactPopup()">Contacto</a>
-
+            <a href="javascript:void(0);" class="footer-link" onclick="openContactPopup()">Contacto</a>
         </div>
         <p class="copyright">© 2023 WoMo Studio. Todos los derechos reservados.</p>
     </footer>
     
     <!-- Popup de Contacto -->
     <div id="contact-popup" class="side-popup">
-        <button class="close-btn" onclick="closeContactPopup()">×</button>
+        <button class="close-btn" onclick="closeContactPopup()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
         <h2 style="font-size: 1.3rem; margin-bottom: 0.3rem;">¡Transformemos tu negocio!</h2>
         <p class="contact-subtitle">Agenda tu consultoría hoy mismo y lleva tu negocio al siguiente nivel.</p>
         
@@ -969,302 +1656,387 @@
             </div>
         </div>
     </div>
-    
-    <!-- Botón Flotante de Contacto -->
-    <div class="contact-float-wrapper" onclick="openContactPopup()">
-        <div class="contact-float">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </div>
-        <span class="contact-float-label">Contáctame</span>
+      
+	<!-- Chatbot Impactante -->
+<div id="chatbot-wrapper">
+    <div class="chatbot-icon" onclick="toggleChatbot()">
+        <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" alt="Chatbot WoMo">
     </div>
     
+    <div id="chatbot-window">
+        <div class="chatbot-header">
+            <div class="chatbot-avatar">
+                <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" alt="Asistente WoMo">
+            </div>
+            <div class="chatbot-title">
+                <h3>Asistente WoMo</h3>
+                <p>¿En qué puedo ayudarte hoy?</p>
+            </div>
+            <button class="chatbot-close" onclick="closeChatbot()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+        
+        <div class="chatbot-messages" id="chatbot-messages"></div>
+        
+        <div class="quick-options" id="quick-options"></div>
+        
+        <div class="input-wrapper">
+            <input type="text" id="chatbot-input" placeholder="Escribe tu mensaje..." autocomplete="off">
+            <button onclick="sendMessage()">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 2L11 13M22 2L15 22L11 13M11 13L2 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
     <!-- EmailJS Script -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
-        // Inicializar EmailJS con tu Public Key
-        (function() {
-            emailjs.init('RRR4M2sCr-NgEf8ul');
-        })();
+    // Inicializar EmailJS con tu Public Key
+    (function() {
+        emailjs.init('RRR4M2sCr-NgEf8ul');
+    })();
 
-        // Control del modal explicativo
-        const modal = document.getElementById('explanation-modal');
-        const closeButton = document.getElementById('modal-close');
-        
-        function openModal() {
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeModal() {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-        
-        closeButton.addEventListener('click', closeModal);
-        
-        // Cerrar al hacer click fuera del modal
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closeModal();
-            }
+// Variables para el carrusel automático
+let currentSlide = 0;
+let slideInterval;
+const slideTimes = [2500, 8000, 5000]; // Tiempos para cada slide: 2.5s, 7s, 10s
+let hasCompletedCycle = false; // Nueva variable para controlar el ciclo
+
+// Función para avanzar slides
+function goToNextSlide() {
+    if (hasCompletedCycle) return;
+    
+    currentSlide = (currentSlide + 1) % 3;
+    document.getElementById('modal-carousel').style.transform = `translateX(-${currentSlide * 33.333}%)`;
+    
+    // Al llegar al último slide
+    if (currentSlide === 2) {
+        hasCompletedCycle = true;
+        // Volver al primer slide después del tiempo del slide 3 (10s)
+        setTimeout(() => {
+            currentSlide = 0;
+            document.getElementById('modal-carousel').style.transform = 'translateX(0)';
+            stopAutoSlide();
+            document.getElementById('play-button').classList.remove('playing');
+        }, slideTimes[2]);
+        return;
+    }
+    
+    slideInterval = setTimeout(goToNextSlide, slideTimes[currentSlide]);
+}
+
+// Función para iniciar/reiniciar
+function startAutoSlide() {
+    hasCompletedCycle = false;
+    stopAutoSlide();
+    // Si estaba en el último slide, reiniciar posición
+    if (currentSlide === 2) {
+        currentSlide = 0;
+        document.getElementById('modal-carousel').style.transform = 'translateX(0)';
+    }
+    goToNextSlide();
+}
+
+// Función para detener
+function stopAutoSlide() {
+    clearTimeout(slideInterval);
+    slideInterval = null;
+}
+
+// ========== CÓDIGO COMPLETO DEL MODAL ========== //
+const modal = document.getElementById('explanation-modal');
+const closeButton = document.getElementById('modal-close');
+const discoverBtn = document.getElementById('discover-btn');
+const transformBtn = document.getElementById('transform-btn');
+const playButton = document.getElementById('play-button');
+
+// Función para abrir modal
+function openModal() {
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    // Resetear al primer slide
+    currentSlide = 0;
+    hasCompletedCycle = false;
+    document.getElementById('modal-carousel').style.transform = 'translateX(0)';
+    // Resetear botón play
+    playButton.classList.remove('playing');
+    stopAutoSlide();
+}
+
+// Función para cerrar modal
+function closeModal() {
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    stopAutoSlide();
+}
+
+// Evento para cerrar al hacer clic fuera
+modal.addEventListener('click', function(e) {
+    if (e.target === modal) closeModal();
+});
+
+// Evento del botón cerrar
+closeButton.addEventListener('click', closeModal);
+
+// Evento del botón "Descubre cómo funciona"
+discoverBtn.addEventListener('click', openModal);
+
+// Evento del botón "Quiero transformar mi negocio"
+transformBtn.addEventListener('click', function() {
+    closeModal();
+    openContactPopup();
+});
+
+// Evento del botón play (versión completa)
+playButton.addEventListener('click', function() {
+    this.classList.toggle('playing');
+    if (this.classList.contains('playing')) {
+        startAutoSlide();
+    } else {
+        stopAutoSlide();
+    }
+});
+
+    // Control de popup de contacto lateral
+    function openContactPopup() {
+        document.getElementById('contact-popup').classList.add('active');
+        document.body.style.overflow = 'hidden';
+        closeChatbot();
+    }
+
+    function closeContactPopup() {
+        document.getElementById('contact-popup').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Función para validar campos (solo bordes rojos)
+    function validarCampos() {
+        let valido = true;
+        const nombre = document.getElementById('contact-name').value.trim();
+        const email = document.getElementById('contact-email').value.trim();
+        const celular = document.getElementById('contact-celular').value.trim();
+        const mensaje = document.getElementById('contact-message').value.trim();
+
+        // Resetear bordes
+        document.querySelectorAll('input, textarea').forEach(el => {
+            el.style.borderColor = '#e2e8f0';
         });
 
-        // Control de popup de contacto lateral
-        function openContactPopup() {
-            document.getElementById('contact-popup').classList.add('active');
-            document.body.style.overflow = 'hidden';
+        // Validar nombre (mínimo 3 caracteres)
+        if (nombre.length < 3) {
+            document.getElementById('contact-name').style.borderColor = '#EF4444';
+            valido = false;
         }
 
-        function closeContactPopup() {
-            document.getElementById('contact-popup').classList.remove('active');
-            document.body.style.overflow = 'auto';
+        // Validar email (formato básico)
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            document.getElementById('contact-email').style.borderColor = '#EF4444';
+            valido = false;
         }
 
-		// Función para validar campos (solo bordes rojos)
-		function validarCampos() {
-			let valido = true;
-			const nombre = document.getElementById('contact-name').value.trim();
-			const email = document.getElementById('contact-email').value.trim();
-			const celular = document.getElementById('contact-celular').value.trim();
-			const mensaje = document.getElementById('contact-message').value.trim();
+        // Validar celular (10 dígitos)
+        if (!/^\d{10}$/.test(celular)) {
+            document.getElementById('contact-celular').style.borderColor = '#EF4444';
+            valido = false;
+        }
 
-			// Resetear bordes
-			document.querySelectorAll('input, textarea').forEach(el => {
-				el.style.borderColor = '#e2e8f0';
-			});
+        // Validar mensaje (mínimo 10 caracteres)
+        if (mensaje.length < 10) {
+            document.getElementById('contact-message').style.borderColor = '#EF4444';
+            valido = false;
+        }
 
-			// Validar nombre (mínimo 3 caracteres)
-			if (nombre.length < 3) {
-				document.getElementById('contact-name').style.borderColor = '#EF4444';
-				valido = false;
-			}
+        return valido;
+    }
 
-			// Validar email (formato básico)
-			if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-				document.getElementById('contact-email').style.borderColor = '#EF4444';
-				valido = false;
-			}
+    // Función para enviar el formulario
+    async function sendContactRequest() {
+        // Validar campos primero
+        if (!validarCampos()) {
+            mostrarNotificacion('Por favor complete todos los campos correctamente', 'error');
+            return;
+        }
 
-			// Validar celular (10 dígitos)
-			if (!/^\d{10}$/.test(celular)) {
-				document.getElementById('contact-celular').style.borderColor = '#EF4444';
-				valido = false;
-			}
+        // Obtener valores del formulario
+        const name = document.getElementById('contact-name').value.trim();
+        const email = document.getElementById('contact-email').value.trim();
+        const celular = document.getElementById('contact-celular').value.trim();
+        const message = document.getElementById('contact-message').value.trim();
 
-			// Validar mensaje (mínimo 10 caracteres)
-			if (mensaje.length < 10) {
-				document.getElementById('contact-message').style.borderColor = '#EF4444';
-				valido = false;
-			}
+        // Crear contenido para el correo
+        const textoPlano = crearTextoPlano(name, email, celular, message);
+        const datosJSON = crearDatosJSON(name, email, celular, message);
 
-			return valido;
-		}
-
-		// Función para enviar el formulario
-		async function sendContactRequest() {
-			// Validar campos primero
-			if (!validarCampos()) {
-				mostrarNotificacion('Por favor complete todos los campos correctamente', 'error');
-				return;
-			}
-
-			// Obtener valores del formulario
-			const name = document.getElementById('contact-name').value.trim();
-			const email = document.getElementById('contact-email').value.trim();
-			const celular = document.getElementById('contact-celular').value.trim();
-			const message = document.getElementById('contact-message').value.trim();
-
-			// Crear contenido para el correo
-			const textoPlano = crearTextoPlano(name, email, celular, message);
-			const datosJSON = crearDatosJSON(name, email, celular, message);
-
-			try {
-				// Intento principal con EmailJS
-				await enviarConEmailJS(name, email, celular, textoPlano, datosJSON);
-				mostrarNotificacion('¡Mensaje enviado con éxito!', 'success');
-			} catch (error) {
-				console.error('Error con EmailJS:', error);
-				mostrarNotificacion('Usando método alternativo...', 'warning');
-				
-				try {
-					// Intento con FormSubmit como respaldo
-					await enviarConFormSubmit(name, email, celular, message, datosJSON);
-					mostrarNotificacion('¡Mensaje enviado por método alternativo!', 'success');
-				} catch (backupError) {
-					console.error('Error con método alternativo:', backupError);
-					mostrarNotificacion('Error: Por favor contáctenos por WhatsApp', 'error');
-					return;
-				}
-			}
-
-			// Limpiar y cerrar si todo fue bien
-			limpiarFormulario();
-			closeContactPopup();
-		}
-
-		// Función para crear texto plano
-		function crearTextoPlano(name, email, phone, message) {
-			return `
-		== NUEVO CONTACTO WOMO STUDIO ==
-		Nombre: ${name}
-		Email: ${email}
-		Teléfono: ${phone}
-		Mensaje: ${message}
-		Fecha: ${new Date().toLocaleString()}
-		==============================================
-		`;
-		}
-
-		// Función para crear JSON estructurado
-		function crearDatosJSON(name, email, phone, message) {
-			return {
-				fecha: new Date().toISOString(),
-				contacto: {
-					nombre: name,
-					email: email,
-					telefono: phone
-				},
-				mensaje: message,
-				metadata: {
-					pagina: window.location.href,
-					userAgent: navigator.userAgent
-				}
-			};
-		}
-
-		// Función para enviar con EmailJS
-		async function enviarConEmailJS(name, email, phone, textoPlano, datosJSON) {
-			return emailjs.send('service_42rjl6k', 'template_iszllup', {
-				from_name: name,
-				from_email: email,
-				from_phone: phone,
-				message: textoPlano,
-				reply_to: email,
-				subject: `[WOMO] Contacto: ${name}`,
-				datos_json: JSON.stringify(datosJSON, null, 2)
-			});
-		}
-
-		// Función para enviar con FormSubmit (backup)
-		async function enviarConFormSubmit(name, email, phone, message, metadata) {
-			const formData = new FormData();
-			formData.append('nombre', name);
-			formData.append('email', email);
-			formData.append('telefono', phone);
-			formData.append('mensaje', message);
-			formData.append('metadata', JSON.stringify(metadata));
-			
-			const response = await fetch('https://formsubmit.co/ajax/womostd@gmail.com', {
-				method: 'POST',
-				body: formData,
-				headers: {
-					'Accept': 'application/json'
-				}
-			});
-			
-			if (!response.ok) {
-				throw new Error('Error en FormSubmit');
-			}
-		}
-
-		// Función para limpiar el formulario
-		function limpiarFormulario() {
-			document.getElementById('contact-name').value = '';
-			document.getElementById('contact-email').value = '';
-			document.getElementById('contact-celular').value = '';
-			document.getElementById('contact-message').value = '';
-		}
-
-		// Función para mostrar notificaciones
-		function mostrarNotificacion(mensaje, tipo) {
-			const notificacion = document.createElement('div');
-			notificacion.className = `notification ${tipo}`;
-			notificacion.textContent = mensaje;
-			document.body.appendChild(notificacion);
-			
-			setTimeout(() => {
-				notificacion.remove();
-			}, 3000);
-		}
-
-
-		// Función auxiliar para mostrar notificaciones
-		function mostrarNotificacion(mensaje, tipo) {
-			const notificacion = document.createElement('div');
-			notificacion.style.position = 'fixed';
-			notificacion.style.top = '20px';
-			notificacion.style.left = '50%';
-			notificacion.style.transform = 'translateX(-50%)';
-			notificacion.style.padding = '10px 20px';
-			notificacion.style.borderRadius = '5px';
-			notificacion.style.zIndex = '10000';
-			notificacion.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
-			notificacion.textContent = mensaje;
-			
-			if (tipo === 'success') {
-				notificacion.style.backgroundColor = '#10B981';
-				notificacion.style.color = 'white';
-			} else {
-				notificacion.style.backgroundColor = '#EF4444';
-				notificacion.style.color = 'white';
-			}
-			
-			document.body.appendChild(notificacion);
-			
-			setTimeout(() => {
-				notificacion.remove();
-			}, 3000);
-		}
-
-		// Autoformatear teléfono (solo números, máximo 10 dígitos)
-		document.getElementById('contact-celular').addEventListener('input', function(e) {
-			this.value = this.value.replace(/\D/g, '').slice(0, 10);
-		});
-
-        // Animación de partículas
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 30;
+        try {
+            // Intento principal con EmailJS
+            await enviarConEmailJS(name, email, celular, textoPlano, datosJSON);
+            mostrarNotificacion('¡Mensaje enviado con éxito!', 'success');
+        } catch (error) {
+            console.error('Error con EmailJS:', error);
+            mostrarNotificacion('Usando método alternativo...', 'warning');
             
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                const size = Math.random() * 4 + 2;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                
-                particle.style.left = `${Math.random() * 100}%`;
-                
-                const duration = Math.random() * 10 + 10;
-                particle.style.animationDuration = `${duration}s`;
-                
-                particle.style.animationDelay = `${Math.random() * 5}s`;
-                
-                particlesContainer.appendChild(particle);
+            try {
+                // Intento con FormSubmit como respaldo
+                await enviarConFormSubmit(name, email, celular, message, datosJSON);
+                mostrarNotificacion('¡Mensaje enviado por método alternativo!', 'success');
+            } catch (backupError) {
+                console.error('Error con método alternativo:', backupError);
+                mostrarNotificacion('Error: Por favor contáctenos por WhatsApp', 'error');
+                return;
             }
         }
 
-        // Cerrar con tecla ESC
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-                closeContactPopup();
-				closeProcessPopup();
+        // Limpiar y cerrar si todo fue bien
+        limpiarFormulario();
+        closeContactPopup();
+    }
+
+    // Función para crear texto plano
+    function crearTextoPlano(name, email, phone, message) {
+        return `
+    == NUEVO CONTACTO WOMO STUDIO ==
+    Nombre: ${name}
+    Email: ${email}
+    Teléfono: ${phone}
+    Mensaje: ${message}
+    Fecha: ${new Date().toLocaleString()}
+    ==============================================
+    `;
+    }
+
+    // Función para crear JSON estructurado
+    function crearDatosJSON(name, email, phone, message) {
+        return {
+            fecha: new Date().toISOString(),
+            contacto: {
+                nombre: name,
+                email: email,
+                telefono: phone
+            },
+            mensaje: message,
+            metadata: {
+                pagina: window.location.href,
+                userAgent: navigator.userAgent
+            }
+        };
+    }
+
+    // Función para enviar con EmailJS
+    async function enviarConEmailJS(name, email, phone, textoPlano, datosJSON) {
+        return emailjs.send('service_42rjl6k', 'template_iszllup', {
+            from_name: name,
+            from_email: email,
+            from_phone: phone,
+            message: textoPlano,
+            reply_to: email,
+            subject: `[WOMO] Contacto: ${name}`,
+            datos_json: JSON.stringify(datosJSON, null, 2)
+        });
+    }
+
+    // Función para enviar con FormSubmit (backup)
+    async function enviarConFormSubmit(name, email, phone, message, metadata) {
+        const formData = new FormData();
+        formData.append('nombre', name);
+        formData.append('email', email);
+        formData.append('telefono', phone);
+        formData.append('mensaje', message);
+        formData.append('metadata', JSON.stringify(metadata));
+        
+        const response = await fetch('https://formsubmit.co/ajax/womostd@gmail.com', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
             }
         });
+        
+        if (!response.ok) {
+            throw new Error('Error en FormSubmit');
+        }
+    }
 
-        // Inicialización
-        document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
+    // Función para limpiar el formulario
+    function limpiarFormulario() {
+        document.getElementById('contact-name').value = '';
+        document.getElementById('contact-email').value = '';
+        document.getElementById('contact-celular').value = '';
+        document.getElementById('contact-message').value = '';
+    }
+
+    // Función para mostrar notificaciones
+    function mostrarNotificacion(mensaje, tipo) {
+        const notificacion = document.createElement('div');
+        notificacion.className = `notification ${tipo}`;
+        notificacion.textContent = mensaje;
+        document.body.appendChild(notificacion);
+        
+        setTimeout(() => {
+            notificacion.remove();
+        }, 3000);
+    }
+
+    // Autoformatear teléfono (solo números, máximo 10 dígitos)
+    document.getElementById('contact-celular').addEventListener('input', function(e) {
+        this.value = this.value.replace(/\D/g, '').slice(0, 10);
+    });
+
+    // Animación de partículas
+    function createParticles() {
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 30;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
             
-            // Mostrar modal explicativo siempre al cargar
-            openModal();
+            const size = Math.random() * 4 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            particle.style.left = `${Math.random() * 100}%`;
+            
+            const duration = Math.random() * 10 + 10;
+            particle.style.animationDuration = `${duration}s`;
+            
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            
+            particlesContainer.appendChild(particle);
+        }
+    }
+
+    // Cerrar con tecla ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            if (modal.style.display === 'flex') closeModal();
+            if (document.getElementById('contact-popup').classList.contains('active')) closeContactPopup();
+            if (document.getElementById('process-popup-overlay').style.display === 'flex') closeProcessPopup();
+            if (document.getElementById('chatbot-window').classList.contains('active')) closeChatbot();
+        }
+    });
+
+    // Asegurar que todos los close buttons funcionen
+    document.querySelectorAll('.modal-close, .close-btn, .chatbot-close').forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (this.classList.contains('modal-close')) closeModal();
+            if (this.classList.contains('close-btn')) {
+                if (document.getElementById('process-popup-overlay').style.display === 'flex') {
+                    closeProcessPopup();
+                } else if (document.getElementById('contact-popup').classList.contains('active')) {
+                    closeContactPopup();
+                }
+            }
+            if (this.classList.contains('chatbot-close')) closeChatbot();
         });
-		
-		    // Datos para los popups de procesos
+    });
+
+    // Datos para los popups de procesos
     const processPopupData = {
         time: {
             title: "Transformación de Tiempo",
@@ -1361,31 +2133,462 @@
         }
     };
 
-    // Funciones para controlar los popups
-	function openProcessPopup(type) {
-		const popup = document.getElementById('process-popup-content');
-		popup.innerHTML = `
-			<h2 style="font-size: 1.5rem; margin-bottom: 1rem;">${processPopupData[type].title}</h2>
-			${processPopupData[type].content}
-			<div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
-				<button class="hero-cta" 
-						style="padding: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"
-						onclick="closeProcessPopup(); openContactPopup();">
-					<img src="https://cdn-icons-png.flaticon.com/512/4494/4494494.png" 
-						 alt="WhatsApp" 
-						 style="width: 24px; height: 24px;">
-				</button>
-			</div>
-		`;
-		document.getElementById('process-popup-overlay').style.display = 'flex';
-		document.body.style.overflow = 'hidden';
-	}
+    // Funciones para controlar los popups de procesos
+    function openProcessPopup(type) {
+        if (!processPopupData[type]) return;
+        
+        const popup = document.getElementById('process-popup-content');
+        popup.innerHTML = `
+            <h2 style="font-size: 1.5rem; margin-bottom: 1rem; color: ${getColorByType(type)}">${processPopupData[type].title}</h2>
+            ${processPopupData[type].content}
+            <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
+                <button class="hero-cta" 
+                        style="padding: 0.8rem 1.5rem;"
+                        onclick="closeProcessPopup(); openContactPopup();">
+                    Quiero este servicio
+                </button>
+            </div>
+        `;
+        document.getElementById('process-popup-overlay').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function getColorByType(type) {
+        const colors = {
+            'time': 'var(--verde)',
+            'workflow': 'var(--azul)',
+            'profit': 'var(--morado)',
+            'analytics': 'var(--naranja)'
+        };
+        return colors[type] || 'var(--gris-oscuro)';
+    }
 
     function closeProcessPopup() {
         document.getElementById('process-popup-overlay').style.display = 'none';
         document.body.style.overflow = 'auto';
     }
 
-    </script>
+    // Configuración avanzada del Chatbot
+    const chatbotConfig = {
+        greetings: [
+            "¡Hola! Soy tu asistente de WoMo Studio. 😊",
+            "Estoy aquí para mostrarte cómo podemos revolucionar tu negocio con automatización inteligente. ⚡",
+            "Dime, ¿qué desafíos enfrentas en tus operaciones diarias?"
+        ],
+        responses: {
+            "hola": {
+                messages: [
+                    "¡Hola! 👋",
+                    "Soy el asistente virtual de WoMo Studio, especializado en transformar negocios con automatización.",
+                    "Puedo ayudarte con:",
+                    "• 💡 Soluciones personalizadas",
+                    "• ⏱️ Ahorro de tiempo comprobado",
+                    "• 📈 Incremento en productividad",
+                    "¿En qué área necesitas ayuda hoy?"
+                ],
+                quickReplies: ["Servicios", "Ahorro de tiempo", "Casos de éxito", "Contacto"]
+            },
+            "servicio": {
+                messages: [
+                    "🚀 Nuestros servicios van más allá de lo básico:",
+                    "",
+                    "1. <strong>Automatización Integral</strong>: Transformamos tus procesos manuales en sistemas inteligentes que trabajan 24/7",
+                    "",
+                    "2. <strong>Flujos de Trabajo Adaptativos</strong>: Soluciones que aprenden y se ajustan a tus necesidades cambiantes",
+                    "",
+                    "3. <strong>Análisis Predictivo</strong>: Anticipamos problemas antes de que ocurran y optimizamos tus operaciones",
+                    "",
+                    "¿Te gustaría que te cuente más sobre alguno en específico?"
+                ],
+                quickReplies: ["Automatización Integral", "Flujos Adaptativos", "Análisis Predictivo", "Casos reales"]
+            },
+            "tiempo": {
+                messages: [
+                    "⏱️ El tiempo es tu activo más valioso, y esto es lo que logramos para nuestros clientes:",
+                    "",
+                    "• <strong>Reducción del 60-80%</strong> en tiempos de procesamiento",
+                    "• <strong>Eliminación del 95%</strong> de errores humanos",
+                    "• <strong>Recuperación de 15-20 horas</strong> semanales por empleado",
+                    "",
+                    "Imagina lo que podrías hacer con todo ese tiempo extra...",
+                    "",
+                    "¿Te gustaría que te comparta un ejemplo concreto de cómo lo hemos logrado?"
+                ],
+                quickReplies: ["Sí, muéstrame", "Cómo funciona", "Contactar asesor"]
+            },
+            "contacto": {
+                messages: [
+                    "📞 ¡Excelente decisión! Estamos listos para transformar tu negocio.",
+                    "",
+                    "Puedes contactarnos por:",
+                    "• WhatsApp: +57 318 0401930 (respuesta inmediata)",
+                    "• Correo: hola@womostudio.com",
+                    "",
+                    "O si prefieres, puedo generarte una consultoría gratuita ahora mismo..."
+                ],
+                actions: [{
+                    type: "button",
+                    text: "📝 Solicitar Consultoría Gratis",
+                    action: "showLeadForm('consultoria')"
+                }]
+            },
+            "precio": {
+                messages: [
+                    "💰 Nuestros clientes típicamente ven un <strong>ROI de 3-5x</strong> en los primeros 6 meses.",
+                    "",
+                    "Los costos varían según la complejidad, pero para darte una idea:",
+                    "",
+                    "• <strong>Paquete Básico</strong>: Desde $1.5M/mes (ahorros típicos de $3M+)",
+                    "• <strong>Paquete Empresarial</strong>: Soluciones completas desde $5M/mes",
+                    "",
+                    "Lo más valioso es que <strong>no es un gasto, es una inversión</strong> que se paga sola con los ahorros generados.",
+                    "",
+                    "¿Te gustaría que te prepare una estimación personalizada sin compromiso?"
+                ],
+                quickReplies: ["Sí, estimación", "Cómo empezar", "Ver demo"]
+            },
+            "default": {
+                messages: [
+                    "Interesante pregunta... Permíteme explicarte cómo WoMo Studio puede ayudarte:",
+                    "",
+                    "Somos especialistas en identificar cuellos de botella en operaciones y convertirlos en procesos automatizados eficientes.",
+                    "",
+                    "¿Qué es lo que más te preocupa en tus operaciones actuales?"
+                ],
+                quickReplies: ["Procesos lentos", "Muchos errores", "Falta de visibilidad", "Contactar experto"]
+            }
+        },
+        leadForms: {
+            "consultoria": {
+                title: "Consultoría Gratuita",
+                fields: [
+                    { name: "nombre", placeholder: "Tu nombre completo", type: "text", required: true },
+                    { name: "email", placeholder: "Email corporativo", type: "email", required: true },
+                    { name: "telefono", placeholder: "WhatsApp", type: "tel", required: true },
+                    { 
+                        name: "necesidad", 
+                        placeholder: "Descríbenos tu mayor desafío operativo", 
+                        type: "textarea", 
+                        required: false 
+                    }
+                ],
+                submitText: "Solicitar Consultoría",
+                successMessage: "¡Listo! Un experto se contactará contigo en menos de 2 horas. Mientras tanto, ¿te gustaría ver un caso similar al tuyo?"
+            }
+        },
+        farewells: [
+            "¡Fue un placer ayudarte! Recuerda que en WoMo Studio transformamos desafíos en soluciones.",
+            "Si necesitas algo más, estaré aquí. ¡Que tengas un día productivo! ⚡"
+        ]
+    };
+
+    // Variables del chatbot
+    let isTyping = false;
+    let currentLeadForm = null;
+
+    // Funciones principales del chatbot
+    function toggleChatbot() {
+        const chatbotWindow = document.getElementById('chatbot-window');
+        const chatbotIcon = document.querySelector('.chatbot-icon');
+        
+        if (chatbotWindow.classList.contains('active')) {
+            chatbotWindow.classList.remove('active');
+            chatbotIcon.style.display = 'flex';
+        } else {
+            chatbotWindow.classList.add('active');
+            chatbotIcon.style.display = 'none';
+            
+            // Mostrar mensaje inicial si es la primera vez
+            if (document.getElementById('chatbot-messages').children.length === 0) {
+                showTypingIndicator();
+                setTimeout(() => {
+                    removeTypingIndicator();
+                    const randomGreeting = chatbotConfig.greetings[Math.floor(Math.random() * chatbotConfig.greetings.length)];
+                    addBotMessage(randomGreeting);
+                    showQuickReplies(chatbotConfig.responses["hola"].quickReplies);
+                }, 1500);
+            }
+        }
+    }
+
+    function closeChatbot() {
+        document.getElementById('chatbot-window').classList.remove('active');
+        document.querySelector('.chatbot-icon').style.display = 'flex';
+    }
+
+    function addUserMessage(text) {
+        const messagesContainer = document.getElementById('chatbot-messages');
+        messagesContainer.innerHTML += `
+            <div class="message user-message">${text}</div>
+        `;
+        scrollToBottom();
+        
+        // Procesar después de un pequeño retraso para mejor experiencia
+        setTimeout(() => {
+            processUserInput(text);
+        }, 500);
+    }
+
+    function addBotMessage(text) {
+        const messagesContainer = document.getElementById('chatbot-messages');
+        const paragraphs = text.split('\n').filter(p => p.trim() !== '');
+        
+        paragraphs.forEach(paragraph => {
+            if (paragraph.trim() !== '') {
+                messagesContainer.innerHTML += `
+                    <div class="message bot-message">${paragraph}</div>
+                `;
+            }
+        });
+        
+        scrollToBottom();
+    }
+
+    function showTypingIndicator() {
+        if (isTyping) return;
+        
+        isTyping = true;
+        const messagesContainer = document.getElementById('chatbot-messages');
+        messagesContainer.innerHTML += `
+            <div class="typing-indicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+        `;
+        scrollToBottom();
+    }
+
+    function removeTypingIndicator() {
+        isTyping = false;
+        const typingIndicator = document.querySelector('.typing-indicator');
+        if (typingIndicator) {
+            typingIndicator.remove();
+        }
+    }
+
+    function showQuickReplies(options) {
+        const quickOptionsContainer = document.getElementById('quick-options');
+        quickOptionsContainer.innerHTML = options.map(option => `
+            <div class="quick-option" onclick="handleQuickReply('${option}')">${option}</div>
+        `).join('');
+    }
+
+    function handleQuickReply(option) {
+        addUserMessage(option);
+    }
+
+    function processUserInput(input) {
+        showTypingIndicator();
+        
+        // Limpiar opciones rápidas mientras procesamos
+        document.getElementById('quick-options').innerHTML = '';
+        
+        setTimeout(() => {
+            removeTypingIndicator();
+            
+            const lowerInput = input.toLowerCase();
+            let responseFound = false;
+            
+            // Buscar la mejor respuesta
+            for (const [key, response] of Object.entries(chatbotConfig.responses)) {
+                if (lowerInput.includes(key.toLowerCase())) {
+                    response.messages.forEach(msg => addBotMessage(msg));
+                    
+                    if (response.quickReplies) {
+                        showQuickReplies(response.quickReplies);
+                    }
+                    
+                    if (response.actions) {
+                        response.actions.forEach(action => {
+                            if (action.type === "button") {
+                                setTimeout(() => {
+                                    eval(action.action); // Ejecutar la acción asociada
+                                }, 500);
+                            }
+                        });
+                    }
+                    
+                    responseFound = true;
+                    break;
+                }
+            }
+            
+            // Respuesta por defecto si no se encontró coincidencia
+            if (!responseFound) {
+                chatbotConfig.responses.default.messages.forEach(msg => addBotMessage(msg));
+                if (chatbotConfig.responses.default.quickReplies) {
+                    showQuickReplies(chatbotConfig.responses.default.quickReplies);
+                }
+            }
+        }, 1000 + Math.random() * 1000); // Retraso variable para parecer más natural
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('chatbot-input');
+        const message = input.value.trim();
+        
+        if (message) {
+            addUserMessage(message);
+            input.value = '';
+        }
+        
+        input.focus();
+    }
+
+    function showLeadForm(formType) {
+        const formConfig = chatbotConfig.leadForms[formType];
+        if (!formConfig) return;
+        
+        currentLeadForm = formType;
+        
+        const messagesContainer = document.getElementById('chatbot-messages');
+        let formHTML = `
+            <div class="lead-form" id="lead-form">
+                <h4>${formConfig.title}</h4>
+        `;
+        
+        formConfig.fields.forEach(field => {
+            if (field.type === 'textarea') {
+                formHTML += `
+                    <textarea name="${field.name}" placeholder="${field.placeholder}" 
+                        ${field.required ? 'required' : ''}></textarea>
+                `;
+            } else {
+                formHTML += `
+                    <input type="${field.type}" name="${field.name}" placeholder="${field.placeholder}" 
+                        ${field.required ? 'required' : ''}>
+                `;
+            }
+        });
+        
+        formHTML += `
+                <button onclick="submitLeadForm('${formType}')">${formConfig.submitText}</button>
+            </div>
+        `;
+        
+        messagesContainer.innerHTML += formHTML;
+        scrollToBottom();
+    }
+
+    function submitLeadForm(formType) {
+        const form = document.getElementById('lead-form');
+        const formData = {};
+        let isValid = true;
+        
+        // Validar campos requeridos
+        chatbotConfig.leadForms[formType].fields.forEach(field => {
+            if (field.required) {
+                const input = form.querySelector(`[name="${field.name}"]`);
+                if (!input.value.trim()) {
+                    input.style.borderColor = '#EF4444';
+                    isValid = false;
+                } else {
+                    input.style.borderColor = '#e2e8f0';
+                    formData[field.name] = input.value.trim();
+                }
+            }
+        });
+        
+        if (!isValid) {
+            addBotMessage("Por favor completa todos los campos requeridos.");
+            return;
+        }
+        
+        // Simular envío (en producción aquí iría el envío real)
+        showTypingIndicator();
+        
+        setTimeout(() => {
+            removeTypingIndicator();
+            form.remove();
+            
+            // Mostrar mensaje de éxito
+            addBotMessage(chatbotConfig.leadForms[formType].successMessage);
+            
+            // Mostrar opciones relevantes después del formulario
+            if (formType === 'consultoria') {
+                showQuickReplies(["Ver caso similar", "Cómo prepararme", "Gracias"]);
+            }
+            
+            // Aquí iría el código para enviar realmente los datos
+            sendLeadDataToBackend(formData, formType);
+        }, 2000);
+    }
+
+    function sendLeadDataToBackend(data, formType) {
+        // En producción, aquí se enviarían los datos al backend
+        console.log("Datos del lead:", data);
+        console.log("Tipo de formulario:", formType);
+        
+        // Integración con EmailJS
+        const templateParams = {
+            form_type: formType,
+            name: data.nombre || '',
+            email: data.email || '',
+            phone: data.telefono || '',
+            message: data.necesidad || 'Consulta desde chatbot',
+            date: new Date().toLocaleString()
+        };
+        
+        emailjs.send('service_42rjl6k', 'template_iszllup', templateParams)
+            .then(response => {
+                console.log('Correo enviado!', response.status, response.text);
+            })
+            .catch(error => {
+                console.error('Error al enviar:', error);
+                // En caso de error, usar FormSubmit como respaldo
+                sendWithFormSubmit(data, formType);
+            });
+    }
+
+    function sendWithFormSubmit(data, formType) {
+        const formData = new FormData();
+        formData.append('nombre', data.nombre || '');
+        formData.append('email', data.email || '');
+        formData.append('telefono', data.telefono || '');
+        formData.append('mensaje', `[${formType}] ${data.necesidad || 'Consulta desde chatbot'}`);
+        formData.append('_subject', `Nuevo lead de chatbot - ${formType}`);
+        
+        fetch('https://formsubmit.co/ajax/womostd@gmail.com', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => console.log('FormSubmit success:', data))
+        .catch(error => console.error('FormSubmit error:', error));
+    }
+
+    function scrollToBottom() {
+        const messagesContainer = document.getElementById('chatbot-messages');
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    // Event listeners
+    document.getElementById('chatbot-input').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    // Cerrar chatbot al hacer clic en enlaces de contacto
+    document.querySelectorAll('[onclick="openContactPopup()"]').forEach(link => {
+        link.addEventListener('click', closeChatbot);
+    });
+
+    // Inicialización
+    document.addEventListener('DOMContentLoaded', function() {
+        createParticles();
+        
+        // Mostrar modal explicativo siempre al cargar
+        openModal();
+        
+        // Precargar imagen del chatbot para mejor experiencia
+        const img = new Image();
+        img.src = 'https://cdn-icons-png.flaticon.com/512/4712/4712035.png';
+    });
+</script>
 </body>
 </html>
