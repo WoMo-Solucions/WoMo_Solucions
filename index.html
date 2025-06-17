@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="WoMo Studio - Automatización inteligente para negocios. Transformamos procesos manuales en sistemas automatizados que ahorran tiempo y aumentan ganancias.">
     <title>WoMo Studio | Automatización Inteligente</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -1403,72 +1404,110 @@ input:invalid, textarea:invalid {
         margin-bottom: 1.5rem;
     }
 	
-/* Menú superior transparente */
 .top-menu {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: transparent !important; /* Fuerza transparencia */
+    background: transparent;
     z-index: 1000;
-    padding: 1.5rem 0;
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: center;
     transition: all 0.3s ease;
 }
 
 .top-menu-links {
     display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
+    gap: 0;
+    background: transparent;
+    border-radius: 30px;
+    padding: 0;
 }
 
 .top-menu-link {
-    color: var(--gris-oscuro); /* Color por defecto */
+    position: relative;
+    color: var(--gris-oscuro);
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
     transition: all 0.3s ease;
-    padding: 0.5rem 0; /* Reducimos padding horizontal */
-    position: relative;
+    padding: 0.6rem 1.2rem;
+    white-space: nowrap;
+    border: none;
+    background: none;
 }
 
-/* Subrayado activo */
+/* Conectar los botones visualmente */
+.top-menu-link:not(:last-child) {
+    border-right: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Bordes redondeados en los extremos */
+.top-menu-link:first-child {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.top-menu-link:last-child {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+/* Efecto hover */
+.top-menu-link:hover {
+    background: rgba(0,0,0,0.05);
+}
+
+/* Estilo activo */
 .top-menu-link.active {
     color: var(--verde);
+    background: rgba(16, 185, 129, 0.1);
 }
 
 .top-menu-link.active::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px; /* Grosor del subrayado */
+    bottom: 0.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 2px;
     background: var(--verde);
-    animation: underline 0.3s ease-out;
+    border-radius: 2px;
 }
 
-@keyframes underline {
-    from { transform: scaleX(0); }
-    to { transform: scaleX(1); }
+/* Efecto cuando se hace scroll */
+.top-menu.scrolled {
+/*    background-color: rgba(255, 255, 255, 0.95);  */
+/*    box-shadow: 0 2px 10px rgba(0,0,0,0.1);  */
+    padding: 0.3rem 0;
 }
 
-/* Color para fondo oscuro */
-.menu-dark .top-menu-link {
-    color: white;
+/* Ajustes para móviles */
+@media (max-width: 768px) {
+    .top-menu-links {
+        gap: 0;
+        border-radius: 25px;
+    }
+    
+    .top-menu-link {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+    }
 }
 
-.menu-dark .top-menu-link.active {
-    color: var(--verde);
-}
-
-.menu-dark .top-menu-link:hover {
-    color: var(--verde);
-}
-/* Detección de superposición dinámica */
-.top-menu-link.force-white {
-    color: white !important;
-    text-shadow: 0 0 2px rgba(0,0,0,0.5);
+@media (max-width: 480px) {
+    .top-menu-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.9);
+    }
+    
+    .top-menu-link {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.75rem;
+    }
 }
 </style>
 </head>
@@ -1478,9 +1517,11 @@ input:invalid, textarea:invalid {
         <a href="#" class="top-menu-link active">Inicio</a>
         <a href="#services" class="top-menu-link">Servicios</a>
         <a href="#benefits" class="top-menu-link">Beneficios</a>
+        <a href="#antes-despues" class="top-menu-link">Impacto</a>
         <a href="javascript:void(0);" class="top-menu-link" onclick="openContactPopup()">Contacto</a>
     </div>
 </div>
+
 
 <div class="modal-overlay" id="explanation-modal">
     <div class="modal-container">
@@ -1498,13 +1539,13 @@ input:invalid, textarea:invalid {
 	¿Cómo puede <strong>WoMo Studio</strong><br> transformar tu negocio?
 </h2> 
    <div style="width: 100%; height: calc(100% - 80px); max-width: 650px; margin: 0 auto; border-radius: 8px; overflow: hidden; position: relative;">
-        <img src="img_princ.png" 
-             alt="Transformación digital WoMo Studio" 
-             style="width: 100%; height: 100%; object-fit: contain; object-position: center;">
-        <div class="play-button" id="play-button" style="font-size: 24px; color: var(--black);">▶</div>
+		<img src="img_princ.webp" 
+			alt="Transformación digital WoMo Studio" width="800" height="450" loading="lazy" 
+			style="width: 100%; height: 100%; object-fit: contain; object-position: center;">
+			<div class="play-button" id="play-button" style="font-size: 24px; color: var(--black);">▶</div>
     </div>
 </div>
-            
+
             <!-- Slide 2 - Sin recuadro blanco -->
             <div class="modal-slide" style="background: #e2e8f0; padding: 25px 20px; height: 100%; box-sizing: border-box;">
                 <div style="max-width: 600px; margin: 0 auto;">
@@ -1671,8 +1712,8 @@ input:invalid, textarea:invalid {
     </section>
     
     <!-- Sección Antes/Después -->
-    <section class="comparison-section">
-        <h2 class="comparison-title">Antes y después de <strong>WoMo Studio</strong></h2>
+    <section id="antes-despues" class="comparison-section"> <!-- ID claro y descriptivo -->
+		<h2 class="comparison-title">Antes y después de <strong>WoMo Studio</strong></h2>
         <div class="comparison-container">
             <div class="comparison-column before">
                 <h3 class="column-title">Sin Automatización</h3>
@@ -1699,7 +1740,7 @@ input:invalid, textarea:invalid {
     
     <!-- Footer -->
     <footer class="footer">
-        <img src="LogoTipo..png" alt="WoMo Studio" class="footer-logo">
+        <img src="LogoTipo..webp" alt="WoMo Studio" class="footer-logo" width="200" height="100" loading="lazy">
         <p class="footer-text">Automatización inteligente para negocios que quieren crecer sin límites</p>
         <!--<div class="footer-links">
             <a href="#" class="footer-link">Inicio</a>
@@ -2753,64 +2794,59 @@ Fecha: ${new Date().toLocaleString()}
 document.addEventListener('DOMContentLoaded', function() {
     const menu = document.querySelector('.top-menu');
     const menuLinks = document.querySelectorAll('.top-menu-link');
-    const heroSection = document.querySelector('.hero-impact');
-    const servicesSection = document.querySelector('#services');
-    const benefitsSection = document.querySelector('#benefits');
-    const footer = document.querySelector('footer');
+    const sections = {
+        home: { element: document.querySelector('.hero-impact'), link: document.querySelector('.top-menu-link[href="#"]') },
+        services: { element: document.querySelector('#services'), link: document.querySelector('.top-menu-link[href="#services"]') },
+        benefits: { element: document.querySelector('#benefits'), link: document.querySelector('.top-menu-link[href="#benefits"]') },
+        impact: { element: document.querySelector('#antes-despues'), link: document.querySelector('.top-menu-link[href="#antes-despues"]') }
+    };
 
     function updateMenu() {
         const scrollPos = window.scrollY;
-        const heroHeight = heroSection.offsetHeight;
-        const servicesTop = servicesSection.offsetTop - 100;
-        const servicesBottom = servicesTop + servicesSection.offsetHeight;
-        const benefitsTop = benefitsSection.offsetTop - 100;
-        const benefitsBottom = benefitsTop + benefitsSection.offsetHeight;
-        const footerTop = footer.offsetTop;
-
-        // Resetear todos los subrayados
+        
+        // Reset all active states
         menuLinks.forEach(link => link.classList.remove('active'));
-
-        // 1. Si está en el Hero (Inicio)
-        if (scrollPos < heroHeight) {
-            document.querySelector('.top-menu-link[href="#"]').classList.add('active');
-        } 
-        // 2. Si está en Servicios
-        else if (scrollPos >= servicesTop && scrollPos < servicesBottom) {
-            document.querySelector('.top-menu-link[href="#services"]').classList.add('active');
-        } 
-        // 3. Si está en Beneficios
-        else if (scrollPos >= benefitsTop && scrollPos < benefitsBottom) {
-            document.querySelector('.top-menu-link[href="#benefits"]').classList.add('active');
+        
+        // Determinar sección activa
+        let activeSection = 'home';
+        
+        if (scrollPos > sections.services.element.offsetTop - 100) activeSection = 'services';
+        if (scrollPos > sections.benefits.element.offsetTop - 100) activeSection = 'benefits';
+        if (scrollPos > sections.impact.element.offsetTop - 100) activeSection = 'impact';
+        
+        // Aplicar estado activo
+        sections[activeSection].link.classList.add('active');
+        
+        // Cambiar color del menú al hacer scroll
+        if (scrollPos > 100) {
+            menu.classList.add('scrolled');
+        } else {
+            menu.classList.remove('scrolled');
         }
-        // 4. Si está en el Footer o zona sin sección (no subrayar nada)
-        else {
-            // Ningún enlace activo
-        }
-
-        // Cambiar color del texto (blanco en Hero, negro en otras secciones)
-        menu.classList.toggle('menu-dark', scrollPos < heroHeight);
     }
 
-    // Inicializar y configurar eventos
+    // Inicialización
     updateMenu();
     window.addEventListener('scroll', updateMenu);
     window.addEventListener('resize', updateMenu);
 
-    // Scroll suave al hacer clic
+    // Smooth scroll
     menuLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                window.scrollTo({
-                    top: target.offsetTop - 80,
-                    behavior: 'smooth'
-                });
+            const href = this.getAttribute('href');
+            if (href && href !== 'javascript:void(0);') {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
             }
         });
     });
 });
-
 </script>
 </body>
 </html>
