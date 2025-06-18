@@ -6,8 +6,8 @@
 // ========== CONTADOR DE VISITAS MEJORADO ========== //
 const visitCounter = {
   config: {
-    repo: 'tu_usuario/womo-visit-counter', // Cambiar por tu repo
-    issueNumber: 1, // Cambiar por tu número de issue
+    repo: 'ramiju81/womo_visit', // Repositorio actualizado
+    issueNumber: 2, // Número de issue actualizado
     minTimeBetweenVisits: 10000 // 10 segundos entre registros (anti-spam)
   },
   lastVisitTime: 0,
@@ -15,7 +15,6 @@ const visitCounter = {
   // Verificar si es una visita válida para registrar
   shouldRegisterVisit() {
     const now = Date.now();
-    // No registrar si ya se registró una visita recientemente
     if (now - this.lastVisitTime < this.config.minTimeBetweenVisits) {
       console.log('Visita reciente detectada, no se registra');
       return false;
@@ -36,21 +35,10 @@ const visitCounter = {
         device: this.getDeviceType()
       };
 
-      // Usando GitHub Actions como proxy (recomendado para producción)
-      const response = await fetch(`https://api.github.com/repos/tu_usuario/womostudio/dispatches`, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/vnd.github.v3+json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          event_type: 'register_visit',
-          client_payload: visitData
-        })
-      });
-
-      if (!response.ok) throw new Error('Error en la API de GitHub');
-      console.log('Solicitud de visita enviada');
+      // Registrar visita como comentario en el Issue #2
+      await this.addVisitComment(visitData);
+      
+      console.log('Visita registrada exitosamente');
     } catch (error) {
       console.error('Error registrando visita:', error);
     }
@@ -75,26 +63,34 @@ const visitCounter = {
         userAgent: navigator.userAgent.slice(0, 120)
       };
 
-      const response = await fetch(
-        `https://api.github.com/repos/${this.config.repo}/issues/${this.config.issueNumber}/comments`,
-        {
-          method: 'POST',
-          headers: {
-            'Authorization': `token ${this.config.token}`,
-            'Accept': 'application/vnd.github.v3+json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            body: `Visita registrada:\n${JSON.stringify(visitData, null, 2)}`
-          })
-        }
-      );
-
-      if (!response.ok) throw new Error('Error en la API de GitHub');
+      await this.addVisitComment(visitData);
       console.log('Visita registrada exitosamente');
     } catch (error) {
       console.error('Error registrando visita:', error.message);
     }
+  },
+
+  // Función común para añadir comentarios al Issue
+  async addVisitComment(visitData) {
+    const response = await fetch(
+      `https://api.github.com/repos/${this.config.repo}/issues/${this.config.issueNumber}/comments`,
+      {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          body: `📍 Nueva visita:\n` +
+                `- Fecha: ${new Date().toLocaleString()}\n` +
+                `- Desde: ${visitData.device || visitData.userAgent?.slice(0, 50) || 'Dispositivo desconocido'}\n` +
+                `- URL: ${visitData.url}\n` +
+                `- Referencia: ${visitData.referrer}`
+        })
+      }
+    );
+
+    if (!response.ok) throw new Error('Error en la API de GitHub');
   },
 
   // Detectar tipo de dispositivo
