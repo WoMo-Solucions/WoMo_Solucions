@@ -248,6 +248,18 @@ playButton.addEventListener('click', function() {
     startAutoSlide();
 });
 
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+    
+    // Actualiza el menú activo
+    const menuLinks = document.querySelectorAll('.top-menu-link');
+    menuLinks.forEach(link => link.classList.remove('active'));
+    menuLinks[0].classList.add('active'); // El primer enlace es "Inicio"
+}
+
 // Control de popup de contacto lateral
 function openContactPopup() {
     document.getElementById('contact-popup').classList.add('active');

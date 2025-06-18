@@ -1124,6 +1124,27 @@ body {
 /* ============================================= */
 
 @media (max-width: 768px) {
+    #contact-popup.active ~ #chatbot-wrapper {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateX(100%);
+        transition: all 0.3s ease;
+    }
+    
+    
+    #contact-popup.active {
+        z-index: 1003;
+    }
+	
+	/* Restaura el chatbot cuando el popup se cierra */
+    #chatbot-wrapper {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(0);
+        transition: all 0.3s ease;
+    }
+
+
     html {
         font-size: 14px;
     }
