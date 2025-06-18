@@ -3,6 +3,122 @@
     emailjs.init('RRR4M2sCr-NgEf8ul');
 })();
 
+// ========== CONTADOR DE VISITAS MEJORADO ========== //
+const visitCounter = {
+  config: {
+    repo: 'tu_usuario/womo-visit-counter', // Cambiar por tu repo
+    issueNumber: 1, // Cambiar por tu número de issue
+    minTimeBetweenVisits: 10000 // 10 segundos entre registros (anti-spam)
+  },
+  lastVisitTime: 0,
+
+  // Verificar si es una visita válida para registrar
+  shouldRegisterVisit() {
+    const now = Date.now();
+    // No registrar si ya se registró una visita recientemente
+    if (now - this.lastVisitTime < this.config.minTimeBetweenVisits) {
+      console.log('Visita reciente detectada, no se registra');
+      return false;
+    }
+    this.lastVisitTime = now;
+    return true;
+  },
+
+  // Versión segura para producción (sin token en frontend)
+  async registerVisitSafe() {
+    if (!this.shouldRegisterVisit()) return;
+    
+    try {
+      const visitData = {
+        date: new Date().toISOString(),
+        url: window.location.href,
+        referrer: document.referrer || 'direct',
+        device: this.getDeviceType()
+      };
+
+      // Usando GitHub Actions como proxy (recomendado para producción)
+      const response = await fetch(`https://api.github.com/repos/tu_usuario/womostudio/dispatches`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          event_type: 'register_visit',
+          client_payload: visitData
+        })
+      });
+
+      if (!response.ok) throw new Error('Error en la API de GitHub');
+      console.log('Solicitud de visita enviada');
+    } catch (error) {
+      console.error('Error registrando visita:', error);
+    }
+  },
+
+  // Versión para desarrollo (con token local)
+  async registerVisitDev() {
+    if (!this.shouldRegisterVisit()) return;
+    
+    try {
+      // Cargar configuración solo si no está cargada
+      if (!this.config.token) {
+        const response = await fetch('womo-config.json');
+        if (!response.ok) throw new Error('Archivo de configuración no encontrado');
+        const config = await response.json();
+        this.config.token = config.github.token;
+      }
+
+      const visitData = {
+        date: new Date().toISOString(),
+        url: window.location.href,
+        userAgent: navigator.userAgent.slice(0, 120)
+      };
+
+      const response = await fetch(
+        `https://api.github.com/repos/${this.config.repo}/issues/${this.config.issueNumber}/comments`,
+        {
+          method: 'POST',
+          headers: {
+            'Authorization': `token ${this.config.token}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            body: `Visita registrada:\n${JSON.stringify(visitData, null, 2)}`
+          })
+        }
+      );
+
+      if (!response.ok) throw new Error('Error en la API de GitHub');
+      console.log('Visita registrada exitosamente');
+    } catch (error) {
+      console.error('Error registrando visita:', error.message);
+    }
+  },
+
+  // Detectar tipo de dispositivo
+  getDeviceType() {
+    const ua = navigator.userAgent;
+    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+      return "tablet";
+    }
+    if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+      return "mobile";
+    }
+    return "desktop";
+  }
+};
+
+// Llamar a la función adecuada según el entorno
+setTimeout(() => {
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    visitCounter.registerVisitDev(); // Desarrollo local
+  } else {
+    visitCounter.registerVisitSafe(); // Producción
+  }
+}, 2000);
+
 // Variables para el carrusel automático
 let currentSlide = 0;
 let slideInterval;
@@ -1060,3 +1176,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
