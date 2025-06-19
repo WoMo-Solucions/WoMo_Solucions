@@ -621,7 +621,7 @@ function closeProcessPopup() {
 // Configuración avanzada del Chatbot
 const chatbotConfig = {
     greetings: [
-        "¡Hola! Soy tu asistente de WoMi de Womo Studio. 😊",
+        "¡Hola! Soy WoMi, Asistente en Womo Studio. 😊",
         "Estoy aquí para mostrarte cómo podemos revolucionar tu negocio con automatización inteligente. ⚡",
         "Dime, ¿qué desafíos enfrentas en tus operaciones diarias?"
     ],
@@ -674,17 +674,17 @@ const chatbotConfig = {
                 "• WhatsApp: +57 318 0401930 (respuesta inmediata)",
                 "• Correo: hola@womostudio.com",
                 "",
-                "O si prefieres, puedo generarte una consultoría gratuita ahora mismo..."
+                "O si prefieres, puedo generarte una consultoría ahora mismo..."
             ],
             actions: [{
                 type: "button",
-                text: "📝 Solicitar Consultoría Gratis",
+                text: "📝 Solicitar Consultoría",
                 action: "showLeadForm('consultoria')"
             }]
         },
         "precio": {
             messages: [
-                "💰 Nuestros clientes típicamente ven un <strong>ROI de 3-5x</strong> en los primeros 6 meses.",
+                "💰 Nuestros clientes típicamente ven un <strong>ROI de 3-5x</strong> rapidamente.",
                 "",
                 "Los costos varían según la complejidad, pero para darte una idea:",
                 "",
@@ -734,7 +734,7 @@ const chatbotConfig = {
     },
     leadForms: {
         "consultoria": {
-            title: "Consultoría Gratuita",
+            title: "¿Necesitas Asesoría? Comencemos Aquí",
             fields: [
                 { name: "nombre", placeholder: "Tu nombre completo", type: "text", required: true },
                 { name: "email", placeholder: "Email corporativo", type: "email", required: true },
@@ -746,8 +746,8 @@ const chatbotConfig = {
                     required: false 
                 }
             ],
-            submitText: "Solicitar Consultoría",
-            successMessage: "¡Listo! Un experto se contactará contigo en menos de 2 horas. Mientras tanto, ¿te gustaría ver un caso similar al tuyo?"
+            submitText: "Solicita el asesoría",
+            successMessage: "¡Listo! Un experto se contactará contigo a la menor brevedad posible. Mientras tanto, ¿te gustaría ver un caso similar al tuyo?"
         }
     },
     farewells: [
@@ -1132,14 +1132,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const menu = document.querySelector('.top-menu');
     const menuLinks = document.querySelectorAll('.top-menu-link');
     const sections = {
-        home: { element: document.querySelector('.hero-impact'), link: document.querySelector('.top-menu-link[href="#"]') },
-        services: { element: document.querySelector('#services'), link: document.querySelector('.top-menu-link[href="#services"]') },
-        benefits: { element: document.querySelector('#benefits'), link: document.querySelector('.top-menu-link[href="#benefits"]') },
-        impact: { element: document.querySelector('#antes-despues'), link: document.querySelector('.top-menu-link[href="#antes-despues"]') }
-    };
+		home: { 
+			element: document.querySelector('.hero-impact'), 
+			link: document.querySelector('.top-menu-link[onclick="scrollToTop()"]') 
+		},
+		services: { 
+			element: document.querySelector('#services'), 
+			link: document.querySelector('.top-menu-link[href="#services"]') 
+		},
+		benefits: { 
+			element: document.querySelector('#benefits'), 
+			link: document.querySelector('.top-menu-link[href="#benefits"]') 
+		},
+		impact: { 
+			element: document.querySelector('#antes-despues'), 
+			link: document.querySelector('.top-menu-link[href="#antes-despues"]') 
+		}
+	};
 
     function updateMenu() {
-        const scrollPos = window.scrollY;
+		const scrollPos = window.scrollY + 100; // Añadimos un offset para activar antes
         
         // Reset all active states
         menuLinks.forEach(link => link.classList.remove('active'));
