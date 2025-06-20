@@ -110,7 +110,7 @@ setTimeout(() => {
 // Variables para el carrusel automático
 let currentSlide = 0;
 let slideInterval;
-const slideTimes = [3000, 9000, 6000];
+const slideTimes = [2000, 9000, 6000];
 let hasCompletedCycle = false;
 let autoCloseTimeout;
 
@@ -447,7 +447,7 @@ const processPopupData = {
         title: "Transformación de Tiempo",
         content: `
             <h2 style="color: var(--verde); margin-bottom: 0.5rem;">Transformamos horas en minutos</h2>
-            <p style="color: #4B5563; margin-bottom: 1.5rem;">Ahorro de tiempo comprobado con nuestros clientes</p>
+            <p style="color: #4B5563; margin-bottom: 1.5rem;">Clientes satisfechos, tiempo optimizado</p>
             
             <div class="process-chart">
                 <div class="chart-bar" style="--height: 90%;" data-value="10h"></div>
@@ -457,83 +457,83 @@ const processPopupData = {
             <ul style="list-style-type: none; padding-left: 0;">
                 <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
                     <span style="position: absolute; left: 0; color: var(--verde);">•</span> 
-                    Reducción del 80% en tiempos de procesamiento
+                    Optimización de los procesos de manera notable.
                 </li>
                 <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
                     <span style="position: absolute; left: 0; color: var(--verde);">•</span> 
-                    Tareas repetitivas completadas en segundos
+                    Di adiós a las tareas manuales y repetitivas
                 </li>
             </ul>
         `
     },
-    workflow: {
-        title: "Flujos Inteligentes",
-        content: `
-            <h2 style="color: var(--azul); margin-bottom: 0.5rem;">Automatización adaptativa</h2>
-            <p style="color: #4B5563; margin-bottom: 1.5rem;">Eficiencia operativa mejorada</p>
-            
-            <div class="process-chart">
-                <div class="chart-bar" style="--height: 30%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="-25%"></div>
-                <div class="chart-bar" style="--height: 70%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="+30%"></div>
-                <div class="chart-bar" style="--height: 45%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="+15%"></div>
-            </div>
-            
-            <ul style="list-style-type: none; padding-left: 0;">
-                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-                    <span style="position: absolute; left: 0; color: var(--azul);">•</span> 
-                    Integración perfecta con tus sistemas actuales
-                </li>
-                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-                    <span style="position: absolute; left: 0; color: var(--azul);">•</span> 
-                    Adaptable a cambios en tus procesos
-                </li>
-            </ul>
-        `
-    },
-    profit: {
-        title: "Impulso Rentable",
-        content: `
-            <h2 style="color: var(--morado); margin-bottom: 0.5rem;">Maximiza tus ganancias</h2>
-            <p style="color: #4B5563; margin-bottom: 1.5rem;">Resultados financieros típicos</p>
-            
-            <div class="process-chart">
-                <div class="chart-bar" style="--height: 60%; background: linear-gradient(to top, var(--morado), #6D28D9);" data-value="+60%"></div>
-                <div class="chart-bar" style="--height: 40%; background: linear-gradient(to top, var(--morado), #6D28D9);" data-value="-40%"></div>
-            </div>
-            
-            <ul style="list-style-type: none; padding-left: 0;">
-                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-                    <span style="position: absolute; left: 0; color: var(--morado);">•</span> 
-                    Aumento promedio del 60% en margen de beneficio
-                </li>
-                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-                    <span style="position: absolute; left: 0; color: var(--morado);">•</span> 
-                    Reducción del 40% en costos operativos
-                </li>
-            </ul>
-        `
-    },
+	workflow: {
+		title: "Automatización Inteligente",
+		content: `
+			<h2 style="color: var(--azul); margin-bottom: 0.5rem;">Automatización flexible</h2>
+			<p style="color: #4B5563; margin-bottom: 1.5rem;">Potencia tus procesos internos</p>
+			
+			<div class="process-chart">
+				<div class="chart-bar" style="--height: 30%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="-25%"></div>
+				<div class="chart-bar" style="--height: 70%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="+30%"></div>
+				<div class="chart-bar" style="--height: 45%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="+15%"></div>
+			</div>
+			
+			<ul style="list-style-type: none; padding-left: 0;">
+				<li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+					<span style="position: absolute; left: 0; color: var(--azul);">•</span> 
+					Solución independiente y autónoma
+				</li>
+				<li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+					<span style="position: absolute; left: 0; color: var(--azul);">•</span> 
+					Se adapta a tus procesos específicos
+				</li>
+			</ul>
+		`
+	},
+profit: {
+    title: "Eficiencia que Genera Valor",
+    content: `
+        <h2 style="color: var(--morado); margin-bottom: 0.5rem;">Optimización Financiera Inteligente</h2>
+        <p style="color: #4B5563; margin-bottom: 1.5rem;">Transforma tu eficiencia en resultados</p>
+        
+        <div class="process-chart">
+            <div class="chart-bar" style="--height: 60%; background: linear-gradient(to top, var(--morado), #6D28D9);"></div>
+            <div class="chart-bar" style="--height: 40%; background: linear-gradient(to top, var(--morado), #6D28D9);"></div>
+        </div>
+        
+        <ul style="list-style-type: none; padding-left: 0;">
+            <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                <span style="position: absolute; left: 0; color: var(--morado);">•</span> 
+                Mejora sostenible en tu rentabilidad
+            </li>
+            <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                <span style="position: absolute; left: 0; color: var(--morado);">•</span> 
+                Gestión más eficiente de tus recursos
+            </li>
+        </ul>
+    `
+},
     analytics: {
-        title: "Análisis Predictivo",
+        title: "Inteligencia Estratégica",
         content: `
-            <h2 style="color: var(--naranja); margin-bottom: 0.5rem;">Anticipa tendencias</h2>
-            <p style="color: #4B5563; margin-bottom: 1.5rem;">Toma decisiones basadas en datos</p>
+            <h2 style="color: var(--naranja); margin-bottom: 0.5rem;">Toma la delantera</h2>
+            <p style="color: #4B5563; margin-bottom: 1.5rem;">Descubre patrones antes que la competencia</p>
             
             <div class="process-chart">
                 <div class="chart-bar" style="--height: 85%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value="85%"></div>
                 <div class="chart-bar" style="--height: 55%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value="55%"></div>
             </div>
             
-            <ul style="list-style-type: none; padding-left: 0;">
-                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-                    <span style="position: absolute; left: 0; color: var(--naranja);">•</span> 
-                    85% de precisión en pronósticos
-                </li>
-                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-                    <span style="position: absolute; left: 0; color: var(--naranja);">•</span> 
-                    55% más rápido en detectar oportunidades
-                </li>
-            </ul>
+        <ul style="list-style-type: none; padding-left: 0;">
+            <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                <span style="position: absolute; left: 0; color: var(--naranja);">•</span> 
+                Pronósticos confiables y accionables
+            </li>
+            <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                <span style="position: absolute; left: 0; color: var(--naranja);">•</span> 
+                Detección temprana de oportunidades clave
+            </li>
+        </ul>
         `
     }
 };
@@ -565,135 +565,203 @@ function closeProcessPopup() {
     document.body.style.overflow = 'auto';
 }
 
-// Configuración avanzada del Chatbot
 const chatbotConfig = {
     greetings: [
-        "¡Hola! Soy WoMi, tu asistente en automatización inteligente. 😊",
-        "¿Sabías que podemos ahorrarte hasta 20 horas semanales? ⏱️ Cuéntame, ¿qué desafíos enfrentas en tu negocio?",
-        "¡Hola! 👋 En WoMo Studio transformamos procesos manuales en sistemas automatizados. ¿En qué puedo ayudarte hoy?"
+        "¡Hola! Soy WoMi, tu consultor en automatización estratégica. 😊 ¿En qué puedo ayudarte hoy con la optimización de tus procesos?",
+        "Hola, soy WoMi de WoMo Studio. Especialistas en transformar desafíos operativos en eficiencia medible. ¿Qué proceso te está quitando más tiempo actualmente?",
+        "¡Hola! 👋 WoMo Studio aquí. Automatizamos procesos con resultados tangibles. ¿Qué área de tu operación necesita mayor eficiencia?"
     ],
     responses: {
         "hola": {
             messages: [
-                "¡Hola! 👋",
-                "Soy WoMi, tu asistente en automatización inteligente de WoMo Studio.",
-                "Estoy aquí para mostrarte cómo podemos:",
-                "• ⏱️ Ahorrarte hasta 20 horas semanales",
-                "• 💰 Reducir tus costos operativos en un 40%",
-                "• 📈 Aumentar tu productividad en un 60%",
-                "¿Qué área de tu negocio te gustaría optimizar primero?"
+                "¡Hola! 👋 Soy WoMi, tu experto en automatización de WoMo Studio.",
+                "Trabajamos con negocios como el tuyo para:",
+                "• Recuperar horas valiosas de trabajo",
+                "• Minimizar errores operativos",
+                "• Optimizar el uso de tus recursos",
+                "",
+                "¿Qué tipo de procesos te generan más ineficiencias actualmente?"
             ],
-            quickReplies: ["Ahorro de tiempo", "Reducir costos", "Aumentar productividad", "Contactar experto"]
+            quickReplies: ["Procesos repetitivos", "Gestión documental", "Flujos de aprobación", "Hablar con consultor"]
         },
         "servicio": {
             messages: [
-                "🚀 Ofrecemos soluciones personalizadas de automatización:",
+                "🚀 Nuestro enfoque profesional:",
                 "",
-                "1. <strong>Diagnóstico Gratuito</strong>: Analizamos tus procesos sin costo",
+                "1. <strong>Análisis de Procesos</strong>: Evaluación detallada de tus operaciones (servicio con costo)",
                 "",
-                "2. <strong>Implementación Rápida</strong>: Resultados en menos de 2 semanas",
+                "2. <strong>Propuesta de Solución</strong>: Plan personalizado con KPIs claros",
                 "",
-                "3. <strong>Soporte Continuo</strong>: Acompañamiento post-implementación",
+                "3. <strong>Implementación Garantizada</strong>: Despliegue con acompañamiento completo",
                 "",
-                "¿Te gustaría agendar una llamada para conocer más detalles?"
+                "4. <strong>Medición de Resultados</strong>: Reportes periódicos de mejoras",
+                "",
+                "¿Quieres conocer nuestro proceso con un ejemplo real de implementación?"
             ],
-            quickReplies: ["Sí, agendar llamada", "Ver casos de éxito", "¿Cuánto cuesta?", "Contactar ahora"]
+            quickReplies: ["Ver caso de éxito", "Costos iniciales", "Tiempos estimados", "Contactar equipo"]
         },
         "tiempo": {
             messages: [
-                "⏱️ El tiempo es dinero, y esto es lo que logramos para nuestros clientes:",
+                "⏱️ Nuestras implementaciones típicamente impactan:",
                 "",
-                "• <strong>80% menos tiempo</strong> en procesos repetitivos",
-                "• <strong>15-20 horas recuperadas</strong> semanalmente por empleado",
-                "• <strong>Procesos completados</strong> en minutos en lugar de horas",
+                "• Reducción significativa en tiempos de ejecución",
+                "• Eliminación de pasos manuales redundantes",
+                "• Flujos de trabajo optimizados de extremo a extremo",
                 "",
-                "Un cliente reciente recuperó 18 horas semanales solo en gestión de facturas.",
+                "Ejemplo real: Un cliente en tu sector logró reducir el tiempo de procesamiento de documentos de 3 días a pocas horas.",
                 "",
-                "¿Te gustaría que te muestre cómo podríamos hacerlo en tu negocio?"
+                "¿Quieres analizar cómo aplicaríamos esto a tus operaciones?"
             ],
-            quickReplies: ["Sí, muéstrame", "¿Cómo funciona?", "Hablar con experto", "Enviar información"]
+            quickReplies: ["Analizar mi caso", "Ver demostración", "Preguntar a experto", "Solicitar propuesta"]
         },
         "contacto": {
             messages: [
-                "📞 ¡Excelente decisión! Estamos listos para transformar tu negocio.",
+                "📅 Agenda una sesión estratégica con nuestro equipo:",
                 "",
-                "Puedes contactarnos ahora mismo por:",
-                "• WhatsApp: +57 318 0401930 (respuesta inmediata)",
-                "• Correo: hola@womostudio.com",
+                "Disponibilidad para reuniones iniciales:",
+                "• Lunes a viernes: 9am - 6pm",
+                "• Duración: 45 minutos (requiere información previa)",
                 "",
-                "O si prefieres, puedo programar una consultoría gratuita para ti..."
+                "Te mostraremos exactamente cómo podemos optimizar tus operaciones"
             ],
             actions: [{
                 type: "button",
-                text: "📝 Agendar Consultoría Gratis",
-                action: "showLeadForm('consultoria')"
+                text: "📝 Agendar Sesión Inicial",
+                action: "showExpertCalendar()"
             }]
         },
         "precio": {
             messages: [
-                "💰 Nuestros clientes típicamente ven un <strong>ROI de 3-5x</strong> en los primeros meses.",
+                "💰 Modelo de inversión basado en resultados:",
                 "",
-                "Los costos varían según tus necesidades, pero para darte una idea:",
+                "Nuestros proyectos se estructuran en fases:",
                 "",
-                "• <strong>Pequeñas empresas</strong>: Desde $1.5M/mes (se paga solo con los ahorros)",
-                "• <strong>Empresas medianas</strong>: Soluciones completas desde $5M/mes",
+                "1. <strong>Evaluación Inicial</strong>: $X (aplicable a implementación)",
+                "2. <strong>Desarrollo de Solución</strong>: Desde $Y (según complejidad)",
+                "3. <strong>Mantenimiento</strong>: Opcional con reporting mensual",
                 "",
-                "Lo mejor es que primero analicemos tus procesos específicos en una consultoría gratuita.",
+                "El 92% de nuestros clientes recuperan su inversión en los primeros 3 meses.",
                 "",
-                "¿Te gustaría agendar una llamada sin compromiso?"
+                "¿Prefieres que te enviemos ejemplos específicos de tu industria?"
             ],
-            quickReplies: ["Sí, agendar", "Ver demo", "Más información", "WhatsApp"]
+            quickReplies: ["Ver casos similares", "Proceso detallado", "WhatsApp ejecutivo", "Documentación técnica"]
         },
         "gracias": {
             messages: [
-                "¡El placer es nuestro! 😊",
-                "Recuerda que en WoMo Studio estamos para ayudarte a crecer mediante la automatización inteligente.",
-                "Si necesitas algo más, aquí estaré."
+                "Gracias por considerar una solución profesional. 🚀",
+                "Cuando estés listo para transformar tus operaciones con métricas claras, aquí estaremos."
             ],
-            quickReplies: ["Más información", "Ver servicios", "Contactar asesor"]
+            quickReplies: ["Material adicional", "Equipo consultor", "LinkedIn"]
         },
         "adios": {
             messages: [
-                "¡Fue un gusto ayudarte! ⚡",
-                "No olvides que podemos transformar tus desafíos operativos en ventajas competitivas.",
-                "¡Que tengas un excelente día!"
+                "¡Fue un gusto asistirte! ⚡",
+                "Recuerda: La automatización estratégica puede ser tu ventaja competitiva.",
+                "¡Éxito en tus operaciones!"
             ],
             quickReplies: []
         },
         "default": {
             messages: [
-                "¡Buena pregunta! Permíteme explicarte cómo podemos ayudarte:",
+                "Entiendo tu consulta. Permíteme contextualizar mejor:",
                 "",
-                "En WoMo Studio nos especializamos en identificar cuellos de botella y convertirlos en procesos automatizados eficientes.",
+                "En WoMo Studio no ofrecemos soluciones genéricas. Trabajamos con:",
+                "1. Análisis de tus procesos específicos",
+                "2. Diseño de flujos personalizados",
+                "3. Implementación con métricas de éxito",
                 "",
-                "¿Qué es lo que más te preocupa en tus operaciones actuales?"
+                "Para darte una respuesta precisa, necesitaría conocer más sobre:",
+                "• Tus volúmenes operativos actuales",
+                "• Los cuellos de botella identificados",
+                "• Tus objetivos estratégicos",
+                "",
+                "¿Quieres programar una sesión inicial con nuestro equipo?"
             ],
-            quickReplies: ["Procesos lentos", "Errores frecuentes", "Falta de visibilidad", "Hablar con experto"]
+            quickReplies: ["Programar sesión", "Enviar información", "Pregunta específica", "Casos relevantes"]
         }
     },
     leadForms: {
-        "consultoria": {
-            title: "Agenda tu Consultoría Gratuita",
+        "asesoria": {
+            title: "Sesión Estratégica Inicial",
+            description: "Completa esta información para que nuestro equipo se prepare adecuadamente para tu caso",
             fields: [
-                { name: "nombre", placeholder: "Tu nombre completo", type: "text", required: true },
-                { name: "email", placeholder: "Email corporativo", type: "email", required: true },
-                { name: "telefono", placeholder: "WhatsApp", type: "tel", required: true },
                 { 
-                    name: "necesidad", 
-                    placeholder: "Descríbenos tu mayor desafío operativo", 
+                    name: "nombre", 
+                    placeholder: "Nombre completo", 
+                    type: "text", 
+                    required: true,
+                    validation: "Debes ingresar tu nombre completo"
+                },
+                { 
+                    name: "empresa", 
+                    placeholder: "Nombre de tu empresa", 
+                    type: "text", 
+                    required: true 
+                },
+                { 
+                    name: "email", 
+                    placeholder: "Email corporativo", 
+                    type: "email", 
+                    required: true,
+                    validation: "Por favor ingresa un email válido"
+                },
+                { 
+                    name: "telefono", 
+                    placeholder: "WhatsApp para contacto", 
+                    type: "tel", 
+                    required: true 
+                },
+                { 
+                    name: "proceso", 
+                    placeholder: "Descríbenos tu principal desafío operativo", 
                     type: "textarea", 
-                    required: false 
+                    required: false,
+                    helperText: "Ej: Gestión manual de facturas, aprobaciones lentas, etc."
+                },
+                { 
+                    name: "empleados", 
+                    placeholder: "Número aproximado de empleados", 
+                    type: "select",
+                    options: ["1-10", "11-50", "51-200", "200+"],
+                    required: true
                 }
             ],
-            submitText: "Agendar Consultoría Gratis",
-            successMessage: "¡Listo! Un experto se contactará contigo en menos de 24 horas para coordinar la consultoría. Mientras tanto, ¿te gustaría ver un caso similar al tuyo?"
+            submitText: "Solicitar Sesión Estratégica",
+            successMessage: "✅ ¡Perfecto! Hemos recibido tu información. Un consultor senior se contactará contigo en las próximas 24 horas para coordinar la sesión estratégica. ¿Te gustaría recibir mientras tanto nuestro dossier de casos de éxito en tu industria?",
+            successActions: [
+                {
+                    text: "Recibir Dossier",
+                    action: "sendDossier()"
+                },
+                {
+                    text: "Ver Video Explicativo",
+                    action: "showVideo('intro')"
+                }
+            ]
         }
     },
     farewells: [
-        "¡Gracias por conversar! Recuerda que la automatización puede ser tu mejor aliada para crecer.",
-        "Fue un gusto asistirte. Cuando quieras retomar la conversación, estaré aquí.",
-        "¡Hasta pronto! Si necesitas optimizar tus procesos, aquí me tienes."
-    ]
+        "Gracias por tu interés en soluciones profesionales. Estamos aquí cuando decidas optimizar tus operaciones.",
+        "Fue un gusto conversar. Recuerda que la eficiencia operativa es la base del crecimiento sostenible.",
+        "¡Hasta pronto! Cuando necesites transformar desafíos en resultados, aquí nos encontrarás."
+    ],
+    fallbackStrategy: {
+        unknownQuery: [
+            "Interesante pregunta. Para darte una respuesta precisa, necesitaría entender mejor tu contexto operativo.",
+            "¿Te gustaría que conectemos esta consulta con uno de nuestros especialistas?"
+        ],
+        technicalQuestion: [
+            "Esta es una consulta técnica específica. Permíteme derivarte con nuestro equipo de ingeniería.",
+            "Un experto te contactará con la información detallada que necesitas."
+        ],
+        pricingQuery: [
+            "Entiendo que necesitas claridad financiera. Para darte números exactos, primero debemos evaluar:",
+            "1. La complejidad de tus procesos actuales",
+            "2. El volumen operativo",
+            "3. Los resultados esperados",
+            "¿Quieres que programemos una breve sesión para analizar esto?"
+        ]
+    }
 };
 
 // Variables del chatbot
@@ -1106,14 +1174,15 @@ function showInactivityPopup() {
         openGifWindow();
     };
     
-    hideTimeout = setTimeout(() => {
-        hideInactivityPopup();
-    }, inactivityConfig.displayDuration);
+    // Eliminamos el timeout que ocultaba automáticamente el popup
+    // hideTimeout = setTimeout(() => {
+    //     hideInactivityPopup();
+    // }, inactivityConfig.displayDuration);
     
     isPopupActive = true;
     document.addEventListener('click', closePopupOnOutsideClick, true);
 }
-
+	
 function closePopupOnOutsideClick(e) {
     const popup = document.getElementById('inactivity-popup');
     const gifWindow = document.getElementById('gif-window');
@@ -1130,6 +1199,13 @@ function closePopupOnOutsideClick(e) {
 function openGifWindow() {
     if (isGifWindowOpen) return;
     
+    // Ocultar el mensaje inicial inmediatamente
+    const initialMessage = document.getElementById('inactivity-message');
+    if (initialMessage) {
+        initialMessage.classList.remove('active');
+    }
+    
+    // Resto del código existente...
     const popup = document.getElementById('inactivity-popup');
     const gifWindow = document.getElementById('gif-window');
     const gifWindowContent = document.getElementById('gif-window-content');
@@ -1144,7 +1220,8 @@ function openGifWindow() {
             <div class="gif-window-options">
                 <button class="gif-option-btn" onclick="handleGifOption('Quiero ahorrar tiempo')">Ahorrar tiempo</button>
                 <button class="gif-option-btn" onclick="handleGifOption('Reducir costos')">Reducir costos</button>
-                <button class="gif-option-btn" onclick="handleGifOption('Consultoría gratis')">Consultoría gratis</button>
+                <button class="gif-option-btn" onclick="handleGifOption('Consultoría gratis')">Consultoría</button>
+                <button class="gif-option-btn no-thanks" onclick="handleNoThanks()">Ahora no, WoMo</button>
             </div>
         </div>
     `;
@@ -1161,6 +1238,90 @@ function openGifWindow() {
     isGifWindowOpen = true;
     document.getElementById('inactivity-gif').classList.add('talking');
     clearTimeout(hideTimeout);
+}
+
+// Función para manejar el "Ahora no" (actualizada)
+function handleNoThanks() {
+    // Ocultar mensaje inicial si aún está visible
+    const initialMessage = document.getElementById('inactivity-message');
+    if (initialMessage) {
+        initialMessage.classList.remove('active');
+    }
+    
+    // Cerrar ventana GIF
+    closeGifWindow();
+    
+    // Mostrar mensaje de despedida
+    showWoMoBubble("¡Entendido! 😊 Estaré por aquí si me necesitas.");
+    
+    // Ocultar todo después de 3 segundos
+    hideTimeout = setTimeout(() => {
+        hideInactivityPopup();
+    }, 3000);
+}
+
+// Función para mostrar burbuja de WoMo (actualizada)
+function showWoMoBubble(message) {
+    // Asegurarse de que el mensaje inicial esté oculto
+    const initialMessage = document.getElementById('inactivity-message');
+    if (initialMessage) {
+        initialMessage.classList.remove('active');
+    }
+    
+    // Resto del código existente...
+    const gif = document.getElementById('inactivity-gif');
+    const gifRect = gif.getBoundingClientRect();
+    
+    // Crear burbuja
+    const bubble = document.createElement('div');
+    bubble.className = 'womo-bubble';
+    bubble.innerHTML = `
+        <div class="bubble-arrow"></div>
+        <div class="bubble-content">${message}</div>
+    `;
+    
+    // Posicionamiento preciso
+    bubble.style.position = 'fixed';
+    bubble.style.bottom = `${gifRect.bottom + window.scrollY}px`;
+    bubble.style.left = `${gifRect.left - 200}px`;
+    bubble.style.opacity = '0';
+    bubble.style.transform = 'translateY(10px)';
+    bubble.style.transition = 'all 0.3s ease';
+    
+    document.body.appendChild(bubble);
+    
+    // Animación de entrada
+    setTimeout(() => {
+        bubble.style.opacity = '1';
+        bubble.style.transform = 'translateY(0)';
+    }, 50);
+    
+    // Animación de hablar
+    gif.classList.add('womo-talking');
+    
+    // Desaparecer después de 3 segundos
+    setTimeout(() => {
+        bubble.style.opacity = '0';
+        bubble.style.transform = 'translateY(10px)';
+        gif.classList.remove('womo-talking');
+        
+        setTimeout(() => {
+            document.body.removeChild(bubble);
+        }, 300);
+    }, 3000);
+}
+
+// Función para cerrar la ventana
+function closeGifWindow() {
+    const gifWindow = document.getElementById('gif-window');
+    gifWindow.style.opacity = '0';
+    gifWindow.style.transform = 'translateY(20px)';
+    
+    setTimeout(() => {
+        gifWindow.style.display = 'none';
+        isGifWindowOpen = false;
+        document.getElementById('inactivity-gif').classList.remove('talking');
+    }, 300);
 }
 
 function handleGifOption(option) {
@@ -1256,8 +1417,9 @@ function setupActivityTracking() {
     events.forEach(event => {
         window.addEventListener(event, () => {
             lastInteractionTime = Date.now();
-            if (isPopupActive && !isGifWindowOpen) {
-                hideInactivityPopup();
+            // Solo reiniciamos el temporizador, no ocultamos el popup
+            if (!isPopupActive && !isGifWindowOpen) {
+                resetInactivityTimer();
             }
         }, { passive: true });
     });

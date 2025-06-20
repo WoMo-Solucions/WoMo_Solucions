@@ -1664,3 +1664,119 @@ body {
         bottom: 0;
     }
 }
+
+/* Estilo para el botón "Ahora no" */
+.gif-option-btn.no-thanks {
+    background-color: #f5f5f5;
+    color: #666;
+    border: 1px solid #ddd;
+}
+
+.gif-option-btn.no-thanks:hover {
+    background-color: #eaeaea;
+}
+
+/* Estilos para el mensaje temporal */
+.temporary-message {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #fff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.temporary-message.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Estilo para el botón "Ahora no" */
+.gif-option-btn.no-thanks {
+    background-color: #f5f5f5;
+    color: #666;
+    border: 1px solid #ddd;
+    margin-top: 8px;
+}
+
+.gif-option-btn.no-thanks:hover {
+    background-color: #eaeaea;
+}
+
+/* Estilos para la burbuja de WoMo */
+.womo-bubble {
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
+    max-width: 200px;
+    pointer-events: none;
+}
+
+.bubble-content {
+    background: white;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333;
+}
+
+/* Flecha para burbuja a la derecha */
+.bubble-arrow {
+    position: absolute;
+    right: -8px;
+    top: 15px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid white;
+}
+
+/* Flecha para burbuja a la izquierda */
+.womo-bubble.left-side .bubble-arrow {
+    left: -8px;
+    right: auto;
+    border-left: none;
+    border-right: 8px solid white;
+}
+
+/* Animación de hablar */
+@keyframes womo-talking {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.womo-talking {
+    animation: womo-talking 0.5s infinite;
+}
+
+/* Estilos para la ventana del GIF */
+.gif-window {
+    /* Tus estilos existentes */
+    transition: all 0.3s ease;
+}
+
+.gif-window-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.gif-option-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    background-color: #4a6bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.gif-option-btn:hover {
+    background-color: #3a5bef;
+}
