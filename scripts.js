@@ -6,13 +6,12 @@
 // ========== CONTADOR DE VISITAS MEJORADO ========== //
 const visitCounter = {
   config: {
-    repo: 'ramiju81/womo_visit', // Repositorio actualizado
-    issueNumber: 2, // Número de issue actualizado
-    minTimeBetweenVisits: 10000 // 10 segundos entre registros (anti-spam)
+    repo: 'ramiju81/womo_visit',
+    issueNumber: 2,
+    minTimeBetweenVisits: 10000
   },
   lastVisitTime: 0,
 
-  // Verificar si es una visita válida para registrar
   shouldRegisterVisit() {
     const now = Date.now();
     if (now - this.lastVisitTime < this.config.minTimeBetweenVisits) {
@@ -23,7 +22,6 @@ const visitCounter = {
     return true;
   },
 
-  // Versión segura para producción (sin token en frontend)
   async registerVisitSafe() {
     if (!this.shouldRegisterVisit()) return;
     
@@ -35,21 +33,17 @@ const visitCounter = {
         device: this.getDeviceType()
       };
 
-      // Registrar visita como comentario en el Issue #2
       await this.addVisitComment(visitData);
-      
       console.log('Visita registrada exitosamente');
     } catch (error) {
       console.error('Error registrando visita:', error);
     }
   },
 
-  // Versión para desarrollo (con token local)
   async registerVisitDev() {
     if (!this.shouldRegisterVisit()) return;
     
     try {
-      // Cargar configuración solo si no está cargada
       if (!this.config.token) {
         const response = await fetch('womo-config.json');
         if (!response.ok) throw new Error('Archivo de configuración no encontrado');
@@ -70,7 +64,6 @@ const visitCounter = {
     }
   },
 
-  // Función común para añadir comentarios al Issue
   async addVisitComment(visitData) {
     const response = await fetch(
       `https://api.github.com/repos/${this.config.repo}/issues/${this.config.issueNumber}/comments`,
@@ -93,7 +86,6 @@ const visitCounter = {
     if (!response.ok) throw new Error('Error en la API de GitHub');
   },
 
-  // Detectar tipo de dispositivo
   getDeviceType() {
     const ua = navigator.userAgent;
     if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
@@ -109,24 +101,22 @@ const visitCounter = {
 // Llamar a la función adecuada según el entorno
 setTimeout(() => {
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-    visitCounter.registerVisitDev(); // Desarrollo local
+    visitCounter.registerVisitDev();
   } else {
-    visitCounter.registerVisitSafe(); // Producción
+    visitCounter.registerVisitSafe();
   }
 }, 2000);
 
 // Variables para el carrusel automático
 let currentSlide = 0;
 let slideInterval;
-const slideTimes = [3000, 9000, 6000]; // 4s, 7s, 5s
+const slideTimes = [3000, 9000, 6000];
 let hasCompletedCycle = false;
 let autoCloseTimeout;
 
-// Función para avanzar slides
 function goToNextSlide() {
     if (hasCompletedCycle) return;
     
-    // Aplicar transición suave
     document.getElementById('modal-carousel').style.transition = 'transform 1.5s cubic-bezier(0.25, 0.1, 0.25, 1)';
     
     currentSlide = (currentSlide + 1) % 3;
@@ -134,7 +124,6 @@ function goToNextSlide() {
     
     updateSlideDots();
     
-    // Al llegar al último slide
     if (currentSlide === 2) {
         hasCompletedCycle = true;
         setTimeout(() => {
@@ -183,7 +172,7 @@ function startAutoSlide() {
     
     updateSlideDots();
     clearTimeout(autoCloseTimeout);
-    autoCloseTimeout = setTimeout(closeModal, 300000); // 5 minutos
+    autoCloseTimeout = setTimeout(closeModal, 300000);
 }
 
 function stopAutoSlide() {
@@ -198,10 +187,8 @@ const discoverBtn = document.getElementById('discover-btn');
 const transformBtn = document.getElementById('transform-btn');
 const playButton = document.getElementById('play-button');
 
-// Función para abrir modal
 playButton.addEventListener('click', startAutoSlide);
 
-// Al abrir el modal
 function openModal() {
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
@@ -211,41 +198,27 @@ function openModal() {
     document.getElementById('play-button').style.display = 'flex';
     stopAutoSlide();
     
-    // Reactivar transición después de un breve retraso
     setTimeout(() => {
         document.getElementById('modal-carousel').style.transition = 'transform 0.8s ease-in-out';
     }, 50);
 }
 
-
-// Función para cerrar modal
 function closeModal() {
     modal.style.display = 'none';
     document.body.style.overflow = 'auto';
     stopAutoSlide();
 }
 
-// Evento para cerrar al hacer clic fuera
 modal.addEventListener('click', function(e) {
     if (e.target === modal) closeModal();
 });
 
-// Evento del botón cerrar
 closeButton.addEventListener('click', closeModal);
-
-// Evento del botón "Descubre cómo funciona"
 discoverBtn.addEventListener('click', openModal);
 
-// Evento del botón "Quiero transformar mi negocio"
 transformBtn.addEventListener('click', function() {
     closeModal();
     openContactPopup();
-});
-
-// Modifica el evento del botón play
-playButton.addEventListener('click', function() {
-    this.style.display = 'none';
-    startAutoSlide();
 });
 
 function scrollToTop() {
@@ -254,10 +227,9 @@ function scrollToTop() {
         behavior: 'smooth'
     });
     
-    // Actualiza el menú activo
     const menuLinks = document.querySelectorAll('.top-menu-link');
     menuLinks.forEach(link => link.classList.remove('active'));
-    menuLinks[0].classList.add('active'); // El primer enlace es "Inicio"
+    menuLinks[0].classList.add('active');
 }
 
 // Control de popup de contacto lateral
@@ -272,7 +244,6 @@ function closeContactPopup() {
     document.body.style.overflow = 'auto';
 }
 
-// Función para validar campos (solo bordes rojos)
 function validarCampos() {
     let valido = true;
     const nombre = document.getElementById('contact-name').value.trim();
@@ -280,30 +251,25 @@ function validarCampos() {
     const celular = document.getElementById('contact-celular').value.trim();
     const mensaje = document.getElementById('contact-message').value.trim();
 
-    // Resetear bordes
     document.querySelectorAll('input, textarea').forEach(el => {
         el.style.borderColor = '#e2e8f0';
     });
 
-    // Validar nombre (mínimo 3 caracteres)
     if (nombre.length < 3) {
         document.getElementById('contact-name').style.borderColor = '#EF4444';
         valido = false;
     }
 
-    // Validar email (formato básico)
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         document.getElementById('contact-email').style.borderColor = '#EF4444';
         valido = false;
     }
 
-    // Validar celular (10 dígitos)
     if (!/^\d{10}$/.test(celular)) {
         document.getElementById('contact-celular').style.borderColor = '#EF4444';
         valido = false;
     }
 
-    // Validar mensaje (mínimo 10 caracteres)
     if (mensaje.length < 10) {
         document.getElementById('contact-message').style.borderColor = '#EF4444';
         valido = false;
@@ -312,26 +278,21 @@ function validarCampos() {
     return valido;
 }
 
-// Función para enviar el formulario
 async function sendContactRequest() {
-    // Validar campos primero
     if (!validarCampos()) {
         mostrarNotificacion('Por favor complete todos los campos correctamente', 'error');
         return;
     }
 
-    // Obtener valores del formulario
     const name = document.getElementById('contact-name').value.trim();
     const email = document.getElementById('contact-email').value.trim();
     const celular = document.getElementById('contact-celular').value.trim();
     const message = document.getElementById('contact-message').value.trim();
 
-    // Crear contenido para el correo
     const textoPlano = crearTextoPlano(name, email, celular, message);
     const datosJSON = crearDatosJSON(name, email, celular, message);
 
     try {
-        // Intento principal con EmailJS
         await enviarConEmailJS(name, email, celular, textoPlano, datosJSON);
         mostrarNotificacion('¡Mensaje enviado con éxito!', 'success');
     } catch (error) {
@@ -339,7 +300,6 @@ async function sendContactRequest() {
         mostrarNotificacion('Usando método alternativo...', 'warning');
         
         try {
-            // Intento con FormSubmit como respaldo
             await enviarConFormSubmit(name, email, celular, message, datosJSON);
             mostrarNotificacion('¡Mensaje enviado por método alternativo!', 'success');
         } catch (backupError) {
@@ -349,12 +309,10 @@ async function sendContactRequest() {
         }
     }
 
-    // Limpiar y cerrar si todo fue bien
     limpiarFormulario();
     closeContactPopup();
 }
 
-// Función para crear texto plano
 function crearTextoPlano(name, email, phone, message) {
     return `
 == NUEVO CONTACTO WOMO STUDIO ==
@@ -367,7 +325,6 @@ Fecha: ${new Date().toLocaleString()}
 `;
 }
 
-// Función para crear JSON estructurado
 function crearDatosJSON(name, email, phone, message) {
     return {
         fecha: new Date().toISOString(),
@@ -384,7 +341,6 @@ function crearDatosJSON(name, email, phone, message) {
     };
 }
 
-// Función para enviar con EmailJS
 async function enviarConEmailJS(name, email, phone, textoPlano, datosJSON) {
     return emailjs.send('service_42rjl6k', 'template_iszllup', {
         from_name: name,
@@ -397,7 +353,6 @@ async function enviarConEmailJS(name, email, phone, textoPlano, datosJSON) {
     });
 }
 
-// Función para enviar con FormSubmit (backup)
 async function enviarConFormSubmit(name, email, phone, message, metadata) {
     const formData = new FormData();
     formData.append('nombre', name);
@@ -419,7 +374,6 @@ async function enviarConFormSubmit(name, email, phone, message, metadata) {
     }
 }
 
-// Función para limpiar el formulario
 function limpiarFormulario() {
     document.getElementById('contact-name').value = '';
     document.getElementById('contact-email').value = '';
@@ -427,7 +381,6 @@ function limpiarFormulario() {
     document.getElementById('contact-message').value = '';
 }
 
-// Función para mostrar notificaciones
 function mostrarNotificacion(mensaje, tipo) {
     const notificacion = document.createElement('div');
     notificacion.className = `notification ${tipo}`;
@@ -439,12 +392,10 @@ function mostrarNotificacion(mensaje, tipo) {
     }, 3000);
 }
 
-// Autoformatear teléfono (solo números, máximo 10 dígitos)
 document.getElementById('contact-celular').addEventListener('input', function(e) {
     this.value = this.value.replace(/\D/g, '').slice(0, 10);
 });
 
-// Animación de partículas
 function createParticles() {
     const particlesContainer = document.getElementById('particles');
     const particleCount = 30;
@@ -468,7 +419,6 @@ function createParticles() {
     }
 }
 
-// Cerrar con tecla ESC
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         if (modal.style.display === 'flex') closeModal();
@@ -478,7 +428,6 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// Asegurar que todos los close buttons funcionen
 document.querySelectorAll('.modal-close, .close-btn, .chatbot-close').forEach(btn => {
     btn.addEventListener('click', function() {
         if (this.classList.contains('modal-close')) closeModal();
@@ -493,7 +442,6 @@ document.querySelectorAll('.modal-close, .close-btn, .chatbot-close').forEach(bt
     });
 });
 
-// Datos para los popups de procesos
 const processPopupData = {
     time: {
         title: "Transformación de Tiempo",
@@ -590,7 +538,6 @@ const processPopupData = {
     }
 };
 
-// Funciones para controlar los popups de procesos
 function openProcessPopup(type) {
     if (!processPopupData[type]) return;
     
@@ -621,120 +568,112 @@ function closeProcessPopup() {
 // Configuración avanzada del Chatbot
 const chatbotConfig = {
     greetings: [
-        "¡Hola! Soy WoMi, Asistente en Womo Studio. 😊",
-        "Estoy aquí para mostrarte cómo podemos revolucionar tu negocio con automatización inteligente. ⚡",
-        "Dime, ¿qué desafíos enfrentas en tus operaciones diarias?"
+        "¡Hola! Soy WoMi, tu asistente en automatización inteligente. 😊",
+        "¿Sabías que podemos ahorrarte hasta 20 horas semanales? ⏱️ Cuéntame, ¿qué desafíos enfrentas en tu negocio?",
+        "¡Hola! 👋 En WoMo Studio transformamos procesos manuales en sistemas automatizados. ¿En qué puedo ayudarte hoy?"
     ],
     responses: {
         "hola": {
             messages: [
                 "¡Hola! 👋",
-                "Soy tú asistente virtual WoMi, especializado en transformar negocios con automatización.",
-                "Puedo asesorarte en:",
-                "• 💡 Soluciones personalizadas",
-                "• ⏱️ Ahorro de tiempo comprobado",
-                "• 📈 Incremento en productividad",
-                "¿Qué desafío de tu negocio quieres resolver con automatización?"
+                "Soy WoMi, tu asistente en automatización inteligente de WoMo Studio.",
+                "Estoy aquí para mostrarte cómo podemos:",
+                "• ⏱️ Ahorrarte hasta 20 horas semanales",
+                "• 💰 Reducir tus costos operativos en un 40%",
+                "• 📈 Aumentar tu productividad en un 60%",
+                "¿Qué área de tu negocio te gustaría optimizar primero?"
             ],
-            quickReplies: ["Servicios", "Ahorro de tiempo", "Casos de éxito", "Contacto"]
+            quickReplies: ["Ahorro de tiempo", "Reducir costos", "Aumentar productividad", "Contactar experto"]
         },
         "servicio": {
             messages: [
-                "🚀 Nuestros servicios van más allá de lo básico:",
+                "🚀 Ofrecemos soluciones personalizadas de automatización:",
                 "",
-                "1. <strong>Automatización Integral</strong>: Transformamos tus procesos manuales en sistemas inteligentes que trabajan 24/7",
+                "1. <strong>Diagnóstico Gratuito</strong>: Analizamos tus procesos sin costo",
                 "",
-                "2. <strong>Flujos de Trabajo Adaptativos</strong>: Soluciones que aprenden y se ajustan a tus necesidades cambiantes",
+                "2. <strong>Implementación Rápida</strong>: Resultados en menos de 2 semanas",
                 "",
-                "3. <strong>Análisis Predictivo</strong>: Anticipamos problemas antes de que ocurran y optimizamos tus operaciones",
+                "3. <strong>Soporte Continuo</strong>: Acompañamiento post-implementación",
                 "",
-                "¿Te gustaría que te cuente más sobre alguno en específico?"
+                "¿Te gustaría agendar una llamada para conocer más detalles?"
             ],
-            quickReplies: ["Automatización Integral", "Flujos Adaptativos", "Análisis Predictivo", "Casos reales"]
+            quickReplies: ["Sí, agendar llamada", "Ver casos de éxito", "¿Cuánto cuesta?", "Contactar ahora"]
         },
         "tiempo": {
             messages: [
-                "⏱️ El tiempo es tu activo más valioso, y esto es lo que logramos para nuestros clientes:",
+                "⏱️ El tiempo es dinero, y esto es lo que logramos para nuestros clientes:",
                 "",
-                "• <strong>Reducción del 60-80%</strong> en tiempos de procesamiento",
-                "• <strong>Eliminación del 95%</strong> de errores humanos",
-                "• <strong>Recuperación de 15-20 horas</strong> semanales por empleado",
+                "• <strong>80% menos tiempo</strong> en procesos repetitivos",
+                "• <strong>15-20 horas recuperadas</strong> semanalmente por empleado",
+                "• <strong>Procesos completados</strong> en minutos en lugar de horas",
                 "",
-                "Imagina lo que podrías hacer con todo ese tiempo extra...",
+                "Un cliente reciente recuperó 18 horas semanales solo en gestión de facturas.",
                 "",
-                "¿Te gustaría que te comparta un ejemplo concreto de cómo lo hemos logrado?"
+                "¿Te gustaría que te muestre cómo podríamos hacerlo en tu negocio?"
             ],
-            quickReplies: ["Sí, muéstrame", "Cómo funciona", "Contactar asesor"]
+            quickReplies: ["Sí, muéstrame", "¿Cómo funciona?", "Hablar con experto", "Enviar información"]
         },
         "contacto": {
             messages: [
                 "📞 ¡Excelente decisión! Estamos listos para transformar tu negocio.",
                 "",
-                "Puedes contactarnos por:",
+                "Puedes contactarnos ahora mismo por:",
                 "• WhatsApp: +57 318 0401930 (respuesta inmediata)",
                 "• Correo: hola@womostudio.com",
                 "",
-                "O si prefieres, puedo generarte una consultoría ahora mismo..."
+                "O si prefieres, puedo programar una consultoría gratuita para ti..."
             ],
             actions: [{
                 type: "button",
-                text: "📝 Solicitar Consultoría",
+                text: "📝 Agendar Consultoría Gratis",
                 action: "showLeadForm('consultoria')"
             }]
         },
         "precio": {
             messages: [
-                "💰 Nuestros clientes típicamente ven un <strong>ROI de 3-5x</strong> rapidamente.",
+                "💰 Nuestros clientes típicamente ven un <strong>ROI de 3-5x</strong> en los primeros meses.",
                 "",
-                "Los costos varían según la complejidad, pero para darte una idea:",
+                "Los costos varían según tus necesidades, pero para darte una idea:",
                 "",
-                "• <strong>Paquete Básico</strong>: Desde $1.5M/mes (ahorros típicos de $3M+)",
-                "• <strong>Paquete Empresarial</strong>: Soluciones completas desde $5M/mes",
+                "• <strong>Pequeñas empresas</strong>: Desde $1.5M/mes (se paga solo con los ahorros)",
+                "• <strong>Empresas medianas</strong>: Soluciones completas desde $5M/mes",
                 "",
-                "Lo más valioso es que <strong>no es un gasto, es una inversión</strong> que se paga sola con los ahorros generados.",
+                "Lo mejor es que primero analicemos tus procesos específicos en una consultoría gratuita.",
                 "",
-                "¿Te gustaría que te prepare una estimación personalizada sin compromiso?"
+                "¿Te gustaría agendar una llamada sin compromiso?"
             ],
-            quickReplies: ["Sí, estimación", "Cómo empezar", "Ver demo"]
+            quickReplies: ["Sí, agendar", "Ver demo", "Más información", "WhatsApp"]
         },
         "gracias": {
             messages: [
-                "¡Es un placer atenderte! 😊",
-                "Recuerda que en Womo Studio estamos para optimizar y mejorar tu negocio con soluciones inteligentes.",
-                "Si necesitas algo más, no dudes en preguntar. ¡Estamos aquí para ayudarte!"
+                "¡El placer es nuestro! 😊",
+                "Recuerda que en WoMo Studio estamos para ayudarte a crecer mediante la automatización inteligente.",
+                "Si necesitas algo más, aquí estaré."
             ],
             quickReplies: ["Más información", "Ver servicios", "Contactar asesor"]
         },
         "adios": {
             messages: [
-                "¡Ha sido un gusto ayudarte! ⚡",
+                "¡Fue un gusto ayudarte! ⚡",
                 "No olvides que podemos transformar tus desafíos operativos en ventajas competitivas.",
-                "¡Que tengas un excelente día y hasta pronto!"
-            ],
-            quickReplies: []
-        },
-        "chao": {
-            messages: [
-                "¡Hasta luego! 👋",
-                "Recuerda que nuestra misión es hacer crecer tu negocio mediante la automatización inteligente.",
-                "Cuando quieras retomar la conversación, estaré aquí."
+                "¡Que tengas un excelente día!"
             ],
             quickReplies: []
         },
         "default": {
             messages: [
-                "Interesante pregunta... Permíteme explicarte cómo WoMo Studio puede ayudarte:",
+                "¡Buena pregunta! Permíteme explicarte cómo podemos ayudarte:",
                 "",
-                "Somos especialistas en identificar cuellos de botella en operaciones y convertirlos en procesos automatizados eficientes.",
+                "En WoMo Studio nos especializamos en identificar cuellos de botella y convertirlos en procesos automatizados eficientes.",
                 "",
                 "¿Qué es lo que más te preocupa en tus operaciones actuales?"
             ],
-            quickReplies: ["Procesos lentos", "Muchos errores", "Falta de visibilidad", "Contactar experto"]
+            quickReplies: ["Procesos lentos", "Errores frecuentes", "Falta de visibilidad", "Hablar con experto"]
         }
     },
     leadForms: {
         "consultoria": {
-            title: "¿Necesitas Asesoría? Comencemos Aquí",
+            title: "Agenda tu Consultoría Gratuita",
             fields: [
                 { name: "nombre", placeholder: "Tu nombre completo", type: "text", required: true },
                 { name: "email", placeholder: "Email corporativo", type: "email", required: true },
@@ -746,16 +685,14 @@ const chatbotConfig = {
                     required: false 
                 }
             ],
-            submitText: "Solicita el asesoría",
-            successMessage: "¡Listo! Un experto se contactará contigo a la menor brevedad posible. Mientras tanto, ¿te gustaría ver un caso similar al tuyo?"
+            submitText: "Agendar Consultoría Gratis",
+            successMessage: "¡Listo! Un experto se contactará contigo en menos de 24 horas para coordinar la consultoría. Mientras tanto, ¿te gustaría ver un caso similar al tuyo?"
         }
     },
     farewells: [
-        "¡Fue un placer ayudarte! Recuerda que en WoMo Studio transformamos desafíos en soluciones.",
-        "Si necesitas algo más, estaré aquí. ¡Que tengas un día productivo! ⚡",
-        "¡Gracias por conversar conmigo! Estamos comprometidos con el éxito de tu negocio.",
-        "Fue un gusto asistirte. No dudes en volver cuando necesites optimizar tus procesos.",
-        "¡Hasta pronto! Recuerda que la automatización puede ser tu mejor aliada para crecer."
+        "¡Gracias por conversar! Recuerda que la automatización puede ser tu mejor aliada para crecer.",
+        "Fue un gusto asistirte. Cuando quieras retomar la conversación, estaré aquí.",
+        "¡Hasta pronto! Si necesitas optimizar tus procesos, aquí me tienes."
     ]
 };
 
@@ -769,28 +706,43 @@ function toggleChatbot() {
     const chatbotIcon = document.querySelector('.chatbot-icon');
     
     if (chatbotWindow.classList.contains('active')) {
-        chatbotWindow.classList.remove('active');
-        chatbotIcon.style.display = 'flex';
+        closeChatbot();
     } else {
-        chatbotWindow.classList.add('active');
-        chatbotIcon.style.display = 'none';
-        
-        // Mostrar mensaje inicial si es la primera vez
-        if (document.getElementById('chatbot-messages').children.length === 0) {
-            showTypingIndicator();
-            setTimeout(() => {
-                removeTypingIndicator();
-                const randomGreeting = chatbotConfig.greetings[Math.floor(Math.random() * chatbotConfig.greetings.length)];
-                addBotMessage(randomGreeting);
-                showQuickReplies(chatbotConfig.responses["hola"].quickReplies);
-            }, 1500);
-        }
+        openChatbot();
     }
+}
+
+function openChatbot() {
+    const chatbotWindow = document.getElementById('chatbot-window');
+    const chatbotIcon = document.querySelector('.chatbot-icon');
+    
+    if (isPopupActive) {
+        hideInactivityPopup();
+    }
+    
+    chatbotWindow.classList.add('active');
+    chatbotIcon.style.display = 'none';
+    
+    if (document.getElementById('chatbot-messages').children.length === 0) {
+        showInitialGreeting();
+    }
+    
+    resetInactivityTimer();
 }
 
 function closeChatbot() {
     document.getElementById('chatbot-window').classList.remove('active');
     document.querySelector('.chatbot-icon').style.display = 'flex';
+}
+
+function showInitialGreeting() {
+    showTypingIndicator();
+    setTimeout(() => {
+        removeTypingIndicator();
+        const randomGreeting = chatbotConfig.greetings[Math.floor(Math.random() * chatbotConfig.greetings.length)];
+        addBotMessage(randomGreeting);
+        showQuickReplies(chatbotConfig.responses["hola"].quickReplies);
+    }, 1500);
 }
 
 function addUserMessage(text) {
@@ -800,7 +752,6 @@ function addUserMessage(text) {
     `;
     scrollToBottom();
     
-    // Procesar después de un pequeño retraso para mejor experiencia
     setTimeout(() => {
         processUserInput(text);
     }, 500);
@@ -857,8 +808,6 @@ function handleQuickReply(option) {
 
 function processUserInput(input) {
     showTypingIndicator();
-    
-    // Limpiar opciones rápidas mientras procesamos
     document.getElementById('quick-options').innerHTML = '';
     
     setTimeout(() => {
@@ -867,7 +816,7 @@ function processUserInput(input) {
         const lowerInput = input.toLowerCase();
         let responseFound = false;
         
-        // Primero verificar palabras clave de despedida
+        // Verificar palabras clave
         if (lowerInput.includes('gracias') || lowerInput.includes('thank')) {
             const randomResponse = chatbotConfig.responses["gracias"].messages;
             randomResponse.forEach(msg => addBotMessage(msg));
@@ -879,36 +828,43 @@ function processUserInput(input) {
             addBotMessage(randomFarewell);
             responseFound = true;
         }
-        else if (lowerInput.includes('chao') || lowerInput.includes('nos vemos')) {
-            const randomResponse = chatbotConfig.responses["chao"].messages;
-            randomResponse.forEach(msg => addBotMessage(msg));
+        else if (lowerInput.includes('hola') || lowerInput.includes('hi')) {
+            const response = chatbotConfig.responses["hola"];
+            response.messages.forEach(msg => addBotMessage(msg));
+            showQuickReplies(response.quickReplies);
             responseFound = true;
         }
-        
-        // Si no es una despedida, buscar otras respuestas
-        if (!responseFound) {
-            for (const [key, response] of Object.entries(chatbotConfig.responses)) {
-                if (lowerInput.includes(key.toLowerCase()) && key !== "gracias" && key !== "adios" && key !== "chao") {
-                    response.messages.forEach(msg => addBotMessage(msg));
-                    
-                    if (response.quickReplies) {
-                        showQuickReplies(response.quickReplies);
+        else if (lowerInput.includes('servicio') || lowerInput.includes('qué hacen') || lowerInput.includes('que ofrecen')) {
+            const response = chatbotConfig.responses["servicio"];
+            response.messages.forEach(msg => addBotMessage(msg));
+            if (response.quickReplies) showQuickReplies(response.quickReplies);
+            responseFound = true;
+        }
+        else if (lowerInput.includes('tiempo') || lowerInput.includes('rápido') || lowerInput.includes('lento')) {
+            const response = chatbotConfig.responses["tiempo"];
+            response.messages.forEach(msg => addBotMessage(msg));
+            if (response.quickReplies) showQuickReplies(response.quickReplies);
+            responseFound = true;
+        }
+        else if (lowerInput.includes('contacto') || lowerInput.includes('hablar') || lowerInput.includes('llamar')) {
+            const response = chatbotConfig.responses["contacto"];
+            response.messages.forEach(msg => addBotMessage(msg));
+            if (response.actions) {
+                response.actions.forEach(action => {
+                    if (action.type === "button") {
+                        setTimeout(() => {
+                            eval(action.action);
+                        }, 500);
                     }
-                    
-                    if (response.actions) {
-                        response.actions.forEach(action => {
-                            if (action.type === "button") {
-                                setTimeout(() => {
-                                    eval(action.action); // Ejecutar la acción asociada
-                                }, 500);
-                            }
-                        });
-                    }
-                    
-                    responseFound = true;
-                    break;
-                }
+                });
             }
+            responseFound = true;
+        }
+        else if (lowerInput.includes('precio') || lowerInput.includes('costo') || lowerInput.includes('cuánto cuesta')) {
+            const response = chatbotConfig.responses["precio"];
+            response.messages.forEach(msg => addBotMessage(msg));
+            if (response.quickReplies) showQuickReplies(response.quickReplies);
+            responseFound = true;
         }
         
         // Respuesta por defecto si no se encontró coincidencia
@@ -918,7 +874,7 @@ function processUserInput(input) {
                 showQuickReplies(chatbotConfig.responses.default.quickReplies);
             }
         }
-    }, 1000 + Math.random() * 1000); // Retraso variable para parecer más natural
+    }, 1000 + Math.random() * 1000);
 }
 
 function sendMessage() {
@@ -973,7 +929,6 @@ function submitLeadForm(formType) {
     const formData = {};
     let isValid = true;
     
-    // Validar campos requeridos
     chatbotConfig.leadForms[formType].fields.forEach(field => {
         if (field.required) {
             const input = form.querySelector(`[name="${field.name}"]`);
@@ -992,28 +947,23 @@ function submitLeadForm(formType) {
         return;
     }
     
-    // Simular envío (en producción aquí iría el envío real)
     showTypingIndicator();
     
     setTimeout(() => {
         removeTypingIndicator();
         form.remove();
         
-        // Mostrar mensaje de éxito
         addBotMessage(chatbotConfig.leadForms[formType].successMessage);
         
-        // Mostrar opciones relevantes después del formulario
         if (formType === 'consultoria') {
             showQuickReplies(["Ver caso similar", "Cómo prepararme", "Gracias"]);
         }
         
-        // Enviar los datos del lead
         sendLeadDataToBackend(formData, formType);
     }, 2000);
 }
 
 function sendLeadDataToBackend(data, formType) {
-    // Crear contenido estructurado similar al formulario de contacto
     const textoPlano = `
 == NUEVO LEAD DEL CHATBOT ==
 Tipo: ${formType}
@@ -1042,7 +992,6 @@ Fecha: ${new Date().toLocaleString()}
         }
     };
 
-    // Enviar con EmailJS usando el mismo formato que el formulario de contacto
     emailjs.send('service_42rjl6k', 'template_iszllup', {
         from_name: data.nombre || 'Usuario Chatbot',
         from_email: data.email || 'no-email@chatbot.com',
@@ -1057,13 +1006,11 @@ Fecha: ${new Date().toLocaleString()}
     })
     .catch(error => {
         console.error('Error al enviar:', error);
-        // En caso de error, usar FormSubmit como respaldo
         sendWithFormSubmit(data, formType);
     });
 }
 
 function sendWithFormSubmit(data, formType) {
-    // Crear el mismo formato estructurado para el respaldo
     const datosJSON = {
         fecha: new Date().toISOString(),
         origen: "chatbot",
@@ -1105,95 +1052,316 @@ function scrollToBottom() {
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
-// Event listeners
-document.getElementById('chatbot-input').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-        sendMessage();
+// Configuración del asistente flotante WoMi
+const inactivityConfig = {
+    timeout: 15000, // 15 segundos para mostrar el popup
+    messages: [
+        "¿Necesitas ayuda para optimizar tus procesos?",
+        "¡Hola! ¿Sabías que podemos ahorrarte hasta 20 horas semanales?",
+        "¿Te gustaría saber cómo automatizar tus operaciones?",
+        "Transforma tus procesos manuales en sistemas automáticos. ¿Hablamos?",
+        "¡Me encantaría mostrarte cómo podemos ayudarte!"
+    ],
+    displayDuration: 300000, // 5 minutos visible
+    cooldown: 30000, // 30 segundos antes de reaparecer
+    positions: ['position-bottom-right', 'position-bottom-left']
+};
+
+let inactivityTimer;
+let isPopupActive = false;
+let lastInteractionTime = Date.now();
+let hideTimeout;
+let currentPosition = '';
+let isGifWindowOpen = false;
+
+function getRandomMessage() {
+    return inactivityConfig.messages[Math.floor(Math.random() * inactivityConfig.messages.length)];
+}
+
+function getRandomPosition() {
+    currentPosition = inactivityConfig.positions[Math.floor(Math.random() * inactivityConfig.positions.length)];
+    return currentPosition;
+}
+
+function showInactivityPopup() {
+    if (isPopupActive || isGifWindowOpen || document.getElementById('chatbot-window').classList.contains('active')) return;
+    
+    const popup = document.getElementById('inactivity-popup');
+    const message = document.getElementById('inactivity-message');
+    const gif = document.getElementById('inactivity-gif');
+    
+    popup.className = 'inactivity-popup ' + getRandomPosition();
+    message.textContent = getRandomMessage();
+    
+    popup.style.display = 'flex';
+    setTimeout(() => {
+        popup.style.opacity = '1';
+        setTimeout(() => {
+            message.classList.add('active');
+        }, 300);
+    }, 50);
+    
+    gif.onclick = function(e) {
+        e.stopPropagation();
+        openGifWindow();
+    };
+    
+    hideTimeout = setTimeout(() => {
+        hideInactivityPopup();
+    }, inactivityConfig.displayDuration);
+    
+    isPopupActive = true;
+    document.addEventListener('click', closePopupOnOutsideClick, true);
+}
+
+function closePopupOnOutsideClick(e) {
+    const popup = document.getElementById('inactivity-popup');
+    const gifWindow = document.getElementById('gif-window');
+    
+    if (!popup.contains(e.target) && !isGifWindowOpen) {
+        hideInactivityPopup();
     }
-});
-
-// Cerrar chatbot al hacer clic en enlaces de contacto
-document.querySelectorAll('[onclick="openContactPopup()"]').forEach(link => {
-    link.addEventListener('click', closeChatbot);
-});
-
-// Inicialización
-document.addEventListener('DOMContentLoaded', function() {
-    createParticles();
     
-    // Mostrar modal explicativo siempre al cargar
-    openModal();
-    
-    // Precargar imagen del chatbot para mejor experiencia
-    const img = new Image();
-    img.src = 'https://cdn-icons-png.flaticon.com/512/4712/4712035.png';
-    
-    // Configurar navegación del menú
-    const menu = document.querySelector('.top-menu');
-    const menuLinks = document.querySelectorAll('.top-menu-link');
-    const sections = {
-		home: { 
-			element: document.querySelector('.hero-impact'), 
-			link: document.querySelector('.top-menu-link[onclick="scrollToTop()"]') 
-		},
-		services: { 
-			element: document.querySelector('#services'), 
-			link: document.querySelector('.top-menu-link[href="#services"]') 
-		},
-		benefits: { 
-			element: document.querySelector('#benefits'), 
-			link: document.querySelector('.top-menu-link[href="#benefits"]') 
-		},
-		impact: { 
-			element: document.querySelector('#antes-despues'), 
-			link: document.querySelector('.top-menu-link[href="#antes-despues"]') 
-		}
-	};
-
-    function updateMenu() {
-		const scrollPos = window.scrollY + 100; // Añadimos un offset para activar antes
-        
-        // Reset all active states
-        menuLinks.forEach(link => link.classList.remove('active'));
-        
-        // Determinar sección activa
-        let activeSection = 'home';
-        
-        if (scrollPos > sections.services.element.offsetTop - 100) activeSection = 'services';
-        if (scrollPos > sections.benefits.element.offsetTop - 100) activeSection = 'benefits';
-        if (scrollPos > sections.impact.element.offsetTop - 100) activeSection = 'impact';
-        
-        // Aplicar estado activo
-        sections[activeSection].link.classList.add('active');
-        
-        // Cambiar color del menú al hacer scroll
-        if (scrollPos > 100) {
-            menu.classList.add('scrolled');
-        } else {
-            menu.classList.remove('scrolled');
-        }
+    if (isGifWindowOpen && !gifWindow.contains(e.target)) {
+        closeGifWindow();
     }
+}
 
-    // Inicialización
-    updateMenu();
-    window.addEventListener('scroll', updateMenu);
-    window.addEventListener('resize', updateMenu);
+function openGifWindow() {
+    if (isGifWindowOpen) return;
+    
+    const popup = document.getElementById('inactivity-popup');
+    const gifWindow = document.getElementById('gif-window');
+    const gifWindowContent = document.getElementById('gif-window-content');
+    
+    gifWindowContent.innerHTML = `
+        <div class="gif-window-header">
+            <h3>¡Hola! Soy WoMi 👋</h3>
+            <button class="close-gif-window">&times;</button>
+        </div>
+        <div class="gif-window-body">
+            <p>${getRandomMessage()}</p>
+            <div class="gif-window-options">
+                <button class="gif-option-btn" onclick="handleGifOption('Quiero ahorrar tiempo')">Ahorrar tiempo</button>
+                <button class="gif-option-btn" onclick="handleGifOption('Reducir costos')">Reducir costos</button>
+                <button class="gif-option-btn" onclick="handleGifOption('Consultoría gratis')">Consultoría gratis</button>
+            </div>
+        </div>
+    `;
+    
+    document.querySelector('.close-gif-window').onclick = closeGifWindow;
+    positionGifWindow(popup, gifWindow);
+    
+    gifWindow.style.display = 'flex';
+    setTimeout(() => {
+        gifWindow.style.opacity = '1';
+        gifWindow.style.transform = 'translateY(0)';
+    }, 50);
+    
+    isGifWindowOpen = true;
+    document.getElementById('inactivity-gif').classList.add('talking');
+    clearTimeout(hideTimeout);
+}
 
-    // Smooth scroll
-    menuLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href && href !== 'javascript:void(0);') {
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
+function handleGifOption(option) {
+    closeGifWindow();
+    openChatbot();
+    addUserMessage(option);
+}
+
+function positionGifWindow(popup, gifWindow) {
+    const popupRect = popup.getBoundingClientRect();
+    
+    if (currentPosition === 'position-bottom-right') {
+        gifWindow.style.bottom = '20px';
+        gifWindow.style.right = `${popupRect.width + 30}px`;
+        gifWindow.style.left = 'auto';
+        gifWindow.style.top = 'auto';
+        gifWindow.style.transform = 'translateY(20px)';
+    } else if (currentPosition === 'position-bottom-left') {
+        gifWindow.style.bottom = '20px';
+        gifWindow.style.left = `${popupRect.width + 30}px`;
+        gifWindow.style.right = 'auto';
+        gifWindow.style.top = 'auto';
+        gifWindow.style.transform = 'translateY(20px)';
+    }
+}
+
+function closeGifWindow() {
+    if (!isGifWindowOpen) return;
+    
+    const gifWindow = document.getElementById('gif-window');
+    const gif = document.getElementById('inactivity-gif');
+    
+    gifWindow.style.opacity = '0';
+    gifWindow.style.transform = 'translateY(20px)';
+    
+    setTimeout(() => {
+        gifWindow.style.display = 'none';
+        isGifWindowOpen = false;
+        gif.classList.remove('talking');
+        
+        hideTimeout = setTimeout(() => {
+            hideInactivityPopup();
+        }, inactivityConfig.displayDuration);
+    }, 300);
+}
+
+function hideInactivityPopup() {
+    if (!isPopupActive) return;
+    
+    const popup = document.getElementById('inactivity-popup');
+    const message = document.getElementById('inactivity-message');
+    const gif = document.getElementById('inactivity-gif');
+    
+    clearTimeout(hideTimeout);
+    message.classList.remove('active');
+    
+    setTimeout(() => {
+        popup.style.opacity = '0';
+        setTimeout(() => {
+            popup.style.display = 'none';
+            isPopupActive = false;
+            gif.classList.remove('idle', 'talking');
+            document.removeEventListener('click', closePopupOnOutsideClick, true);
+            setTimeout(resetInactivityTimer, inactivityConfig.cooldown);
+        }, 500);
+    }, 100);
+    
+    if (isGifWindowOpen) {
+        closeGifWindow();
+    }
+}
+
+function resetInactivityTimer() {
+    clearTimeout(inactivityTimer);
+    lastInteractionTime = Date.now();
+    inactivityTimer = setTimeout(checkInactivity, inactivityConfig.timeout);
+}
+
+function checkInactivity() {
+    const currentTime = Date.now();
+    const elapsed = currentTime - lastInteractionTime;
+    
+    if (elapsed >= inactivityConfig.timeout && !isPopupActive && !isGifWindowOpen) {
+        showInactivityPopup();
+    } else {
+        resetInactivityTimer();
+    }
+}
+
+function setupActivityTracking() {
+    const events = ['mousedown', 'mousemove', 'keydown', 'scroll', 'touchstart'];
+    
+    events.forEach(event => {
+        window.addEventListener(event, () => {
+            lastInteractionTime = Date.now();
+            if (isPopupActive && !isGifWindowOpen) {
+                hideInactivityPopup();
             }
-        });
+        }, { passive: true });
+    });
+    
+    resetInactivityTimer();
+}
+
+// Inicialización cuando el DOM está listo
+document.addEventListener('DOMContentLoaded', function() {
+    // Precargar el GIF
+    const gif = new Image();
+    gif.src = 'WoMi1.gif';
+    
+    // Iniciar el seguimiento de actividad
+    setupActivityTracking();
+    
+    // Crear elementos necesarios si no existen
+    if (!document.getElementById('gif-window')) {
+        const gifWindow = document.createElement('div');
+        gifWindow.id = 'gif-window';
+        gifWindow.innerHTML = '<div id="gif-window-content"></div>';
+        document.body.appendChild(gifWindow);
+    }
+    
+    // Configurar eventos del chatbot
+    const chatbotWindow = document.getElementById('chatbot-window');
+    chatbotWindow.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+    
+    // Evento para enviar mensaje con Enter
+    document.getElementById('chatbot-input').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+    
+    // Cerrar chatbot al hacer clic en enlaces de contacto
+    document.querySelectorAll('[onclick="openContactPopup()"]').forEach(link => {
+        link.addEventListener('click', closeChatbot);
+    });
+    
+    // Crear partículas para el hero
+    createParticles();
+});
+
+// Configuración de navegación del menú
+const menu = document.querySelector('.top-menu');
+const menuLinks = document.querySelectorAll('.top-menu-link');
+const sections = {
+    home: { 
+        element: document.querySelector('.hero-impact'), 
+        link: document.querySelector('.top-menu-link[onclick="scrollToTop()"]') 
+    },
+    services: { 
+        element: document.querySelector('#services'), 
+        link: document.querySelector('.top-menu-link[href="#services"]') 
+    },
+    benefits: { 
+        element: document.querySelector('#benefits'), 
+        link: document.querySelector('.top-menu-link[href="#benefits"]') 
+    },
+    impact: { 
+        element: document.querySelector('#antes-despues'), 
+        link: document.querySelector('.top-menu-link[href="#antes-despues"]') 
+    }
+};
+
+function updateMenu() {
+    const scrollPos = window.scrollY + 100;
+    
+    menuLinks.forEach(link => link.classList.remove('active'));
+    
+    let activeSection = 'home';
+    
+    if (scrollPos > sections.services.element.offsetTop - 100) activeSection = 'services';
+    if (scrollPos > sections.benefits.element.offsetTop - 100) activeSection = 'benefits';
+    if (scrollPos > sections.impact.element.offsetTop - 100) activeSection = 'impact';
+    
+    sections[activeSection].link.classList.add('active');
+    
+    if (scrollPos > 100) {
+        menu.classList.add('scrolled');
+    } else {
+        menu.classList.remove('scrolled');
+    }
+}
+
+updateMenu();
+window.addEventListener('scroll', updateMenu);
+window.addEventListener('resize', updateMenu);
+
+menuLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href && href !== 'javascript:void(0);') {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        }
     });
 });
-
