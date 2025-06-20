@@ -1125,7 +1125,7 @@ const inactivityConfig = {
     timeout: 15000, // 15 segundos para mostrar el popup
     messages: [
         "¿Necesitas ayuda para optimizar tus procesos?",
-        "¡Hola! ¿Sabías que podemos ahorrarte hasta 20 horas semanales?",
+        "¡Hola! ¿Listo para transformar tu productividad? Tenemos la solución ideal para ti.",
         "¿Te gustaría saber cómo automatizar tus operaciones?",
         "Transforma tus procesos manuales en sistemas automáticos. ¿Hablamos?",
         "¡Me encantaría mostrarte cómo podemos ayudarte!"
