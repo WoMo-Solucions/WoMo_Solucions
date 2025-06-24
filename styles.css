@@ -3,7 +3,7 @@
     --azul: #2563EB;
     --morado: #7C3AED;
     --naranja: #F59E0B;
-    --gris-oscuro: #1F2937;
+    --gris-oscuro: #111827;
     --blanco: #FFFFFF;
     --sombra: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
@@ -31,7 +31,7 @@ body {
     padding-top: 70px;
     height: calc(100vh - 70px);
     min-height: 700px;
-    background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+    background: linear-gradient(135deg, #111827 0%, #111827 100%);
     color: white;
     display: flex;
     flex-direction: column;
@@ -1779,4 +1779,9 @@ body {
 
 .gif-option-btn:hover {
     background-color: #3a5bef;
+}
+@font-face {
+    font-family: 'Poppins';
+    font-display: swap; /* Evita bloqueo de renderizado */
+    src: local('Poppins'), url(https://fonts.gstatic.com/...) format('woff2');
 }
