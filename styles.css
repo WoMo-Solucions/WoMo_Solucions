@@ -3,7 +3,7 @@
     --azul: #2563EB;
     --morado: #7C3AED;
     --naranja: #F59E0B;
-    --gris-oscuro: #111827;
+    --gris-oscuro: #1F2937;
     --blanco: #FFFFFF;
     --sombra: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
@@ -31,7 +31,7 @@ body {
     padding-top: 70px;
     height: calc(100vh - 70px);
     min-height: 700px;
-    background: linear-gradient(135deg, #111827 0%, #111827 100%);
+    background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
     color: white;
     display: flex;
     flex-direction: column;
@@ -507,7 +507,7 @@ body {
     background: var(--blanco);
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    z-index: 1002;
+    z-index: 1003;
     padding: 1.5rem;
     border-radius: 12px 12px 0 0;
     overflow: hidden;
@@ -571,6 +571,10 @@ body {
     cursor: pointer;
     width: 40px;
     height: 40px;
+    position: relative;
+    z-index: 1;
+}	
+	
 }
 
 /* Botón Flotante de Contacto */
@@ -764,8 +768,9 @@ body {
     justify-content: center;
     cursor: pointer;
     box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
-    transition: all 0.3s ease;
     animation: pulse 2s infinite;
+	z-index: 1000;
+    transition: opacity 0.3s ease;
 }
 
 .chatbot-icon:hover {
@@ -774,8 +779,8 @@ body {
 }
 
 .chatbot-icon img {
-    width: 60%;
-    height: 60%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
     transition: all 0.3s ease;
@@ -1128,8 +1133,8 @@ body {
 }
 
 .gif-container {
-    width: 120px;
-    height: 120px;
+    width: 60px;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1779,9 +1784,4 @@ body {
 
 .gif-option-btn:hover {
     background-color: #3a5bef;
-}
-@font-face {
-    font-family: 'Poppins';
-    font-display: swap; /* Evita bloqueo de renderizado */
-    src: local('Poppins'), url(https://fonts.gstatic.com/...) format('woff2');
 }

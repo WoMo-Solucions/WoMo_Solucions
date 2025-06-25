@@ -3,6 +3,11 @@
     emailjs.init('RRR4M2sCr-NgEf8ul');
 })();
 
+// Variables globales para control de elementos flotantes
+let activeFloatingElement = null; // 'chatbot', 'gif' o 'contact'
+let inactivityTimeout = null;
+let gifWindowTimeout = null;
+
 // ========== CONTADOR DE VISITAS MEJORADO ========== //
 const visitCounter = {
   config: {
@@ -233,16 +238,86 @@ function scrollToTop() {
 }
 
 // Control de popup de contacto lateral
+ //function openContactPopup() {
+    // Cerrar otros elementos flotantes primero
+    // closeChatbot();
+     //hideInactivityPopup();
+    
 function openContactPopup() {
-    document.getElementById('contact-popup').classList.add('active');
-    document.body.style.overflow = 'hidden';
+    // 1. Cerrar el chatbot si está abierto
     closeChatbot();
+    
+    // 2. Ocultar el icono del chatbot inmediatamente
+    const chatbotIcon = document.querySelector('.chatbot-icon');
+    if (chatbotIcon) {
+        chatbotIcon.style.opacity = '0';
+        chatbotIcon.style.pointerEvents = 'none'; // Hacerlo no clickeable
+        setTimeout(() => {
+            chatbotIcon.style.display = 'none';
+        }, 300); // Esperar a que termine la animación
+    }
+    
+    // 3. Mostrar el popup de contacto
+    const contactPopup = document.getElementById('contact-popup');
+    if (contactPopup) {
+        contactPopup.classList.add('active');
+    }
+    
+    // 4. Actualizar estado
+    document.body.style.overflow = 'hidden';
+    activeFloatingElement = 'contact';
+}
+
+function updateChatbotVisibility() {
+    const chatbotIcon = document.querySelector('.chatbot-icon');
+    if (!chatbotIcon) return;
+    
+    // Ocultar si hay popup de contacto abierto u otros elementos activos
+    const contactPopupActive = document.getElementById('contact-popup').classList.contains('active');
+    if (contactPopupActive || activeFloatingElement || isPopupActive || isGifWindowOpen) {
+        chatbotIcon.style.display = 'none';
+    } else {
+        chatbotIcon.style.display = 'flex';
+    }
 }
 
 function closeContactPopup() {
-    document.getElementById('contact-popup').classList.remove('active');
+    const contactPopup = document.getElementById('contact-popup');
+    if (contactPopup) {
+        contactPopup.classList.remove('active');
+    }
+    
     document.body.style.overflow = 'auto';
+    activeFloatingElement = null;
+    
+    // Mostrar el icono del chatbot solo si no hay otros elementos activos
+    if (!isPopupActive && !isGifWindowOpen) {
+        const chatbotIcon = document.querySelector('.chatbot-icon');
+        if (chatbotIcon) {
+            chatbotIcon.style.display = 'flex';
+            setTimeout(() => {
+                chatbotIcon.style.opacity = '1';
+                chatbotIcon.style.pointerEvents = 'auto';
+            }, 50);
+        }
+    }
+    
+    resetInactivityTimer();
 }
+
+function updateChatbotIconVisibility() {
+    const chatbotIcon = document.querySelector('.chatbot-icon');
+    if (!chatbotIcon) return;
+    
+    // Ocultar si hay cualquier elemento flotante activo o popup abierto
+    if (activeFloatingElement || isPopupActive || isGifWindowOpen || 
+        document.getElementById('contact-popup').classList.contains('active')) {
+        chatbotIcon.style.display = 'none';
+    } else {
+        chatbotIcon.style.display = 'flex';
+    }
+}
+
 
 function validarCampos() {
     let valido = true;
@@ -419,152 +494,7 @@ function createParticles() {
     }
 }
 
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        if (modal.style.display === 'flex') closeModal();
-        if (document.getElementById('contact-popup').classList.contains('active')) closeContactPopup();
-        if (document.getElementById('process-popup-overlay').style.display === 'flex') closeProcessPopup();
-        if (document.getElementById('chatbot-window').classList.contains('active')) closeChatbot();
-    }
-});
-
-document.querySelectorAll('.modal-close, .close-btn, .chatbot-close').forEach(btn => {
-    btn.addEventListener('click', function() {
-        if (this.classList.contains('modal-close')) closeModal();
-        if (this.classList.contains('close-btn')) {
-            if (document.getElementById('process-popup-overlay').style.display === 'flex') {
-                closeProcessPopup();
-            } else if (document.getElementById('contact-popup').classList.contains('active')) {
-                closeContactPopup();
-            }
-        }
-        if (this.classList.contains('chatbot-close')) closeChatbot();
-    });
-});
-
-const processPopupData = {
-    time: {
-        title: "Transformación de Tiempo",
-        content: `
-            <h2 style="color: var(--verde); margin-bottom: 0.5rem;">Transformamos horas en minutos</h2>
-            <p style="color: #4B5563; margin-bottom: 1.5rem;">Clientes satisfechos, tiempo optimizado</p>
-            
-            <div class="process-chart">
-                <div class="chart-bar" style="--height: 90%;" data-value="10h"></div>
-                <div class="chart-bar" style="--height: 20%;" data-value="2h"></div>
-            </div>
-            
-            <ul style="list-style-type: none; padding-left: 0;">
-                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-                    <span style="position: absolute; left: 0; color: var(--verde);">•</span> 
-                    Optimización de los procesos de manera notable.
-                </li>
-                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-                    <span style="position: absolute; left: 0; color: var(--verde);">•</span> 
-                    Di adiós a las tareas manuales y repetitivas
-                </li>
-            </ul>
-        `
-    },
-	workflow: {
-		title: "Automatización Inteligente",
-		content: `
-			<h2 style="color: var(--azul); margin-bottom: 0.5rem;">Automatización flexible</h2>
-			<p style="color: #4B5563; margin-bottom: 1.5rem;">Potencia tus procesos internos</p>
-			
-			<div class="process-chart">
-				<div class="chart-bar" style="--height: 30%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="-25%"></div>
-				<div class="chart-bar" style="--height: 70%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="+30%"></div>
-				<div class="chart-bar" style="--height: 45%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="+15%"></div>
-			</div>
-			
-			<ul style="list-style-type: none; padding-left: 0;">
-				<li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-					<span style="position: absolute; left: 0; color: var(--azul);">•</span> 
-					Solución independiente y autónoma
-				</li>
-				<li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-					<span style="position: absolute; left: 0; color: var(--azul);">•</span> 
-					Se adapta a tus procesos específicos
-				</li>
-			</ul>
-		`
-	},
-profit: {
-    title: "Eficiencia que Genera Valor",
-    content: `
-        <h2 style="color: var(--morado); margin-bottom: 0.5rem;">Optimización Financiera Inteligente</h2>
-        <p style="color: #4B5563; margin-bottom: 1.5rem;">Transforma tu eficiencia en resultados</p>
-        
-        <div class="process-chart">
-            <div class="chart-bar" style="--height: 60%; background: linear-gradient(to top, var(--morado), #6D28D9);"></div>
-            <div class="chart-bar" style="--height: 40%; background: linear-gradient(to top, var(--morado), #6D28D9);"></div>
-        </div>
-        
-        <ul style="list-style-type: none; padding-left: 0;">
-            <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-                <span style="position: absolute; left: 0; color: var(--morado);">•</span> 
-                Mejora sostenible en tu rentabilidad
-            </li>
-            <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-                <span style="position: absolute; left: 0; color: var(--morado);">•</span> 
-                Gestión más eficiente de tus recursos
-            </li>
-        </ul>
-    `
-},
-    analytics: {
-        title: "Inteligencia Estratégica",
-        content: `
-            <h2 style="color: var(--naranja); margin-bottom: 0.5rem;">Toma la delantera</h2>
-            <p style="color: #4B5563; margin-bottom: 1.5rem;">Descubre patrones antes que la competencia</p>
-            
-            <div class="process-chart">
-                <div class="chart-bar" style="--height: 85%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value="85%"></div>
-                <div class="chart-bar" style="--height: 55%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value="55%"></div>
-            </div>
-            
-        <ul style="list-style-type: none; padding-left: 0;">
-            <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-                <span style="position: absolute; left: 0; color: var(--naranja);">•</span> 
-                Pronósticos confiables y accionables
-            </li>
-            <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
-                <span style="position: absolute; left: 0; color: var(--naranja);">•</span> 
-                Detección temprana de oportunidades clave
-            </li>
-        </ul>
-        `
-    }
-};
-
-function openProcessPopup(type) {
-    if (!processPopupData[type]) return;
-    
-    const popup = document.getElementById('process-popup-content');
-    popup.innerHTML = `
-        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; color: ${getColorByType(type)}">${processPopupData[type].title}</h2>
-        ${processPopupData[type].content}
-    `;
-    document.getElementById('process-popup-overlay').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-}
-
-function getColorByType(type) {
-    const colors = {
-        'time': 'var(--verde)',
-        'workflow': 'var(--azul)',
-        'profit': 'var(--morado)',
-        'analytics': 'var(--naranja)'
-    };
-    return colors[type] || 'var(--gris-oscuro)';
-}
-
-function closeProcessPopup() {
-    document.getElementById('process-popup-overlay').style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-
+// ========== CHATBOT Y GIF INTERACTIVO ========== //
 const chatbotConfig = {
     greetings: [
         "¡Hola! Soy WoMi, tu consultor en automatización estratégica. 😊 ¿En qué puedo ayudarte hoy con la optimización de tus procesos?",
@@ -771,7 +701,6 @@ let currentLeadForm = null;
 // Funciones principales del chatbot
 function toggleChatbot() {
     const chatbotWindow = document.getElementById('chatbot-window');
-    const chatbotIcon = document.querySelector('.chatbot-icon');
     
     if (chatbotWindow.classList.contains('active')) {
         closeChatbot();
@@ -781,15 +710,16 @@ function toggleChatbot() {
 }
 
 function openChatbot() {
+    // Cerrar otros elementos flotantes
+    hideInactivityPopup();
+    closeContactPopup();
+    
     const chatbotWindow = document.getElementById('chatbot-window');
     const chatbotIcon = document.querySelector('.chatbot-icon');
     
-    if (isPopupActive) {
-        hideInactivityPopup();
-    }
-    
     chatbotWindow.classList.add('active');
     chatbotIcon.style.display = 'none';
+    activeFloatingElement = 'chatbot';
     
     if (document.getElementById('chatbot-messages').children.length === 0) {
         showInitialGreeting();
@@ -799,8 +729,13 @@ function openChatbot() {
 }
 
 function closeChatbot() {
-    document.getElementById('chatbot-window').classList.remove('active');
-    document.querySelector('.chatbot-icon').style.display = 'flex';
+    const chatbotWindow = document.getElementById('chatbot-window');
+    if (chatbotWindow) {
+        chatbotWindow.classList.remove('active');
+    }
+    activeFloatingElement = null;
+    updateChatbotIconVisibility();
+    resetInactivityTimer();
 }
 
 function showInitialGreeting() {
@@ -1130,7 +1065,7 @@ const inactivityConfig = {
         "Transforma tus procesos manuales en sistemas automáticos. ¿Hablamos?",
         "¡Me encantaría mostrarte cómo podemos ayudarte!"
     ],
-    displayDuration: 300000, // 5 minutos visible
+    displayDuration: 0, // Cambiado a 0 para que no se oculte automáticamente
     cooldown: 30000, // 30 segundos antes de reaparecer
     positions: ['position-bottom-right', 'position-bottom-left']
 };
@@ -1152,11 +1087,19 @@ function getRandomPosition() {
 }
 
 function showInactivityPopup() {
-    if (isPopupActive || isGifWindowOpen || document.getElementById('chatbot-window').classList.contains('active')) return;
+    // No mostrar si ya hay otro elemento flotante activo
+    if (activeFloatingElement || isGifWindowOpen) return;
+    
+    // Cerrar el chatbot si está abierto
+    closeChatbot();
     
     const popup = document.getElementById('inactivity-popup');
     const message = document.getElementById('inactivity-message');
     const gif = document.getElementById('inactivity-gif');
+    const chatbotIcon = document.querySelector('.chatbot-icon');
+    
+    // Ocultar el icono del chatbot
+    chatbotIcon.style.display = 'none';
     
     popup.className = 'inactivity-popup ' + getRandomPosition();
     message.textContent = getRandomMessage();
@@ -1174,25 +1117,20 @@ function showInactivityPopup() {
         openGifWindow();
     };
     
-    // Eliminamos el timeout que ocultaba automáticamente el popup
-    // hideTimeout = setTimeout(() => {
-    //     hideInactivityPopup();
-    // }, inactivityConfig.displayDuration);
-    
+    // Eliminado el timeout para ocultar automáticamente
     isPopupActive = true;
+    activeFloatingElement = 'gif';
     document.addEventListener('click', closePopupOnOutsideClick, true);
 }
-	
+    
 function closePopupOnOutsideClick(e) {
     const popup = document.getElementById('inactivity-popup');
     const gifWindow = document.getElementById('gif-window');
     
-    if (!popup.contains(e.target) && !isGifWindowOpen) {
+    // Verificar si se hizo clic fuera del popup o del GIF
+    if ((!popup.contains(e.target) && !isGifWindowOpen) || 
+        (isGifWindowOpen && !gifWindow.contains(e.target))) {
         hideInactivityPopup();
-    }
-    
-    if (isGifWindowOpen && !gifWindow.contains(e.target)) {
-        closeGifWindow();
     }
 }
 
@@ -1205,7 +1143,6 @@ function openGifWindow() {
         initialMessage.classList.remove('active');
     }
     
-    // Resto del código existente...
     const popup = document.getElementById('inactivity-popup');
     const gifWindow = document.getElementById('gif-window');
     const gifWindowContent = document.getElementById('gif-window-content');
@@ -1240,7 +1177,6 @@ function openGifWindow() {
     clearTimeout(hideTimeout);
 }
 
-// Función para manejar el "Ahora no" (actualizada)
 function handleNoThanks() {
     // Ocultar mensaje inicial si aún está visible
     const initialMessage = document.getElementById('inactivity-message');
@@ -1260,7 +1196,6 @@ function handleNoThanks() {
     }, 3000);
 }
 
-// Función para mostrar burbuja de WoMo (actualizada)
 function showWoMoBubble(message) {
     // Asegurarse de que el mensaje inicial esté oculto
     const initialMessage = document.getElementById('inactivity-message');
@@ -1268,7 +1203,6 @@ function showWoMoBubble(message) {
         initialMessage.classList.remove('active');
     }
     
-    // Resto del código existente...
     const gif = document.getElementById('inactivity-gif');
     const gifRect = gif.getBoundingClientRect();
     
@@ -1311,16 +1245,23 @@ function showWoMoBubble(message) {
     }, 3000);
 }
 
-// Función para cerrar la ventana
 function closeGifWindow() {
+    if (!isGifWindowOpen) return;
+    
     const gifWindow = document.getElementById('gif-window');
+    const gif = document.getElementById('inactivity-gif');
+    
     gifWindow.style.opacity = '0';
     gifWindow.style.transform = 'translateY(20px)';
     
     setTimeout(() => {
         gifWindow.style.display = 'none';
         isGifWindowOpen = false;
-        document.getElementById('inactivity-gif').classList.remove('talking');
+        gif.classList.remove('talking');
+        
+        hideTimeout = setTimeout(() => {
+            hideInactivityPopup();
+        }, 1000);
     }, 300);
 }
 
@@ -1348,32 +1289,13 @@ function positionGifWindow(popup, gifWindow) {
     }
 }
 
-function closeGifWindow() {
-    if (!isGifWindowOpen) return;
-    
-    const gifWindow = document.getElementById('gif-window');
-    const gif = document.getElementById('inactivity-gif');
-    
-    gifWindow.style.opacity = '0';
-    gifWindow.style.transform = 'translateY(20px)';
-    
-    setTimeout(() => {
-        gifWindow.style.display = 'none';
-        isGifWindowOpen = false;
-        gif.classList.remove('talking');
-        
-        hideTimeout = setTimeout(() => {
-            hideInactivityPopup();
-        }, inactivityConfig.displayDuration);
-    }, 300);
-}
-
 function hideInactivityPopup() {
     if (!isPopupActive) return;
     
     const popup = document.getElementById('inactivity-popup');
     const message = document.getElementById('inactivity-message');
     const gif = document.getElementById('inactivity-gif');
+    const chatbotIcon = document.querySelector('.chatbot-icon');
     
     clearTimeout(hideTimeout);
     message.classList.remove('active');
@@ -1386,6 +1308,12 @@ function hideInactivityPopup() {
             gif.classList.remove('idle', 'talking');
             document.removeEventListener('click', closePopupOnOutsideClick, true);
             setTimeout(resetInactivityTimer, inactivityConfig.cooldown);
+            activeFloatingElement = null;
+            
+            // Mostrar el icono del chatbot solo si no hay otros elementos activos
+            if (!activeFloatingElement && !isGifWindowOpen) {
+                chatbotIcon.style.display = 'flex';
+            }
         }, 500);
     }, 100);
     
@@ -1397,6 +1325,13 @@ function hideInactivityPopup() {
 function resetInactivityTimer() {
     clearTimeout(inactivityTimer);
     lastInteractionTime = Date.now();
+    
+    // Solo mostrar el icono del chatbot si no hay otros elementos flotantes activos
+    const chatbotIcon = document.querySelector('.chatbot-icon');
+    if (!activeFloatingElement && !isPopupActive && !isGifWindowOpen) {
+        chatbotIcon.style.display = 'flex';
+    }
+    
     inactivityTimer = setTimeout(checkInactivity, inactivityConfig.timeout);
 }
 
@@ -1404,7 +1339,7 @@ function checkInactivity() {
     const currentTime = Date.now();
     const elapsed = currentTime - lastInteractionTime;
     
-    if (elapsed >= inactivityConfig.timeout && !isPopupActive && !isGifWindowOpen) {
+    if (elapsed >= inactivityConfig.timeout && !isPopupActive && !isGifWindowOpen && !activeFloatingElement) {
         showInactivityPopup();
     } else {
         resetInactivityTimer();
@@ -1418,7 +1353,7 @@ function setupActivityTracking() {
         window.addEventListener(event, () => {
             lastInteractionTime = Date.now();
             // Solo reiniciamos el temporizador, no ocultamos el popup
-            if (!isPopupActive && !isGifWindowOpen) {
+            if (!isPopupActive && !isGifWindowOpen && !activeFloatingElement) {
                 resetInactivityTimer();
             }
         }, { passive: true });
@@ -1464,6 +1399,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Crear partículas para el hero
     createParticles();
+	    // Asegurar que el icono esté visible al cargar (si no hay popups abiertos)
+    updateChatbotIconVisibility();
 });
 
 // Configuración de navegación del menú
@@ -1527,3 +1464,151 @@ menuLinks.forEach(link => {
         }
     });
 });
+
+// Manejar tecla Escape para cerrar elementos
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        if (modal.style.display === 'flex') closeModal();
+        if (document.getElementById('contact-popup').classList.contains('active')) closeContactPopup();
+        if (document.getElementById('process-popup-overlay').style.display === 'flex') closeProcessPopup();
+        if (document.getElementById('chatbot-window').classList.contains('active')) closeChatbot();
+        if (isPopupActive) hideInactivityPopup();
+    }
+});
+
+document.querySelectorAll('.modal-close, .close-btn, .chatbot-close').forEach(btn => {
+    btn.addEventListener('click', function() {
+        if (this.classList.contains('modal-close')) closeModal();
+        if (this.classList.contains('close-btn')) {
+            if (document.getElementById('process-popup-overlay').style.display === 'flex') {
+                closeProcessPopup();
+            } else if (document.getElementById('contact-popup').classList.contains('active')) {
+                closeContactPopup();
+            }
+        }
+        if (this.classList.contains('chatbot-close')) closeChatbot();
+    });
+});
+
+const processPopupData = {
+    time: {
+        title: "Transformación de Tiempo",
+        content: `
+            <h2 style="color: var(--verde); margin-bottom: 0.5rem;">Transformamos horas en minutos</h2>
+            <p style="color: #4B5563; margin-bottom: 1.5rem;">Clientes satisfechos, tiempo optimizado</p>
+            
+            <div class="process-chart">
+                <div class="chart-bar" style="--height: 90%;" data-value="10h"></div>
+                <div class="chart-bar" style="--height: 20%;" data-value="2h"></div>
+            </div>
+            
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                    <span style="position: absolute; left: 0; color: var(--verde);">•</span> 
+                    Optimización de los procesos de manera notable.
+                </li>
+                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                    <span style="position: absolute; left: 0; color: var(--verde);">•</span> 
+                    Di adiós a las tareas manuales y repetitivas
+                </li>
+            </ul>
+        `
+    },
+    workflow: {
+        title: "Automatización Inteligente",
+        content: `
+            <h2 style="color: var(--azul); margin-bottom: 0.5rem;">Automatización flexible</h2>
+            <p style="color: #4B5563; margin-bottom: 1.5rem;">Potencia tus procesos internos</p>
+            
+            <div class="process-chart">
+                <div class="chart-bar" style="--height: 30%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="-25%"></div>
+                <div class="chart-bar" style="--height: 70%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="+30%"></div>
+                <div class="chart-bar" style="--height: 45%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="+15%"></div>
+            </div>
+            
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                    <span style="position: absolute; left: 0; color: var(--azul);">•</span> 
+                    Solución independiente y autónoma
+                </li>
+                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                    <span style="position: absolute; left: 0; color: var(--azul);">•</span> 
+                    Se adapta a tus procesos específicos
+                </li>
+            </ul>
+        `
+    },
+    profit: {
+        title: "Eficiencia que Genera Valor",
+        content: `
+            <h2 style="color: var(--morado); margin-bottom: 0.5rem;">Optimización Financiera Inteligente</h2>
+            <p style="color: #4B5563; margin-bottom: 1.5rem;">Transforma tu eficiencia en resultados</p>
+            
+            <div class="process-chart">
+                <div class="chart-bar" style="--height: 60%; background: linear-gradient(to top, var(--morado), #6D28D9);"></div>
+                <div class="chart-bar" style="--height: 40%; background: linear-gradient(to top, var(--morado), #6D28D9);"></div>
+            </div>
+            
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                    <span style="position: absolute; left: 0; color: var(--morado);">•</span> 
+                    Mejora sostenible en tu rentabilidad
+                </li>
+                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                    <span style="position: absolute; left: 0; color: var(--morado);">•</span> 
+                    Gestión más eficiente de tus recursos
+                </li>
+            </ul>
+        `
+    },
+    analytics: {
+        title: "Inteligencia Estratégica",
+        content: `
+            <h2 style="color: var(--naranja); margin-bottom: 0.5rem;">Toma la delantera</h2>
+            <p style="color: #4B5563; margin-bottom: 1.5rem;">Descubre patrones antes que la competencia</p>
+            
+            <div class="process-chart">
+                <div class="chart-bar" style="--height: 85%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value="85%"></div>
+                <div class="chart-bar" style="--height: 55%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value="55%"></div>
+            </div>
+            
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                    <span style="position: absolute; left: 0; color: var(--naranja);">•</span> 
+                    Pronósticos confiables y accionables
+                </li>
+                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                    <span style="position: absolute; left: 0; color: var(--naranja);">•</span> 
+                    Detección temprana de oportunidades clave
+                </li>
+            </ul>
+        `
+    }
+};
+
+function openProcessPopup(type) {
+    if (!processPopupData[type]) return;
+    
+    const popup = document.getElementById('process-popup-content');
+    popup.innerHTML = `
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; color: ${getColorByType(type)}">${processPopupData[type].title}</h2>
+        ${processPopupData[type].content}
+    `;
+    document.getElementById('process-popup-overlay').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function getColorByType(type) {
+    const colors = {
+        'time': 'var(--verde)',
+        'workflow': 'var(--azul)',
+        'profit': 'var(--morado)',
+        'analytics': 'var(--naranja)'
+    };
+    return colors[type] || 'var(--gris-oscuro)';
+}
+
+function closeProcessPopup() {
+    document.getElementById('process-popup-overlay').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
