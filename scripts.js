@@ -238,11 +238,6 @@ function scrollToTop() {
 }
 
 // Control de popup de contacto lateral
- //function openContactPopup() {
-    // Cerrar otros elementos flotantes primero
-    // closeChatbot();
-     //hideInactivityPopup();
-    
 function openContactPopup() {
     // 1. Cerrar el chatbot si está abierto
     closeChatbot();
@@ -266,18 +261,18 @@ function openContactPopup() {
     // 4. Actualizar estado
     document.body.style.overflow = 'hidden';
     activeFloatingElement = 'contact';
-}
-
-function updateChatbotVisibility() {
-    const chatbotIcon = document.querySelector('.chatbot-icon');
-    if (!chatbotIcon) return;
     
-    // Ocultar si hay popup de contacto abierto u otros elementos activos
-    const contactPopupActive = document.getElementById('contact-popup').classList.contains('active');
-    if (contactPopupActive || activeFloatingElement || isPopupActive || isGifWindowOpen) {
-        chatbotIcon.style.display = 'none';
-    } else {
-        chatbotIcon.style.display = 'flex';
+    // 5. Asegurar que el botón de WhatsApp sea clickeable y visible
+    const whatsappBtn = document.querySelector('.whatsapp-btn');
+    if (whatsappBtn) {
+        whatsappBtn.style.width = '50px';
+        whatsappBtn.style.height = '50px';
+        whatsappBtn.style.padding = '0';
+        whatsappBtn.style.display = 'flex';
+        whatsappBtn.style.alignItems = 'center';
+        whatsappBtn.style.justifyContent = 'center';
+        whatsappBtn.style.pointerEvents = 'auto';
+        whatsappBtn.style.zIndex = '1';
     }
 }
 
@@ -304,20 +299,6 @@ function closeContactPopup() {
     
     resetInactivityTimer();
 }
-
-function updateChatbotIconVisibility() {
-    const chatbotIcon = document.querySelector('.chatbot-icon');
-    if (!chatbotIcon) return;
-    
-    // Ocultar si hay cualquier elemento flotante activo o popup abierto
-    if (activeFloatingElement || isPopupActive || isGifWindowOpen || 
-        document.getElementById('contact-popup').classList.contains('active')) {
-        chatbotIcon.style.display = 'none';
-    } else {
-        chatbotIcon.style.display = 'flex';
-    }
-}
-
 
 function validarCampos() {
     let valido = true;
@@ -1366,7 +1347,15 @@ function setupActivityTracking() {
 document.addEventListener('DOMContentLoaded', function() {
     // Precargar el GIF
     const gif = new Image();
-    gif.src = 'WoMi1.gif';
+    gif.src = 'WoMi1.webp';
+    
+    // Precargar el icono del chatbot
+    const chatbotIconImg = new Image();
+    chatbotIconImg.src = 'WoMi.webp';
+    
+    // Precargar el logo de WhatsApp
+    const whatsappImg = new Image();
+    whatsappImg.src = 'wp.webp';
     
     // Iniciar el seguimiento de actividad
     setupActivityTracking();
@@ -1399,8 +1388,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Crear partículas para el hero
     createParticles();
-	    // Asegurar que el icono esté visible al cargar (si no hay popups abiertos)
+    
+    // Asegurar que el icono esté visible al cargar (si no hay popups abiertos)
     updateChatbotIconVisibility();
+    
+    // Asegurar que el botón de WhatsApp sea clickeable
+    const whatsappBtn = document.querySelector('.whatsapp-btn');
+    if (whatsappBtn) {
+        whatsappBtn.style.pointerEvents = 'auto';
+        whatsappBtn.style.zIndex = '1';
+    }
 });
 
 // Configuración de navegación del menú
@@ -1611,4 +1608,18 @@ function getColorByType(type) {
 function closeProcessPopup() {
     document.getElementById('process-popup-overlay').style.display = 'none';
     document.body.style.overflow = 'auto';
+}
+
+// Función para actualizar la visibilidad del icono del chatbot
+function updateChatbotIconVisibility() {
+    const chatbotIcon = document.querySelector('.chatbot-icon');
+    if (!chatbotIcon) return;
+    
+    // Ocultar si hay popup de contacto abierto u otros elementos activos
+    const contactPopupActive = document.getElementById('contact-popup').classList.contains('active');
+    if (contactPopupActive || activeFloatingElement || isPopupActive || isGifWindowOpen) {
+        chatbotIcon.style.display = 'none';
+    } else {
+        chatbotIcon.style.display = 'flex';
+    }
 }
