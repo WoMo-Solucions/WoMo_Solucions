@@ -1141,7 +1141,7 @@ function openGifWindow() {
                 <button class="gif-option-btn" onclick="handleGifOption('Quiero ahorrar tiempo')">Ahorrar tiempo</button>
                 <button class="gif-option-btn" onclick="handleGifOption('Reducir costos')">Reducir costos</button>
                 <button class="gif-option-btn" onclick="handleGifOption('Consultoría gratis')">Consultoría</button>
-                <button class="gif-option-btn no-thanks" onclick="handleNoThanks()">Ahora no, WoMo</button>
+                <button class="gif-option-btn no-thanks" onclick="handleNoThanks()">Ahora no, Estoy vitriniando</button>
             </div>
         </div>
     `;
