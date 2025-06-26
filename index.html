@@ -268,12 +268,13 @@
         <input type="tel" id="contact-celular" placeholder="Celular" required>
         <textarea id="contact-message" placeholder="¿Cómo podemos ayudarte?" rows="2" required></textarea>
         
-        <div class="form-footer">
-            <button class="submit-btn" onclick="sendContactRequest()">Enviar</button>
-            <a href="https://wa.me/573180401930" class="whatsapp-btn" aria-label="Contactar a WoMo Studio por WhatsApp">
-                <img src="wp.webp" alt="Logo de WhatsApp" width="40" height="40">
-            </a>
-        </div>
+	<div class="form-footer">
+		<div class="whatsapp-container" onclick="window.open('https://wa.me/573180401930', '_blank')">
+			<img src="wp.webp" alt="WhatsApp" width="30" height="30">
+		</div>
+		<button class="submit-btn" onclick="sendContactRequest()">Enviar</button>
+	</div>
+
     </div>
 </div>
   
@@ -286,7 +287,7 @@
     <div id="chatbot-window">
         <div class="chatbot-header">
             <div class="chatbot-avatar">
-                <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" alt="Asistente WoMo">
+                <img src="WoMi.webp" alt="Asistente WoMo">
             </div>
             <div class="chatbot-title">
                 <h3>Asistente WoMi</h3>

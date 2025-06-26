@@ -276,6 +276,8 @@ function openContactPopup() {
     }
 }
 
+
+
 function closeContactPopup() {
     const contactPopup = document.getElementById('contact-popup');
     if (contactPopup) {
