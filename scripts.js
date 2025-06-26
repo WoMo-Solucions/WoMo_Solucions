@@ -1256,19 +1256,28 @@ function handleGifOption(option) {
 
 function positionGifWindow(popup, gifWindow) {
     const popupRect = popup.getBoundingClientRect();
+    const isMobile = window.innerWidth <= 768;
     
-    if (currentPosition === 'position-bottom-right') {
-        gifWindow.style.bottom = '20px';
-        gifWindow.style.right = `${popupRect.width + 30}px`;
-        gifWindow.style.left = 'auto';
-        gifWindow.style.top = 'auto';
-        gifWindow.style.transform = 'translateY(20px)';
-    } else if (currentPosition === 'position-bottom-left') {
-        gifWindow.style.bottom = '20px';
-        gifWindow.style.left = `${popupRect.width + 30}px`;
+    if (isMobile) {
+        // Para móviles, centramos horizontalmente y posicionamos arriba
+        gifWindow.style.left = '50%';
         gifWindow.style.right = 'auto';
+        gifWindow.style.transform = 'translateX(-50%)';
+        gifWindow.style.bottom = `${popupRect.height + 20}px`;
         gifWindow.style.top = 'auto';
-        gifWindow.style.transform = 'translateY(20px)';
+    } else {
+        // Para desktop mantenemos el comportamiento original
+        if (currentPosition === 'position-bottom-right') {
+            gifWindow.style.bottom = '20px';
+            gifWindow.style.right = `${popupRect.width + 30}px`;
+            gifWindow.style.left = 'auto';
+            gifWindow.style.top = 'auto';
+        } else if (currentPosition === 'position-bottom-left') {
+            gifWindow.style.bottom = '20px';
+            gifWindow.style.left = `${popupRect.width + 30}px`;
+            gifWindow.style.right = 'auto';
+            gifWindow.style.top = 'auto';
+        }
     }
 }
 
@@ -1497,8 +1506,9 @@ const processPopupData = {
             <p style="color: #4B5563; margin-bottom: 1.5rem;">Clientes satisfechos, tiempo optimizado</p>
             
             <div class="process-chart">
-                <div class="chart-bar" style="--height: 90%;" data-value="10h"></div>
-                <div class="chart-bar" style="--height: 20%;" data-value="2h"></div>
+                <div class="chart-bar" style="--height: 60%;" data-value=""></div>
+                <div class="chart-bar" style="--height: 20%;" data-value=""></div>
+                <div class="chart-bar" style="--height: 40%;" data-value=""></div>
             </div>
             
             <ul style="list-style-type: none; padding-left: 0;">
@@ -1520,9 +1530,9 @@ const processPopupData = {
             <p style="color: #4B5563; margin-bottom: 1.5rem;">Potencia tus procesos internos</p>
             
             <div class="process-chart">
-                <div class="chart-bar" style="--height: 30%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="-25%"></div>
-                <div class="chart-bar" style="--height: 70%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="+30%"></div>
-                <div class="chart-bar" style="--height: 45%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value="+15%"></div>
+                <div class="chart-bar" style="--height: 30%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value=""></div>
+                <div class="chart-bar" style="--height: 57%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value=""></div>
+                <div class="chart-bar" style="--height: 45%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value=""></div>
             </div>
             
             <ul style="list-style-type: none; padding-left: 0;">
@@ -1546,6 +1556,7 @@ const processPopupData = {
             <div class="process-chart">
                 <div class="chart-bar" style="--height: 60%; background: linear-gradient(to top, var(--morado), #6D28D9);"></div>
                 <div class="chart-bar" style="--height: 40%; background: linear-gradient(to top, var(--morado), #6D28D9);"></div>
+                <div class="chart-bar" style="--height: 70%; background: linear-gradient(to top, var(--morado), #6D28D9);"></div>
             </div>
             
             <ul style="list-style-type: none; padding-left: 0;">
@@ -1567,8 +1578,9 @@ const processPopupData = {
             <p style="color: #4B5563; margin-bottom: 1.5rem;">Descubre patrones antes que la competencia</p>
             
             <div class="process-chart">
-                <div class="chart-bar" style="--height: 85%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value="85%"></div>
-                <div class="chart-bar" style="--height: 55%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value="55%"></div>
+                <div class="chart-bar" style="--height: 23%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value=""></div>
+                <div class="chart-bar" style="--height: 55%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value=""></div>
+                <div class="chart-bar" style="--height: 67%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value=""></div>
             </div>
             
             <ul style="list-style-type: none; padding-left: 0;">
