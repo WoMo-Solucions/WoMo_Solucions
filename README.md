@@ -14,7 +14,7 @@ Plataforma tecnológica central desarrollada por **WoMo Studio** para gestión i
 - Sistema de autenticación centralizado
 - Módulo de configuración de servicios
 
-## 🛠 Tecnologías Clave
+## 🛠 Stack Tecnológico
 
 **Backend Avanzado:**
 - Python Flask como núcleo
@@ -86,5 +86,5 @@ Este sistema demuestra capacidades avanzadas en:
 
 
 📅 **Control de Versiones**  
-🔹 Versión actual: 2.1.0  
-🔹 Última actualización: Julio 2025
+📅 ![Versión](https://img.shields.io/badge/Versión-3.2.0-blue)  
+🔄 ![Última Actualización](https://img.shields.io/badge/Actualizado-Jun_2025-green)
