@@ -1973,15 +1973,48 @@ body {
 }
 
 /* Ajuste para móviles */
-@media (max-width: 768px) {
+/* AJUSTES PARA MOVILES Y TABLETS (0-1024px) */
+@media (max-width: 1024px) {
     .womo-brand {
-        width: 50px;
-        right: 15px;
-        bottom: 80px; /* Ajuste para móviles */
-    }
-    
-    #chatbot-window.active ~ .womo-brand {
-        bottom: 10px; /* En móvil, se ajusta más abajo */
+        /* Posición fija debajo del chatbot */
+        position: fixed;
         right: 20px;
+        bottom: 1.5px; /* 60px (chatbot) + 20px (margen) */
+        width: 50px;
+        z-index: 9995; /* Nivel inferior al chatbot */
+        opacity: 0.7;
+        pointer-events: none;
+    }
+
+    /* Cuando el chatbot está ABIERTO */
+    #chatbot-window.active ~ .womo-brand {
+        bottom: 1.5px; /* 60px (chatbot) + 20px (margen) */
+        width: 45px;
+    }
+}
+
+/* TABLETS NORMALES (768px-1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .womo-brand {
+        width: 55px;
+        bottom: 1.5px; /* 60px (chatbot) + 20px (margen) */
+        right: 25px;
+    }
+}
+
+/* MOVILES GRANDES (481px-767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+    .womo-brand {
+        bottom: 1.5px; /* 60px (chatbot) + 20px (margen) */
+        right: 18px;
+    }
+}
+
+/* MOVILES PEQUEÑOS (hasta 480px) */
+@media (max-width: 480px) {
+    .womo-brand {
+        width: 45px;
+        bottom: 1.5px; /* 60px (chatbot) + 20px (margen) */
+        right: 15px;
     }
 }
