@@ -633,8 +633,10 @@ body {
 }
 
 .footer-logo {
-    max-width: 150px;
-    margin-bottom: 1.5rem;
+    width: 200px;       /* Ajusta este valor según necesites */
+    height: auto;      /* Mantiene la proporción original */
+    margin-top: -20px;
+    margin-bottom: -20px;
 }
 
 .footer-text {
@@ -1945,4 +1947,41 @@ body {
     font-size: 14px;
     line-height: 1.4;
     word-wrap: break-word;
+}
+
+/* Marca WoMo flotante - debajo del chatbot */
+.womo-brand {
+    position: fixed;
+    right: 20px;
+    bottom: 5px; /* 90px deja espacio para el chatbot (60px de altura + 20px de margen) */
+    width: 80px;
+    height: auto;
+    opacity: 0.7;
+    z-index: 9995; /* Un z-index menor que el chatbot (9999) pero mayor que otros elementos */
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Permite hacer clic a través de la imagen */
+}
+
+.womo-brand:hover {
+    opacity: 0.8;
+}
+
+/* Si el chatbot está abierto, ajustamos la posición */
+#chatbot-window.active ~ .womo-brand {
+    bottom: 20px; /* Se coloca en la parte inferior, debajo del chatbot */
+    right: 30px; /* Pequeño ajuste para no quedar justo debajo */
+}
+
+/* Ajuste para móviles */
+@media (max-width: 768px) {
+    .womo-brand {
+        width: 50px;
+        right: 15px;
+        bottom: 80px; /* Ajuste para móviles */
+    }
+    
+    #chatbot-window.active ~ .womo-brand {
+        bottom: 10px; /* En móvil, se ajusta más abajo */
+        right: 20px;
+    }
 }
