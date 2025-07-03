@@ -22,7 +22,7 @@ Plataforma tecnológica central desarrollada por **WoMo Studio** para gestión i
 - JWT para autenticación segura
 - Blueprints para arquitectura modular
 
-**Frontend Profesional:**
+**Frontend:**
 - Bootstrap 5 como framework CSS
 - Chart.js para visualización de datos
 - Jinja2 para plantillas dinámicas
