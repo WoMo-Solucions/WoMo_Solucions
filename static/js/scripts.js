@@ -1427,13 +1427,13 @@ const sections = {
         element: document.querySelector('#benefits'), 
         link: document.querySelector('.top-menu-link[href="#benefits"]') 
     },
-    impact: { 
-        element: document.querySelector('#antes-despues'), 
-        link: document.querySelector('.top-menu-link[href="#antes-despues"]') 
-    },
     portfolio: { 
         element: document.querySelector('#portfolio'), 
         link: document.querySelector('.top-menu-link[href="#portfolio"]') 
+    },
+    impact: { 
+        element: document.querySelector('#antes-despues'), 
+        link: document.querySelector('.top-menu-link[href="#antes-despues"]') 
     }
 };
 
@@ -1446,8 +1446,8 @@ function updateMenu() {
     
     if (scrollPos > sections.services.element.offsetTop - 100) activeSection = 'services';
     if (scrollPos > sections.benefits.element.offsetTop - 100) activeSection = 'benefits';
-    if (scrollPos > sections.impact.element.offsetTop - 100) activeSection = 'impact';
-    if (sections.portfolio && scrollPos > sections.portfolio.element.offsetTop - 100) activeSection = 'portfolio';
+    if (scrollPos > sections.portfolio.element.offsetTop - 100) activeSection = 'portfolio';
+    if (sections.impact && scrollPos > sections.impact.element.offsetTop - 100) activeSection = 'impact';
     
     if (sections[activeSection] && sections[activeSection].link) {
         sections[activeSection].link.classList.add('active');
