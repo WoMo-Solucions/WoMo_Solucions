@@ -112,9 +112,10 @@
     <div class="particles" id="particles"></div>
     <div class="hero-content">
         <h1 class="hero-title">Transforma tu negocio con automatización inteligente</h1>
-        <p class="hero-subtitle"><strong>WoMo Studio</strong> automatiza tus procesos para ahorrar tiempo, eliminar errores y aumentar ganancias</p>
-        <p style="font-size: 1.1rem; margin: 1.5rem 0; font-weight: 400; color: rgba(255,255,255,0.95)"> ¿Sabes ese proceso que te hace perder 3 horas diarias?
-			Nosotros lo convertimos en 3 clics 		</p>
+        <p class="hero-subtitle"><strong>WoMo</strong> automatiza tus procesos para ahorrar tiempo<br>
+		eliminar errores y aumentar ganancias</p>
+        <p style="font-size: 1.1rem; margin: 1.5rem 0; font-weight: 400; color: rgba(255,255,255,0.95)"> ¿Sabes, ese proceso que te hace perder 3 horas diarias?<br>
+		Nosotros lo convertimos en 3 clics</p>
         <button class="hero-cta" id="discover-btn" aria-label="Descubre cómo funciona la automatización inteligente con WoMo Studio">
             Descubre cómo funciona
         </button>
@@ -248,32 +249,21 @@
 </section>
 
 <!-- Sección Portafolio -->
-
-<!-- Sección Portafolio -->
-<section class="portfolio-section" id="portfolio">
-    <h2 class="portfolio-title">Nuestro Portafolio</h2>
-    <p class="portfolio-subtitle">Soluciones reales para problemas reales</p>
-    <div class="portfolio-container">
-        <!-- Los proyectos se cargarán dinámicamente aquí -->
+<section id="portfolio" class="portfolio-section">
+    <div class="container">
+        <h2 class="section-title">Nuestros Proyectos</h2>
+    <!--<p class="section-subtitle">Soluciones reales para problemas reales</p>-->
+        <div class="portfolio-grid" id="portfolio-container">
+            <!-- Proyectos se cargan dinámicamente -->
+        </div>
     </div>
 </section>
 
-<!-- Popup de Proyecto -->
-<div id="project-popup" class="project-popup">
+<!-- Popup Funcional -->
+<div id="project-popup" class="popup-overlay">
     <div class="popup-content">
-        <button class="close-btn" onclick="closeProjectPopup()">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-        </button>
-        <div class="popup-body">
-            <img id="popup-project-image" src="" alt="" class="popup-image">
-            <div class="popup-text">
-                <h3 id="popup-project-title"></h3>
-                <p id="popup-project-description"></p>
-                <button class="action-btn" onclick="openContactPopup(); closeProjectPopup()">¡Me lo llevo!</button>
-            </div>
-        </div>
+        <button class="close-popup">&times;</button>
+        <div id="popup-content-wrapper"></div>
     </div>
 </div>
 
