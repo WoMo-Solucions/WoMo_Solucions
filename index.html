@@ -126,22 +126,22 @@
 <section id="services" style="padding: 1.5rem 1rem; max-width: 1200px; margin: 0 auto; text-align: center;">
     <h2 class="services-title">Nuestros servicios</h2>
     <div class="process-container">
-        <div class="process-card" onclick="openProcessPopup('time')">
+        <div class="process-card" onclick="openServicePopup('time')">
             <div class="process-icon">⏱️</div>
             <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Transformación de Tiempo</h3>
             <p style="font-size: 0.8rem;">Convierte horas en minutos</p>
         </div>
-        <div class="process-card" onclick="openProcessPopup('workflow')">
+        <div class="process-card" onclick="openServicePopup('workflow')">
             <div class="process-icon">⚡</div>
             <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Flujos Inteligentes</h3>
             <p style="font-size: 0.8rem;">Automatización adaptativa</p>
         </div>
-        <div class="process-card" onclick="openProcessPopup('profit')">
+        <div class="process-card" onclick="openServicePopup('profit')">
             <div class="process-icon">💰</div>
             <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Impulso Rentable</h3>
             <p style="font-size: 0.8rem;">Maximiza tus ganancias</p>
         </div>
-        <div class="process-card" onclick="openProcessPopup('analytics')">
+        <div class="process-card" onclick="openServicePopup('analytics')">
             <div class="process-icon">📊</div>
             <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Análisis Predictivo</h3>
             <p style="font-size: 0.8rem;">Anticipa tendencias</p>
@@ -150,14 +150,14 @@
 </section>
 
 <!-- Popup de Procesos (oculto inicialmente) -->
-<div id="process-popup-overlay" class="popup-overlay" onclick="closeProcessPopup()">
-    <div id="process-popup" class="centered-popup" onclick="event.stopPropagation()">
-        <button class="close-btn" onclick="closeProcessPopup()">
+<div id="services-popup-overlay" style="display: none;">
+    <div id="services-popup" class="centered-popup">
+        <button class="close-btn" onclick="closeServicePopup()">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             </svg>
         </button>
-        <div id="process-popup-content"></div>
+        <div id="services-popup-content"></div>
     </div>
 </div>
 

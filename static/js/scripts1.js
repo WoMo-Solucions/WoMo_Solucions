@@ -1509,135 +1509,100 @@ const processPopupData = {
     time: {
         title: "Transformación de Tiempo",
         content: `
-            <div style="padding: 20px;">
-                <h2 style="color: #10B981; font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center;">Transformamos horas en minutos</h2>
-                <p style="color: #4B5563; margin-bottom: 1.5rem; text-align: center;">Clientes satisfechos, tiempo optimizado</p>
-                
-                <div style="position: relative; height: 150px; margin: 20px 0; background: repeating-linear-gradient(0deg, transparent, transparent 29px, #f0f0f0 30px, #f0f0f0 30px), 
-                    repeating-linear-gradient(90deg, transparent, transparent 59px, #f0f0f0 60px, #f0f0f0 60px); 
-                    background-size: 60px 30px; border-bottom: 1px solid #ddd; border-left: 1px solid #ddd;">
-                    <div style="display: flex; justify-content: space-around; height: 100%; align-items: flex-end; position: relative; z-index: 1;">
-                        <div style="width: 40px; background: #10B981; height: 60%; border-radius: 4px 4px 0 0;"></div>
-                        <div style="width: 40px; background: #10B981; height: 20%; border-radius: 4px 4px 0 0;"></div>
-                        <div style="width: 40px; background: #10B981; height: 40%; border-radius: 4px 4px 0 0;"></div>
-                    </div>
-                </div>
-                
-                <ul style="list-style-type: none; padding-left: 20px;">
-                    <li style="margin-bottom: 0.8rem; position: relative;">
-                        <span style="position: absolute; left: -20px; color: #10B981; font-weight: bold;">•</span> 
-                        Optimización de los procesos de manera notable.
-                    </li>
-                    <li style="margin-bottom: 0.8rem; position: relative;">
-                        <span style="position: absolute; left: -20px; color: #10B981; font-weight: bold;">•</span> 
-                        Di adiós a las tareas manuales y repetitivas
-                    </li>
-                </ul>
+            <h2 style="color: var(--verde); margin-bottom: 0.5rem;">Transformamos horas en minutos</h2>
+            <p style="color: #4B5563; margin-bottom: 1.5rem;">Clientes satisfechos, tiempo optimizado</p>
+            
+            <div class="process-chart">
+                <div class="chart-bar" style="--height: 60%;" data-value=""></div>
+                <div class="chart-bar" style="--height: 20%;" data-value=""></div>
+                <div class="chart-bar" style="--height: 40%;" data-value=""></div>
             </div>
+            
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                    <span style="position: absolute; left: 0; color: var(--verde);">•</span> 
+                    Optimización de los procesos de manera notable.
+                </li>
+                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                    <span style="position: absolute; left: 0; color: var(--verde);">•</span> 
+                    Di adiós a las tareas manuales y repetitivas
+                </li>
+            </ul>
         `
     },
     workflow: {
         title: "Automatización Inteligente",
         content: `
-            <div style="padding: 20px;">
-                <h2 style="color: #2563EB; font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center;">Automatización flexible</h2>
-                <p style="color: #4B5563; margin-bottom: 1.5rem; text-align: center;">Potencia tus procesos internos</p>
-                
-                <div style="position: relative; height: 150px; margin: 20px 0; background: repeating-linear-gradient(0deg, transparent, transparent 29px, #f0f0f0 30px, #f0f0f0 30px), 
-                    repeating-linear-gradient(90deg, transparent, transparent 59px, #f0f0f0 60px, #f0f0f0 60px); 
-                    background-size: 60px 30px; border-bottom: 1px solid #ddd; border-left: 1px solid #ddd;">
-                    <div style="display: flex; justify-content: space-around; height: 100%; align-items: flex-end; position: relative; z-index: 1;">
-                        <div style="width: 40px; background: #2563EB; height: 30%; border-radius: 4px 4px 0 0;"></div>
-                        <div style="width: 40px; background: #2563EB; height: 57%; border-radius: 4px 4px 0 0;"></div>
-                        <div style="width: 40px; background: #2563EB; height: 45%; border-radius: 4px 4px 0 0;"></div>
-                    </div>
-                </div>
-                
-                <ul style="list-style-type: none; padding-left: 20px;">
-                    <li style="margin-bottom: 0.8rem; position: relative;">
-                        <span style="position: absolute; left: -20px; color: #2563EB; font-weight: bold;">•</span> 
-                        Solución independiente y autónoma
-                    </li>
-                    <li style="margin-bottom: 0.8rem; position: relative;">
-                        <span style="position: absolute; left: -20px; color: #2563EB; font-weight: bold;">•</span> 
-                        Se adapta a tus procesos específicos
-                    </li>
-                </ul>
+            <h2 style="color: var(--azul); margin-bottom: 0.5rem;">Automatización flexible</h2>
+            <p style="color: #4B5563; margin-bottom: 1.5rem;">Potencia tus procesos internos</p>
+            
+            <div class="process-chart">
+                <div class="chart-bar" style="--height: 30%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value=""></div>
+                <div class="chart-bar" style="--height: 57%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value=""></div>
+                <div class="chart-bar" style="--height: 45%; background: linear-gradient(to top, var(--azul), #1D4ED8);" data-value=""></div>
             </div>
+            
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                    <span style="position: absolute; left: 0; color: var(--azul);">•</span> 
+                    Solución independiente y autónoma
+                </li>
+                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                    <span style="position: absolute; left: 0; color: var(--azul);">•</span> 
+                    Se adapta a tus procesos específicos
+                </li>
+            </ul>
         `
     },
     profit: {
         title: "Eficiencia que Genera Valor",
         content: `
-            <div style="padding: 20px;">
-                <h2 style="color: #7C3AED; font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center;">Optimización Financiera Inteligente</h2>
-                <p style="color: #4B5563; margin-bottom: 1.5rem; text-align: center;">Transforma tu eficiencia en resultados</p>
-                
-                <div style="position: relative; height: 150px; margin: 20px 0; background: repeating-linear-gradient(0deg, transparent, transparent 29px, #f0f0f0 30px, #f0f0f0 30px), 
-                    repeating-linear-gradient(90deg, transparent, transparent 59px, #f0f0f0 60px, #f0f0f0 60px); 
-                    background-size: 60px 30px; border-bottom: 1px solid #ddd; border-left: 1px solid #ddd;">
-                    <div style="display: flex; justify-content: space-around; height: 100%; align-items: flex-end; position: relative; z-index: 1;">
-                        <div style="width: 40px; background: #7C3AED; height: 60%; border-radius: 4px 4px 0 0;"></div>
-                        <div style="width: 40px; background: #7C3AED; height: 40%; border-radius: 4px 4px 0 0;"></div>
-                        <div style="width: 40px; background: #7C3AED; height: 70%; border-radius: 4px 4px 0 0;"></div>
-                    </div>
-                </div>
-                
-                <ul style="list-style-type: none; padding-left: 20px;">
-                    <li style="margin-bottom: 0.8rem; position: relative;">
-                        <span style="position: absolute; left: -20px; color: #7C3AED; font-weight: bold;">•</span> 
-                        Mejora sostenible en tu rentabilidad
-                    </li>
-                    <li style="margin-bottom: 0.8rem; position: relative;">
-                        <span style="position: absolute; left: -20px; color: #7C3AED; font-weight: bold;">•</span> 
-                        Gestión más eficiente de tus recursos
-                    </li>
-                </ul>
+            <h2 style="color: var(--morado); margin-bottom: 0.5rem;">Optimización Financiera Inteligente</h2>
+            <p style="color: #4B5563; margin-bottom: 1.5rem;">Transforma tu eficiencia en resultados</p>
+            
+            <div class="process-chart">
+                <div class="chart-bar" style="--height: 60%; background: linear-gradient(to top, var(--morado), #6D28D9);"></div>
+                <div class="chart-bar" style="--height: 40%; background: linear-gradient(to top, var(--morado), #6D28D9);"></div>
+                <div class="chart-bar" style="--height: 70%; background: linear-gradient(to top, var(--morado), #6D28D9);"></div>
             </div>
+            
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                    <span style="position: absolute; left: 0; color: var(--morado);">•</span> 
+                    Mejora sostenible en tu rentabilidad
+                </li>
+                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                    <span style="position: absolute; left: 0; color: var(--morado);">•</span> 
+                    Gestión más eficiente de tus recursos
+                </li>
+            </ul>
         `
     },
     analytics: {
         title: "Inteligencia Estratégica",
         content: `
-            <div style="padding: 20px;">
-                <h2 style="color: #F59E0B; font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center;">Toma la delantera</h2>
-                <p style="color: #4B5563; margin-bottom: 1.5rem; text-align: center;">Descubre patrones antes que la competencia</p>
-                
-                <div style="position: relative; height: 150px; margin: 20px 0; background: repeating-linear-gradient(0deg, transparent, transparent 29px, #f0f0f0 30px, #f0f0f0 30px), 
-                    repeating-linear-gradient(90deg, transparent, transparent 59px, #f0f0f0 60px, #f0f0f0 60px); 
-                    background-size: 60px 30px; border-bottom: 1px solid #ddd; border-left: 1px solid #ddd;">
-                    <div style="display: flex; justify-content: space-around; height: 100%; align-items: flex-end; position: relative; z-index: 1;">
-                        <div style="width: 40px; background: #F59E0B; height: 23%; border-radius: 4px 4px 0 0;"></div>
-                        <div style="width: 40px; background: #F59E0B; height: 55%; border-radius: 4px 4px 0 0;"></div>
-                        <div style="width: 40px; background: #F59E0B; height: 67%; border-radius: 4px 4px 0 0;"></div>
-                    </div>
-                </div>
-                
-                <ul style="list-style-type: none; padding-left: 20px;">
-                    <li style="margin-bottom: 0.8rem; position: relative;">
-                        <span style="position: absolute; left: -20px; color: #F59E0B; font-weight: bold;">•</span> 
-                        Pronósticos confiables y accionables
-                    </li>
-                    <li style="margin-bottom: 0.8rem; position: relative;">
-                        <span style="position: absolute; left: -20px; color: #F59E0B; font-weight: bold;">•</span> 
-                        Detección temprana de oportunidades clave
-                    </li>
-                </ul>
+            <h2 style="color: var(--naranja); margin-bottom: 0.5rem;">Toma la delantera</h2>
+            <p style="color: #4B5563; margin-bottom: 1.5rem;">Descubre patrones antes que la competencia</p>
+            
+            <div class="process-chart">
+                <div class="chart-bar" style="--height: 23%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value=""></div>
+                <div class="chart-bar" style="--height: 55%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value=""></div>
+                <div class="chart-bar" style="--height: 67%; background: linear-gradient(to top, var(--naranja), #D97706);" data-value=""></div>
             </div>
+            
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                    <span style="position: absolute; left: 0; color: var(--naranja);">•</span> 
+                    Pronósticos confiables y accionables
+                </li>
+                <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">
+                    <span style="position: absolute; left: 0; color: var(--naranja);">•</span> 
+                    Detección temprana de oportunidades clave
+                </li>
+            </ul>
         `
     }
 };
-
-function openServicePopup(type) {
-    document.getElementById('services-popup-content').innerHTML = processPopupData[type].content;
-    document.getElementById('services-popup-overlay').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-}
-
-function closeServicePopup() {
-    document.getElementById('services-popup-overlay').style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
 
 function getColorByType(type) {
     const colors = {
@@ -1647,6 +1612,37 @@ function getColorByType(type) {
         'analytics': 'var(--naranja)'
     };
     return colors[type] || 'var(--gris-oscuro)';
+}
+
+// Función para abrir popup de servicios
+function openServicePopup(type) {
+    const serviceInfo = {
+        'time': { color: '#10B981', title: 'Transformación de Tiempo', desc: 'Convertimos horas de trabajo en minutos con automatización inteligente' },
+        'workflow': { color: '#2563EB', title: 'Flujos Inteligentes', desc: 'Sistemas que se adaptan a tus procesos específicos' },
+        'profit': { color: '#7C3AED', title: 'Impulso Rentable', desc: 'Aumentamos tus márgenes optimizando recursos' },
+        'analytics': { color: '#F59E0B', title: 'Análisis Predictivo', desc: 'Anticipamos tendencias para que tomes mejores decisiones' }
+    };
+
+    const popupContent = `
+        <h2 style="color: ${serviceInfo[type].color}">
+            ${serviceInfo[type].title}
+        </h2>
+        <p>${serviceInfo[type].desc}</p>
+        <div style="margin-top: 1rem;">
+            <button onclick="closeServicePopup()" style="padding: 0.5rem 1rem; background: ${serviceInfo[type].color}; color: white; border: none; border-radius: 4px;">
+                Cerrar
+            </button>
+        </div>
+    `;
+
+    document.getElementById('services-popup-content').innerHTML = popupContent;
+    document.getElementById('services-popup-overlay').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeServicePopup() {
+    document.getElementById('services-popup-overlay').style.display = 'none';
+    document.body.style.overflow = 'auto';
 }
 
 // Función para actualizar la visibilidad del icono del chatbot
