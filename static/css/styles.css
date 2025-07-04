@@ -2328,3 +2328,94 @@ body {
         height: 180px;
     }
 }
+
+.womo-texto {
+  font-weight: bold; /* Negrita como lo tenías */
+  text-align: center;
+  margin: 0 auto;
+  max-width: 100%;
+  padding: 0 15px;
+  font-size: 24px; /* Tamaño base desktop */
+}
+
+.linea1, .linea2 {
+  display: block;
+}
+
+.linea2 {
+  margin-top: 0.1em;
+}
+
+/* Ajuste solo para móvil */
+@media (max-width: 768px) {
+  .womo-texto {
+    font-size: 16px; /* Reducción mínima para evitar que "abruma" se baje */
+  }
+  
+  .linea1 {
+    white-space: nowrap; /* Fuerza a mantener "abruma" en la misma línea */
+  }
+}
+
+/* Para móviles muy pequeños */
+@media (max-width: 360px) {
+  .womo-texto {
+    font-size: 12px;
+  }
+}
+
+
+
+.womo-impact-phrase {
+    font-size: 1.4rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    color: black;
+}
+
+.womo-highlight {
+    color: #black;
+    font-weight: 700;
+}
+
+.womo-impact-button {
+    background: rgba(255, 255, 255, 0.7); /* Blanco con 90% de opacidad */
+    color: black;
+    border: none;
+    padding: 10px 5px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.womo-impact-button:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .womo-impact-phrase {
+        font-size: 1.2rem;
+    }
+    .womo-impact-container {
+        padding: 1rem;
+        margin: 1rem auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .womo-impact-phrase {
+        font-size: 1.1rem;
+    }
+    .womo-impact-button {
+        padding: 0px 15px;
+        font-size: 1rem;
+    }
+}
