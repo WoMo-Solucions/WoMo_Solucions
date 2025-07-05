@@ -13,6 +13,12 @@
 .comparison-section,
 .portfolio-section {
         background-color: #f0f2f5 !important; /* Fuerza el color */
+		font-size: 1.8rem !important;
+		text-align: center !important;
+		margin: 1rem !important; /* Cambia esto (elimina el margin-bottom: 1rem) */
+		margin-bottom: 0 !important; /* Solo elimina el margen inferior */
+		color: var(--gris-oscuro) !important;
+		padding: 1rem !important; /* Añade esto para eliminar cualquier padding */
 }
 
 * {
@@ -2092,11 +2098,34 @@ body {
 
 /* Grid de proyectos 3×2 */
 .portfolio-grid {
+    gap: 2px; /* Cambia esto de 1rem a 2px */
+    padding: 0; /* Asegúrate de que no hay padding adicional */
+    margin: 0 auto;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    padding: 1rem;
 }
+
+.portfolio-card {
+    background: white;
+    border-radius: 10px;
+    border-radius: 10px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin: 0.5rem; 
+    padding: 1.2rem 1.1rem; 
+    width: 90%; 
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    height: auto;
+    min-height: 180px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-top: 4px solid var(--verde);
+    display: flex;
+    flex-direction: column;
+    justify-content: center !important;
+}
+
 /* COLORES ALTERNADOS PARA 6 TARJETAS */
 .portfolio-card:nth-child(6n+1) { border-top-color: var(--verde); }   /* Verde */
 .portfolio-card:nth-child(6n+2) { border-top-color: var(--azul); }    /* Azul */
@@ -2105,21 +2134,9 @@ body {
 .portfolio-card:nth-child(6n+5) { border-top-color: #EC4899; }        /* Rosa */
 .portfolio-card:nth-child(6n+6) { border-top-color: #14B8A6; }        /* Cyan */
 
-.portfolio-card {
-    background: white;
-    border-radius: 10px;
-    padding: 1.8rem 1.5rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
-    border-top: 4px solid var(--verde); /* Línea superior */
-    height: auto;
-    min-height: 180px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
+/*.portfolio-card {
+
+}*/
 
 
 /* COLORES ALTERNADOS PARA 6 TARJETAS */
@@ -2141,7 +2158,8 @@ body {
 }
 
 .card-title {
-    font-size: 1.3rem;
+    font-size: 1rem;
+	margin: 0.5rem 0;
     margin-bottom: 0.5rem;
     color: #2c3e50;
     font-weight: 600;
@@ -2151,7 +2169,7 @@ body {
 .card-desc {
     color: #7f8c8d;
     font-size: 0.95rem;
-    line-height: 1.5;
+    line-height: 1.1;
 }
 
 /* Popup completamente funcional */
@@ -2288,6 +2306,11 @@ body {
 /* Responsive */
 @media (max-width: 992px) {
     .portfolio-grid {
+		gap: 0; /* Elimina completamente el espacio entre tarjetas */
+		padding: 0; /* Elimina el padding del contenedor grid */
+		margin: 0 auto; /* Centra el grid si es necesario */
+		justify-content: center; /* Centra las tarjetas horizontalmente */
+
         grid-template-columns: repeat(2, 1fr);
     }
     
@@ -2305,7 +2328,7 @@ body {
 @media (max-width: 600px) {
     .portfolio-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1rem;
     }
 /* COLORES ALTERNADOS PARA 6 TARJETAS */
 .portfolio-card:nth-child(6n+1) { border-top-color: var(--verde); }   /* Verde */
@@ -2368,8 +2391,8 @@ body {
 
 .womo-impact-phrase {
     font-size: 1.4rem;
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
     color: black;
 }
 
@@ -2379,15 +2402,18 @@ body {
 }
 
 .womo-impact-button {
-    background: rgba(255, 255, 255, 0.7); /* Blanco con 90% de opacidad */
+	display: inline;
+    margin: 0.6rem;
+    
+	background: rgba(255, 255, 255, 0.7); /* Blanco con 90% de opacidad */
     color: black;
     border: none;
-    padding: 10px 5px;
+    padding: 1px 1px;
     font-size: 1.2rem;
     font-weight: 700;
     border-radius: 50px;
     cursor: pointer;
-    margin-top: 1rem;
+    margin-top: .3rem;
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1px;

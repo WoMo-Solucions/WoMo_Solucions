@@ -238,7 +238,7 @@ function scrollToTop() {
 }
 
 // Control de popup de contacto lateral
-function openContactPopup() {
+function openContactPopup(prefilledMessage = '') {
     // 1. Cerrar el chatbot si está abierto
     closeChatbot();
     
@@ -246,10 +246,10 @@ function openContactPopup() {
     const chatbotIcon = document.querySelector('.chatbot-icon');
     if (chatbotIcon) {
         chatbotIcon.style.opacity = '0';
-        chatbotIcon.style.pointerEvents = 'none'; // Hacerlo no clickeable
+        chatbotIcon.style.pointerEvents = 'none';
         setTimeout(() => {
             chatbotIcon.style.display = 'none';
-        }, 300); // Esperar a que termine la animación
+        }, 300);
     }
     
     // 3. Mostrar el popup de contacto
@@ -274,9 +274,21 @@ function openContactPopup() {
         whatsappBtn.style.pointerEvents = 'auto';
         whatsappBtn.style.zIndex = '1';
     }
+
+    // 6. NUEVO CÓDIGO - Agregar mensaje prefijado si se proporcionó
+    if (prefilledMessage) {
+        const messageField = document.getElementById('contact-message');
+        const currentValue = messageField.value.trim();
+        
+        if (!currentValue.includes(prefilledMessage)) {
+            messageField.value = prefilledMessage + (currentValue ? '\n\n' + currentValue : '');
+        }
+        
+        setTimeout(() => {
+            messageField.focus();
+        }, 500);
+    }
 }
-
-
 
 function closeContactPopup() {
     const contactPopup = document.getElementById('contact-popup');
@@ -1632,6 +1644,9 @@ function openServicePopup(type) {
     document.getElementById('services-popup-content').innerHTML = processPopupData[type].content;
     document.getElementById('services-popup-overlay').style.display = 'flex';
     document.body.style.overflow = 'hidden';
+    document.getElementById('services-popup-overlay').onclick = function(e) {
+        if (e.target === this) closeServicePopup();
+    };
 }
 
 function closeServicePopup() {
@@ -1665,53 +1680,42 @@ function updateChatbotIconVisibility() {
 
 // Datos de los 6 proyectos
 const projects = [
-    {
-        id: 1,
-        title: "PCAF",
-        shortDesc: "Sistema de gestión para gimnasios",
-        fullDesc: "Plataforma completa para gestión de gimnasios que incluye control de membresías, seguimiento de clientes y programación de clases con análisis de rendimiento integrado.",
-        icon: "🏋️",
-        image: "proyectos/imagen1.webp"
-    },
-    {
-        id: 2,
-        title: "Unistock",
-        shortDesc: "Gestión de inventarios inteligente",
-        fullDesc: "Solución avanzada para control de inventarios con alertas automáticas, análisis predictivo de stock y sistema de reposición inteligente.",
-        icon: "📦",
-        image: "proyectos/imagen2.webp"
-    },
-    {
-        id: 3,
-        title: "ProTrack",
-        shortDesc: "Seguimiento de procesos",
-        fullDesc: "Herramienta profesional para gestionar y monitorear procesos empresariales con paneles de control en tiempo real y generación de informes.",
-        icon: "⚙️",
-        image: "proyectos/imagen3.webp"
-    },
-    {
-        id: 4,
-        title: "Messungen",
-        shortDesc: "Medición de progreso físico",
-        fullDesc: "Sistema especializado para entrenadores personales que permite registrar y analizar métricas físicas con informes detallados de progreso.",
-        icon: "📏",
-        image: "proyectos/imagen4.webp"
-    },
-    {
-        id: 5,
-        title: "PocketFlow",
-        shortDesc: "Gestión financiera personal",
-        fullDesc: "Aplicación móvil intuitiva para administrar finanzas personales con categorización automática de gastos y presupuestos inteligentes.",
-        icon: "💰",
-        image: "proyectos/imagen5.webp"
-    },
-    {
-        id: 6,
-        title: "Gatekeeper",
-        shortDesc: "Control de acceso seguro",
-        fullDesc: "Sistema de seguridad empresarial con autenticación multifactor, permisos granulares y registro detallado de accesos.",
-        icon: "🔒",
-        image: "proyectos/imagen6.webp"
+    {   "id": 1,
+        "title": "ProTrack",
+        "shortDesc": "Plataforma modular universal de gestión de procesos",
+        "fullDesc": "Es el motor que convierte el caos operativo en flujos automatizados de alto rendimiento. Para líderes que exigen excelencia en cada proceso.",
+        "icon": "⚙️",
+        "image": "proyectos/imagen3.webp"
+    },{ "id": 2,
+        "title": "Unistock",
+        "shortDesc": "Sistema propietario de gestión de inventarios",
+        "fullDesc": "Es el cerebro logístico que anticipa escasez, optimiza compras y convierte inventarios en flujo de caja. Para negocios que no toleran errores.",
+        "icon": "📦",
+        "image": "proyectos/imagen2.webp"
+    },{ "id": 3,
+        "title": "PortiFy",
+        "shortDesc": "CRM especializado en portafolios tecnológicos",
+        "fullDesc": "Sera tú portafolio como arma comercial: convierte proyectos técnicos en narrativas irresistibles para clientes exigentes.",
+        "icon": "📊",
+        "image": "proyectos/imagen6.webp"
+    },{ "id": 4,
+        "title": "PCAF",
+        "shortDesc": "Sistema de gestión para gimnasios",
+        "fullDesc": "El sistema que hace sentir a tus clientes que entrenan en un gimnasio de lujo: progreso medible al instante y comunicación exclusiva. La herramienta secreta para retener 3 veces más.",
+        "icon": "🏋️",
+        "image": "proyectos/imagen1.webp"
+    },{ "id": 5,
+        "title": "Messungen",
+        "shortDesc": "Seguimiento del progreso físico",
+        "fullDesc": "Sistema que vincula entrenamientos con resultados: registra mediciones, correlaciona rutinas y demuestra el impacto tangible de tu metodología. La prueba de que tu trabajo transforma.",
+        "icon": "📏",
+        "image": "proyectos/imagen4.webp"
+    },{ "id": 6,
+        "title": "PocketFlow",
+        "shortDesc": "Gestión financiera personal",
+        "fullDesc": "Es el control financiero personal inteligente: toma el mando de tu dinero con claridad y precisión profesional.",
+        "icon": "💰",
+        "image": "proyectos/imagen5.webp"
     }
 ];
 
