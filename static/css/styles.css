@@ -269,6 +269,14 @@ body {
     }
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+    .top-menu-link.active {
+        border-bottom: 2px solid #2b6cb0;
+        font-weight: 600;
+        color: #2b6cb0;
+    }
+}
+
 .comparison-column {
     flex: 1;
     padding: 1.5rem;
