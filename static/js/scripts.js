@@ -555,11 +555,12 @@ const chatbotConfig = {
                 action: "showExpertCalendar()"
             }]
         },
+		
         "precio": {
             messages: [
                 "💰 Modelo de inversión basado en resultados:",
                 "",
-                "Nuestros proyectos se estructuran en fases:",
+                "Nuestros WoMo Soluciones se estructuran en fases:",
                 "",
                 "1. <strong>Evaluación Inicial</strong>: $X (aplicable a implementación)",
                 "2. <strong>Desarrollo de Solución</strong>: Desde $Y (según complejidad)",
