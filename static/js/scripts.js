@@ -1062,8 +1062,8 @@ const inactivityConfig = {
         "¡Me encantaría mostrarte cómo podemos ayudarte!"
     ],
     displayDuration: 0, // Cambiado a 0 para que no se oculte automáticamente
-    cooldown: 30000, // 30 segundos antes de reaparecer
-    positions: ['position-bottom-right', 'position-bottom-left']
+    cooldown: 60000, // 30 segundos antes de reaparecer
+    positions: ['position-bottom-right', 'position-bottom-center', 'position-bottom-left']
 };
 
 let inactivityTimer;
@@ -1297,6 +1297,12 @@ function positionGifWindow(popup, gifWindow) {
 function hideInactivityPopup() {
     if (!isPopupActive) return;
     
+    // Marcar que ya pasó la primera aparición
+    if (inactivityConfig.firstAppearance) {
+        inactivityConfig.firstAppearance = false;
+    }
+    
+    // Resto de la función permanece igual...
     const popup = document.getElementById('inactivity-popup');
     const message = document.getElementById('inactivity-message');
     const gif = document.getElementById('inactivity-gif');
@@ -1315,7 +1321,6 @@ function hideInactivityPopup() {
             setTimeout(resetInactivityTimer, inactivityConfig.cooldown);
             activeFloatingElement = null;
             
-            // Mostrar el icono del chatbot solo si no hay otros elementos activos
             if (!activeFloatingElement && !isGifWindowOpen) {
                 chatbotIcon.style.display = 'flex';
             }
@@ -1352,12 +1357,14 @@ function checkInactivity() {
 }
 
 function setupActivityTracking() {
+    // Restablecer firstAppearance al cargar la página
+    inactivityConfig.firstAppearance = true;
+    
     const events = ['mousedown', 'mousemove', 'keydown', 'scroll', 'touchstart'];
     
     events.forEach(event => {
         window.addEventListener(event, () => {
             lastInteractionTime = Date.now();
-            // Solo reiniciamos el temporizador, no ocultamos el popup
             if (!isPopupActive && !isGifWindowOpen && !activeFloatingElement) {
                 resetInactivityTimer();
             }

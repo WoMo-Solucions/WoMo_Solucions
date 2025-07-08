@@ -1,0 +1,236 @@
+// chatbot-database.js - Base de datos completa de conversaciones
+const chatbotDatabase = {
+    // 20 saludos iniciales diferentes
+    greetings: [
+        "¡Hola! Soy WoMi, tu asistente de automatización 🤖 ¿En qué puedo ayudarte hoy?",
+        "¡Buen día! 🌟 WoMo Studio al servicio de tu negocio, cuéntame ¿qué proceso quieres optimizar?",
+        "¡Hola! Detecto que estás interesado en eficiencia operativa. ¿Por dónde empezamos?",
+        "¡Hola humano! 👋 WoMi aquí, listo para transformar tus procesos. ¿Qué te quita más tiempo actualmente?",
+        "¡Bienvenido! En WoMo convertimos problemas operativos en soluciones automáticas. ¿Cuál es tu desafío?",
+        "¡Saludos! Soy WoMi, tu guía en automatización inteligente. ¿Qué proceso te gustaría mejorar hoy?",
+        "¡Hola! Tu búsqueda de eficiencia comienza aquí. ¿Qué área de tu negocio necesita atención?",
+        "¡Buen día emprendedor! Automatizar procesos es mi especialidad. ¿Qué te gustaría optimizar?",
+        "¡Hola innovador! 🚀 WoMo Studio puede revolucionar tus operaciones. ¿Qué te frena actualmente?",
+        "¡Hola! Noto que buscas mejorar tu productividad. ¿Qué proceso te genera más dolores de cabeza?",
+        "¡Bienvenido a la automatización inteligente! Soy WoMi, ¿en qué puedo asistirte hoy?",
+        "¡Hola visionario! Transformemos juntos tus operaciones. ¿Qué proceso manual te agobia?",
+        "¡Saludos! La eficiencia operativa está a un clic. ¿Qué te gustaría automatizar primero?",
+        "¡Hola! WoMo Studio al habla. ¿Listo para convertir problemas en soluciones automáticas?",
+        "¡Buen día! Automatizar procesos es invertir en crecimiento. ¿Qué área necesita más atención?",
+        "¡Hola! Menos trabajo manual, más resultados. ¿Qué proceso quieres transformar?",
+        "¡Bienvenido al futuro de tus operaciones! Soy WoMi, ¿cómo puedo ayudarte?",
+        "¡Hola! Tus procesos están a punto de volverse más inteligentes. ¿Por dónde empezamos?",
+        "¡Saludos emprendedor! La productividad comienza aquí. ¿Qué te retrasa actualmente?",
+        "¡Hola! WoMo Studio simplificando negocios. ¿Qué operación te quita más tiempo?"
+    ],
+
+    // 15 introducciones a procesos repetitivos
+    repetitiveProcesses: {
+        intro: [
+            "Los procesos repetitivos son nuestra especialidad 💼 Imagina recuperar todas esas horas perdidas...",
+            "¡Justo esto es lo que más automatizamos! La mayoría de estas tareas pueden ser automáticas.",
+            "Ah, los procesos repetitivos... el enemigo silencioso de la productividad. ¡Podemos ayudarte!",
+            "Automatizar lo repetitivo es como encontrar tiempo extra en tu día. ¡Hagámoslo!",
+            "Los procesos manuales repetitivos son candidatos perfectos para la automatización.",
+            "¡Este es nuestro pan de cada día! Transformamos lo repetitivo en automático.",
+            "La automatización nació para liberarte de estas tareas monótonas. ¿Listo para el cambio?",
+            "Nada me gusta más que eliminar procesos repetitivos. ¡Es mi superpoder!",
+            "Los procesos repetitivos son como arena en los engranajes de tu negocio. ¡Limpiémoslos!",
+            "Automatizar lo repetitivo es el primer paso hacia operaciones escalables.",
+            "Cada proceso repetitivo que automatizamos es una victoria para tu productividad.",
+            "¿Sabías que lo que más valora tu equipo es liberarse de tareas repetitivas?",
+            "Los procesos repetitivos consumen recursos sin agregar valor. ¡Cambiemos eso!",
+            "Automatizar lo repetitivo es como poner tu negocio en piloto automático.",
+            "Nuestros clientes aman cómo transformamos sus procesos repetitivos. ¡Tú serás el próximo!"
+        ],
+        benefits: [
+            "Los beneficios que verás inmediatamente:",
+            "Esto es lo que lograrás:",
+            "Los cambios más impactantes serán:",
+            "Las ventajas clave son:",
+            "Los resultados inmediatos incluyen:",
+            "Verás mejoras en estos aspectos:",
+            "Los principales beneficios son:",
+            "El impacto positivo incluye:",
+            "Los cambios más notorios serán:",
+            "Las mejoras clave que obtendrás:",
+            "Los frutos de esta automatización:",
+            "Los resultados más valiosos:",
+            "Las transformaciones principales:",
+            "Los efectos más positivos:",
+            "Las recompensas de automatizar:"
+        ],
+        examples: [
+            "Por ejemplo, uno de nuestros clientes redujo su tiempo de facturación de 3 horas a 20 minutos.",
+            "Te cuento un caso reciente: un restaurante automatizó su inventario y redujo pérdidas un 40%.",
+            "Un ejemplo concreto: una tienda online automatizó sus envíos y procesa 3 veces más pedidos.",
+            "Un cliente nuestro en retail automatizó reportes que le tomaban 8 horas semanales, ahora son automáticos.",
+            "Ejemplo real: un gimnasio automatizó sus recordatorios y redujo inasistencias un 25%.",
+            "Caso reciente: un consultorio médico automatizó su agenda y ahora atiende 15% más pacientes.",
+            "Por ejemplo: una constructora automatizó cotizaciones que tomaban 2 días, ahora son en 1 hora.",
+            "Un cliente automatizó su onboarding de empleados, reduciendo tiempo de capacitación un 30%.",
+            "Ejemplo concreto: una escuela automatizó comunicaciones con padres, ahorrando 10 horas semanales.",
+            "Caso real: un taller automotriz automatizó recordatorios de mantenimiento, aumentando reventa un 20%.",
+            "Por ejemplo: un abogado automatizó gestión documental, recuperando 12 horas semanales.",
+            "Un cliente reciente automatizó su CRM y aumentó conversiones un 15% con menos esfuerzo.",
+            "Ejemplo práctico: un ecommerce automatizó respuestas a preguntas frecuentes, reduciendo soporte un 40%.",
+            "Caso concreto: un arquitecto automatizó presupuestos, generando 3 veces más propuestas.",
+            "Por ejemplo: una clínica veterinaria automatizó recordatorios de vacunas, aumentando cumplimiento un 35%."
+        ]
+    },
+
+    // 20 transiciones a contacto
+    contactTransitions: [
+        "Para personalizar esta solución, lo ideal sería conectar con uno de nuestros especialistas...",
+        "Este es justo el tipo de desafío que le encanta a nuestro equipo resolver. ¿Te gustaría que te contactemos?",
+        "La mejor manera de avanzar es con una consultoría personalizada. ¿Quieres que coordinemos?",
+        "Nuestro equipo tiene experiencia específica en casos como el tuyo. ¿Hablamos?",
+        "Para darte una solución exacta a tu medida, necesitaríamos una breve conversación. ¿Te interesa?",
+        "La magia ocurre cuando adaptamos esto a tu operación específica. ¿Quieres que lo hagamos?",
+        "Tengo a nuestro experto en estas soluciones disponible. ¿Te gustaría que te pase con él?",
+        "El siguiente paso natural sería una conversación con nuestro equipo. ¿Qué te parece?",
+        "Para calcular el impacto exacto en tu negocio, lo mejor es una llamada rápida. ¿La agendamos?",
+        "Nuestros clientes más exitosos comenzaron con una simple conversación. ¿Quieres seguir su ejemplo?",
+        "La implementación perfecta empieza con entender tus necesidades exactas. ¿Hablamos?",
+        "Tengo a un especialista que puede asesorarte mejor. ¿Quieres que te conecte?",
+        "Para llevarte una propuesta concreta, necesitamos conocerte un poco más. ¿Te interesa?",
+        "La transformación comienza con un diagnóstico personalizado. ¿Quieres que lo hagamos?",
+        "Nuestro mejor trabajo surge de entender profundamente cada negocio. ¿Exploramos el tuyo?",
+        "Para mostrarte exactamente cómo sería en tu caso, lo mejor es una demostración. ¿La programamos?",
+        "Los detalles finales los afinamos en una consultoría personalizada. ¿Quieres agendarla?",
+        "La solución ideal emerge cuando conocemos tus procesos. ¿Nos permite ayudarte?",
+        "Para ajustar perfectamente esta solución a ti, necesitamos conversar. ¿Qué dices?",
+        "El camino más rápido es con una evaluación de nuestro equipo. ¿Te animas?"
+    ],
+
+    // 30 respuestas genéricas positivas
+    genericResponses: {
+        positive: [
+            "¡Excelente enfoque! 👏 Esto demuestra que vas en serio con mejorar tu negocio.",
+            "Me encanta tu actitud proactiva 💪 Justo lo que se necesita para transformar operaciones.",
+            "¡Esa es la mentalidad ganadora! 🏆 Así es como crecen los negocios exitosos.",
+            "¡Magnífica decisión! 🌟 Estás a un paso de liberar todo tu potencial operativo.",
+            "¡Así se hace! 🚀 Con esa actitud, los resultados serán extraordinarios.",
+            "¡Perfecto! 💡 Justo el tipo de visión que buscamos en nuestros clientes.",
+            "¡Fantástico! ✨ Tu negocio merece esta mejora y más.",
+            "¡Brillante! 🌈 Así es como se construyen ventajas competitivas.",
+            "¡Entusiasmo como el tuyo es contagioso! 😊 Vamos por buen camino.",
+            "¡Eso es pensar como un verdadero emprendedor! 🧠 Sigamos adelante.",
+            "¡Respuesta perfecta! 👍 Demuestras comprensión del verdadero potencial.",
+            "¡Así me gusta! 💼 Los negocios que prosperan son los que toman estas decisiones.",
+            "¡Maravilloso! 🌻 Cada paso hacia la automatización es un paso hacia el futuro.",
+            "¡Impresionante! 🤩 Tu visión para la eficiencia es notable.",
+            "¡Correcto! ✔️ Exactamente el tipo de mentalidad que lleva al éxito.",
+            "¡Sensacional! 🎯 Así es como se logra la excelencia operativa.",
+            "¡Magnífico! 💎 Entiendes el valor real de la optimización.",
+            "¡Perfecta actitud! 🌠 Los grandes resultados comienzan con esta decisión.",
+            "¡Así es! 🏁 Estás en el camino correcto hacia operaciones superiores.",
+            "¡Excelente! 📈 Esta es la mentalidad que transforma negocios.",
+            "¡Fantástica perspectiva! 🌐 Así es como escalan las operaciones.",
+            "¡Bravo! 👌 Has identificado exactamente lo que necesitas.",
+            "¡Maravillosa decisión! 🎉 Los beneficios te sorprenderán.",
+            "¡Qué bien! 🌱 Estás plantando semillas para un futuro más eficiente.",
+            "¡Súper! ⚡ Con esta actitud, los resultados serán inmediatos.",
+            "¡Perfecto entendimiento! 🧩 Has conectado todas las piezas.",
+            "¡Asombroso! 🤖 Tu apertura a la automatización es admirable.",
+            "¡Genial! ☀️ Un futuro más brillante para tus operaciones comienza aquí.",
+            "¡Qué elección más sabia! 🦉 Demuestras gran perspicacia empresarial.",
+            "¡Impecable! 🎖️ Tu enfoque en la eficiencia es ejemplar."
+        ],
+        neutral: [
+            "Entiendo perfectamente. Cada negocio tiene sus tiempos y necesidades particulares.",
+            "No hay prisa. La automatización funciona mejor cuando se implementa en el momento adecuado.",
+            "Comprendo tus consideraciones. La transformación digital es un viaje, no una carrera.",
+            "Todo a su tiempo. Lo importante es que cuando decidas avanzar, estaremos aquí.",
+            "Absolutamente respetable. La automatización debe adaptarse a tus ritmos.",
+            "Entendido. No hay presión alguna. Cuando estés listo, sabrás que es el momento.",
+            "Claro. Cada decisión de negocio tiene su tiempo ideal para implementarse.",
+            "Comprendo. La tecnología debe servir a tu negocio, no al revés.",
+            "Perfecto. Guardaré esta conversación para cuando sea el momento oportuno.",
+            "Entiendo. La transformación digital es más efectiva cuando hay convicción.",
+            "No hay problema. Nuestras soluciones estarán aquí cuando las necesites.",
+            "Comprendo tu postura. Lo ideal es avanzar cuando sientas total confianza.",
+            "Claro. La automatización es una herramienta poderosa cuando se usa en el momento correcto.",
+            "Entendido. Las mejores implementaciones surgen de decisiones meditadas.",
+            "Respeto totalmente tu posición. Cuando el momento sea el adecuado, aquí estaremos.",
+            "Comprendo. Cada negocio tiene su propio camino hacia la eficiencia.",
+            "No hay apuro. Las soluciones efectivas requieren su tiempo de maduración.",
+            "Entiendo. La tecnología debe integrarse naturalmente a tus operaciones.",
+            "Perfectamente válido. La automatización es un proceso, no un evento.",
+            "Claro. Nuestras soluciones están diseñadas para adaptarse a tu cronograma.",
+            "Comprendo tu perspectiva. La innovación debe alinearse con tus objetivos.",
+            "Entendido. No hay fechas fijas para mejorar, solo oportunidades.",
+            "Respeto tu enfoque. Las mejores decisiones de negocio son las tomadas con claridad.",
+            "No hay inconveniente. Cuando sientas que es el momento, sabrás dónde encontrarnos.",
+            "Comprendo perfectamente. La transformación digital es un camino personal.",
+            "Claro. Nuestro rol es estar disponibles cuando decidas avanzar.",
+            "Entiendo tu consideración. Las operaciones excelentes se construyen paso a paso.",
+            "Perfecto. La paciencia es una virtud en los negocios bien gestionados.",
+            "No hay problema. La eficiencia operativa es un viaje, no un destino.",
+            "Comprendo. Cuando estés listo para el siguiente nivel, aquí estaremos."
+        ],
+        redirect: [
+            "Para darte una mejor orientación, sería ideal que hables directamente con nuestro equipo.",
+            "Este tema merece una atención más personalizada. ¿Quieres que te conectemos con un experto?",
+            "La mejor manera de avanzar es con una conversación directa con nuestros especialistas.",
+            "Para respuestas más precisas, lo ideal sería que hables con nuestro equipo de consultores.",
+            "Este nivel de detalle requiere la atención de nuestros expertos. ¿Te gustaría que te contacten?",
+            "Para no dejarte con dudas, lo mejor sería conectar con un miembro de nuestro equipo.",
+            "Este tipo de consultas las maneja mejor nuestro departamento técnico. ¿Quieres que te pasen?",
+            "Para una asesoría completa, te recomendaría hablar directamente con nuestros especialistas.",
+            "La información más exacta la puede proporcionar nuestro equipo de implementación. ¿Te interesa?",
+            "Para asegurarnos de darte la mejor respuesta, necesitaríamos que hables con un consultor.",
+            "Este es justo el tipo de pregunta que nuestro equipo técnico ama responder. ¿Los conectamos?",
+            "Para una solución a tu medida, lo ideal es una conversación con nuestros expertos.",
+            "Este nivel de detalle lo maneja mejor nuestro departamento de operaciones. ¿Quieres que te contacten?",
+            "Para darte información 100% precisa, necesitaríamos que hables con nuestro equipo.",
+            "La respuesta más completa te la puede dar uno de nuestros ingenieros. ¿Te gustaría?",
+            "Para no equivocarnos, lo mejor sería que un especialista te asesore directamente.",
+            "Este tipo de implementaciones las coordina mejor nuestro equipo técnico. ¿Quieres que te ayuden?",
+            "Para calcular exactamente lo que necesitas, lo ideal es una llamada con nuestros expertos.",
+            "La mejor orientación te la puede dar uno de nuestros consultores senior. ¿Te interesa?",
+            "Para casos como el tuyo, tenemos protocolos específicos que te puede explicar nuestro equipo.",
+            "Este nivel de personalización lo maneja mejor nuestro departamento de soluciones. ¿Los conectamos?",
+            "Para asegurar el éxito, lo ideal es que hables con nuestro equipo de implementación.",
+            "La mejor manera de proceder sería con una evaluación de nuestros especialistas. ¿Qué dices?",
+            "Para mostrarte ejemplos concretos, necesitaríamos que hables con nuestro equipo de casos.",
+            "Este tipo de transformaciones las coordina mejor nuestro departamento técnico. ¿Te ayudamos?",
+            "Para darte números exactos, lo ideal es una breve conversación con nuestros consultores.",
+            "La implementación perfecta comienza con un diagnóstico de nuestros expertos. ¿Quieres realizarlo?",
+            "Para mostrarte el potencial real, necesitaríamos que hables con nuestro equipo de soluciones.",
+            "Este nivel de optimización lo maneja mejor nuestro departamento de ingeniería. ¿Te conectamos?",
+            "Para comenzar con el pie derecho, lo ideal es una sesión con nuestros especialistas. ¿La agendamos?"
+        ]
+    },
+
+    // 15 despedidas diferentes
+    goodbyes: [
+        "¡Fue un gusto ayudarte! Recuerda que la automatización es la palanca secreta del crecimiento.",
+        "Hasta pronto. Cuando decidas transformar tus operaciones, aquí estaré.",
+        "¡Gracias por la conversación! WoMo Studio estará aquí cuando nos necesites.",
+        "Fue un placer asistirte. La eficiencia operativa es solo un mensaje de distancia.",
+        "¡Hasta luego! Espero verte pronto en el camino de la automatización inteligente.",
+        "Gracias por contactarnos. Cuando el momento sea el adecuado, aquí estaremos.",
+        "¡Adiós por ahora! Recuerda que la productividad es una decisión consciente.",
+        "Fue un gusto conversar. Las mejores operaciones comienzan con una simple charla.",
+        "¡Nos vemos! Cuando quieras dar el salto a la automatización, sabrás dónde encontrarnos.",
+        "Gracias por tu tiempo. La transformación digital empieza cuando tú decidas.",
+        "¡Hasta la próxima! La eficiencia operativa es un viaje, no un destino.",
+        "Fue un placer ayudarte. Las operaciones excelentes se construyen paso a paso.",
+        "¡Adiós! Recuerda que cada gran automatización comenzó con una simple conversación.",
+        "Gracias por contactar a WoMo Studio. Tu camino hacia la eficiencia comienza cuando quieras.",
+        "¡Hasta pronto! Cuando estés listo para el siguiente nivel, aquí estaremos."
+    ],
+
+    // Función para obtener una respuesta aleatoria
+    getRandom: function(array) {
+        return array[Math.floor(Math.random() * array.length)];
+    }
+};
+
+// Exportación para módulos
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = chatbotDatabase;
+} else {
+    window.chatbotDatabase = chatbotDatabase;
+}
