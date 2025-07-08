@@ -1720,6 +1720,45 @@ const projects = [
     }
 ];
 
+// Precarga IMÁGENES CRÍTICAS (WebP)
+function preloadImages() {
+    projects.forEach(project => {
+        const img = new Image();
+        img.src = project.image; // Precarga en segundo plano
+    });
+}
+
+// Renderiza el portafolio (carga ULTRA rápida)
+function renderPortfolio() {
+    const container = document.getElementById('portfolio-container');
+    
+    // 1. Precarga las imágenes
+    preloadImages();
+    
+    // 2. Crea las tarjetas
+    container.innerHTML = projects.map(project => `
+        <div class="portfolio-card" data-id="${project.id}">
+            <img 
+                src="${project.image}" 
+                alt="${project.title}" 
+                loading="eager"     <!-- ¡Carga inmediata! -->
+                width="400"         <!-- Ancho fijo -->
+                height="300"        <!-- Alto fijo -->
+                style="width:100%; border-radius:8px;"
+            >
+            <div class="card-content">
+                <div class="card-icon">${project.icon}</div>
+                <h3>${project.title}</h3>
+                <p>${project.shortDesc}</p>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Inicializa al cargar la página
+document.addEventListener('DOMContentLoaded', renderPortfolio);
+
+
 // Inicializar portafolio
 function initPortfolio() {
     const container = document.getElementById('portfolio-container');
