@@ -1133,7 +1133,6 @@ function closePopupOnOutsideClick(e) {
 function openGifWindow() {
     if (isGifWindowOpen) return;
     
-    // Ocultar el mensaje inicial inmediatamente
     const initialMessage = document.getElementById('inactivity-message');
     if (initialMessage) {
         initialMessage.classList.remove('active');
@@ -1143,18 +1142,30 @@ function openGifWindow() {
     const gifWindow = document.getElementById('gif-window');
     const gifWindowContent = document.getElementById('gif-window-content');
     
+    // Opciones más concretas y accionables
     gifWindowContent.innerHTML = `
         <div class="gif-window-header">
             <h3>¡Hola! Soy WoMi 👋</h3>
             <button class="close-gif-window">&times;</button>
         </div>
         <div class="gif-window-body">
-            <p>${getRandomMessage()}</p>
+            <p>Veo que estás interesado en mejorar tu negocio. ¿Qué desafío te gustaría resolver primero?</p>
             <div class="gif-window-options">
-                <button class="gif-option-btn" onclick="handleGifOption('Quiero ahorrar tiempo')">Ahorrar tiempo</button>
-                <button class="gif-option-btn" onclick="handleGifOption('Reducir costos')">Reducir costos</button>
-                <button class="gif-option-btn" onclick="handleGifOption('Consultoría gratis')">Consultoría</button>
-                <button class="gif-option-btn no-thanks" onclick="handleNoThanks()">Ahora no, Estoy vitriniando</button>
+                <button class="gif-option-btn" onclick="handleGifOption('Tareas repetitivas que consumen mucho tiempo')">
+                    <strong>⏱️ Tiempo perdido</strong><br>
+                    <small>Automatizar procesos manuales</small>
+                </button>
+                <button class="gif-option-btn" onclick="handleGifOption('Errores en inventario que generan pérdidas')">
+                    <strong>📦 Problemas de stock</strong><br>
+                    <small>Controlar mejor mi inventario</small>
+                </button>
+                <button class="gif-option-btn" onclick="handleGifOption('Clientes insatisfechos por mala comunicación')">
+                    <strong>💬 Comunicación con clientes</strong><br>
+                    <small>Mejorar la experiencia</small>
+                </button>
+                <button class="gif-option-btn no-thanks" onclick="handleNoThanks()">
+                    Ahora no, gracias
+                </button>
             </div>
         </div>
     `;
@@ -1264,7 +1275,28 @@ function closeGifWindow() {
 function handleGifOption(option) {
     closeGifWindow();
     openChatbot();
+    
+    // Mensaje inicial basado en la opción seleccionada
+    let botResponse = "";
+    switch(option) {
+        case 'Tareas repetitivas que consumen mucho tiempo':
+            botResponse = "Entiendo que quieres optimizar procesos manuales. ¿Podrías decirme qué tipo de tareas son? Por ejemplo:\n1. Procesamiento de pedidos\n2. Facturación\n3. Reportes mensuales\n4. Otra (especificar)";
+            break;
+        case 'Errores en inventario que generan pérdidas':
+            botResponse = "El control de inventario es crucial. ¿Qué problemas específicos tienes?\n1. Stock inexacto\n2. Pérdidas no identificadas\n3. Compras innecesarias\n4. Otro (describir)";
+            break;
+        case 'Clientes insatisfechos por mala comunicación':
+            botResponse = "La comunicación con clientes es clave. ¿Qué área necesita mejorar?\n1. Respuesta a consultas\n2. Seguimiento de ventas\n3. Recordatorios de pagos\n4. Otro (cuál)";
+            break;
+        default:
+            botResponse = "Cuéntame más sobre este desafío para darte una solución precisa.";
+    }
+    
+    // Mostrar mensaje del usuario y respuesta del bot
     addUserMessage(option);
+    setTimeout(() => {
+        addBotMessage(botResponse);
+    }, 800);
 }
 
 function positionGifWindow(popup, gifWindow) {
