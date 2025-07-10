@@ -1159,8 +1159,8 @@ function openGifWindow() {
                     <strong>📦 Problemas de stock</strong><br>
                     <small>Controlar mejor mi inventario</small>
                 </button>
-                <button class="gif-option-btn" onclick="handleGifOption('Clientes insatisfechos por mala comunicación')">
-                    <strong>💬 Comunicación con clientes</strong><br>
+                <button class="gif-option-btn" onclick="handleGifOption('Automatizar interacciones clave')">
+                    <strong>⚡ Flujos Automáticos</strong><br>
                     <small>Mejorar la experiencia</small>
                 </button>
                 <button class="gif-option-btn no-thanks" onclick="handleNoThanks()">
