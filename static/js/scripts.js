@@ -493,13 +493,13 @@ function createParticles() {
 const chatbotConfig = {
     greetings: [
         "¡Hola! Soy WoMi, tu consultor en automatización estratégica. 😊 ¿En qué puedo ayudarte hoy con la optimización de tus procesos?",
-        "Hola, soy WoMi de WoMo Studio. Especialistas en transformar desafíos operativos en eficiencia medible. ¿Qué proceso te está quitando más tiempo actualmente?",
-        "¡Hola! 👋 WoMo Studio aquí. Automatizamos procesos con resultados tangibles. ¿Qué área de tu operación necesita mayor eficiencia?"
+        "Hola, soy WoMi de WoMo Soluciónˢ. Especialistas en transformar desafíos operativos en eficiencia medible. ¿Qué proceso te está quitando más tiempo actualmente?",
+        "¡Hola! 👋 WoMo Soluciónˢ aquí. Automatizamos procesos con resultados tangibles. ¿Qué área de tu operación necesita mayor eficiencia?"
     ],
     responses: {
         "hola": {
             messages: [
-                "¡Hola! 👋 Soy WoMi, tu experto en automatización de WoMo Studio.",
+                "¡Hola! 👋 Soy WoMi, tu experto en automatización de WoMo Soluciónˢ.",
                 "Trabajamos con negocios como el tuyo para:",
                 "• Recuperar horas valiosas de trabajo",
                 "• Minimizar errores operativos",
@@ -507,7 +507,7 @@ const chatbotConfig = {
                 "",
                 "¿Qué tipo de procesos te generan más ineficiencias actualmente?"
             ],
-            quickReplies: ["Procesos repetitivos", "Gestión documental", "Flujos de aprobación", "Hablar con consultor"]
+            quickReplies: ["servicio", "tiempo", "Contacto", "Hablar con consultor"]
         },
         "servicio": {
             messages: [
@@ -545,7 +545,7 @@ const chatbotConfig = {
                 "",
                 "Disponibilidad para reuniones iniciales:",
                 "• Lunes a viernes: 9am - 6pm",
-                "• Duración: 45 minutos (requiere información previa)",
+                "• Requiere información previa",
                 "",
                 "Te mostraremos exactamente cómo podemos optimizar tus operaciones"
             ],
@@ -591,11 +591,7 @@ const chatbotConfig = {
             messages: [
                 "Entiendo tu consulta. Permíteme contextualizar mejor:",
                 "",
-                "En WoMo Studio no ofrecemos soluciones genéricas. Trabajamos con:",
-                "1. Análisis de tus procesos específicos",
-                "2. Diseño de flujos personalizados",
-                "3. Implementación con métricas de éxito",
-                "",
+                "En WoMo Soluciónˢ no ofrecemos soluciones genéricas.",
                 "Para darte una respuesta precisa, necesitaría conocer más sobre:",
                 "• Tus volúmenes operativos actuales",
                 "• Los cuellos de botella identificados",
@@ -1145,28 +1141,50 @@ function openGifWindow() {
     // Opciones más concretas y accionables
     gifWindowContent.innerHTML = `
         <div class="gif-window-header">
-            <h3>¡Hola! Soy WoMi 👋</h3>
-            <button class="close-gif-window">&times;</button>
+            <h3>¿Qué problema necesitas resolver?</h3>
+            <button class="close-gif-window" onclick="closeGifWindow()">×</button>
         </div>
         <div class="gif-window-body">
-            <p>Veo que estás interesado en mejorar tu negocio. ¿Qué desafío te gustaría resolver primero?</p>
-            <div class="gif-window-options">
-                <button class="gif-option-btn" onclick="handleGifOption('Tareas repetitivas que consumen mucho tiempo')">
-                    <strong>⏱️ Tiempo perdido</strong><br>
-                    <small>Automatizar procesos manuales</small>
+            <div class="gif-window-grid">
+                <!-- ProTrack -->
+                <button class="gif-option-btn" onclick="handleGifOption('Coordinación de procesos manuales')">
+                    <strong>⚙️ Procesos desorganizados</strong><br>
+                    <small>Sistema modular de gestión</small>
                 </button>
-                <button class="gif-option-btn" onclick="handleGifOption('Errores en inventario que generan pérdidas')">
-                    <strong>📦 Problemas de stock</strong><br>
-                    <small>Controlar mejor mi inventario</small>
+
+                <!-- Unistock -->
+                <button class="gif-option-btn" onclick="handleGifOption('Control de inventario impreciso')">
+                    <strong>📦 Stock no confiable</strong><br>
+                    <small>Alertas automáticas de inventario</small>
                 </button>
-                <button class="gif-option-btn" onclick="handleGifOption('Automatizar interacciones clave')">
-                    <strong>⚡ Flujos Automáticos</strong><br>
-                    <small>Mejorar la experiencia</small>
+
+                <!-- PortiFy -->
+                <button class="gif-option-btn" onclick="handleGifOption('Seguimiento de proyectos/clientes')">
+                    <strong>📊 Información fragmentada</strong><br>
+                    <small>CRM visual para portafolios</small>
                 </button>
-                <button class="gif-option-btn no-thanks" onclick="handleNoThanks()">
-                    Ahora no, gracias
+
+                <!-- PCAF -->
+                <button class="gif-option-btn" onclick="handleGifOption('Gestión de clientes/membresías')">
+                    <strong>🏋️ Registros manuales</strong><br>
+                    <small>Sistema integrado de control</small>
+                </button>
+
+                <!-- Messungen -->
+                <button class="gif-option-btn" onclick="handleGifOption('Seguimiento de progreso físico')">
+                    <strong>📏 Mediciones no sistematizadas</strong><br>
+                    <small>Historial digitalizado</small>
+                </button>
+
+                <!-- PocketFlow -->
+                <button class="gif-option-btn" onclick="handleGifOption('Organización de finanzas')">
+                    <strong>💰 Gastos no categorizados</strong><br>
+                    <small>Control financiero personalizado</small>
                 </button>
             </div>
+            <button class="gif-option-btn no-thanks" onclick="handleNoThanks()">
+                Ahora no, gracias
+            </button>
         </div>
     `;
     
