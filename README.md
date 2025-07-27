@@ -1,4 +1,4 @@
-# 🚀 WoMo Solucions - Plataforma Tecnológica Central
+# 🚀 WoMo Soluciónˢ - Plataforma Tecnológica Central
 
 ![Estado](https://img.shields.io/badge/🚀_En_Desarrollo-active-orange) 
 ![Licencia](https://img.shields.io/badge/Licencia-🔒_Privada-red)
@@ -7,7 +7,7 @@
 
 ## 📋 Descripción del Sistema
 
-Plataforma tecnológica central desarrollada por **WoMo Studio** para gestión integral de proyectos y soluciones digitales. Sistema núcleo que incluye:
+Plataforma tecnológica central desarrollada por **WoMo Soluciónˢ** para gestión integral de proyectos y soluciones digitales. Sistema núcleo que incluye:
 
 - Gestión unificada de proyectos
 - Dashboard de monitorización
@@ -28,7 +28,7 @@ Plataforma tecnológica central desarrollada por **WoMo Studio** para gestión i
 - Jinja2 para plantillas dinámicas
 
 ## 🖥️ Estructura del Proyecto
-📁 womostudio/  
+📁 womo Solucións/  
 ├── 📂 app/  
 │ ├── 📂 core/ # Módulos principales  
 │ │ ├── init.py  
@@ -55,7 +55,7 @@ Plataforma tecnológica central desarrollada por **WoMo Studio** para gestión i
 
 ## 🛡️ Derechos de Autor y Uso
 
-© 2025 WoMo Studio. Todos los derechos reservados.
+© 2025 WoMo Soluciónˢ. Todos los derechos reservados.
 
 **Condiciones de uso:**
 - Estrictamente confidencial
@@ -67,12 +67,12 @@ Plataforma tecnológica central desarrollada por **WoMo Studio** para gestión i
 **Julián Alberto Ramírez**  
 💻 CTO & Desarrollador Full Stack   
 ⚙️ Automatización | 🧩 Soluciones software |💡 Innovador Tecnológico | 🔍 Apasionado por IA  
-🏢 **WoMo Studio** - Soluciones Tecnológicas Avanzadas  
+🏢 **WoMo Soluciónˢ** - Soluciones Tecnológicas Avanzadas  
 
 📧 [Correo corporativo](mailto:womostd@gmail.com)  
 📧 [Correo alternativo](mailto:juliram81@hotmail.com)  
 📱 [WhatsApp](https://wa.me/573180401930)  
-🔗 [LinkedIn Corporativo](https://www.linkedin.com/company/womo-studio/)  
+🔗 [LinkedIn Corporativo](https://www.linkedin.com/company/womo-Solucions/)  
    
 ---
 
