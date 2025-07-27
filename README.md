@@ -1,4 +1,4 @@
-# 🚀 WoMo Studio - Plataforma Tecnológica Central
+# 🚀 WoMo Solucions - Plataforma Tecnológica Central
 
 ![Estado](https://img.shields.io/badge/🚀_En_Desarrollo-active-orange) 
 ![Licencia](https://img.shields.io/badge/Licencia-🔒_Privada-red)
