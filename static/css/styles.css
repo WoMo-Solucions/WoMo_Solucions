@@ -2539,3 +2539,51 @@ body {
   font-size: 12px;
   white-space: nowrap;
 }
+
+/* Estilos para móviles */
+@media (max-width: 768px) {
+    .lang-selector {
+        top: 15px;
+        right: 15px;
+    }
+    
+    .lang-flag {
+        width: 28px;
+        height: 18px;
+    }
+    
+    .lang-dropdown {
+        min-width: 140px;
+        right: -10px;
+    }
+    
+    /* Activar con click en móviles */
+    .lang-selector.active .lang-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+/* Pequeños dispositivos */
+@media (max-width: 480px) {
+    .lang-selector {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .lang-flag {
+        width: 25px;
+        height: 16px;
+    }
+    
+    .lang-dropdown {
+        min-width: 130px;
+        font-size: 14px;
+    }
+    
+    .lang-dropdown img {
+        width: 18px;
+        height: 13px;
+    }
+}
