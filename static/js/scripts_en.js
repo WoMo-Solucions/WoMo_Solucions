@@ -1742,37 +1742,37 @@ const projects = [
         "shortDesc": "Universal modular process management platform",
         "fullDesc": "The engine that turns operational chaos into high-performance automated flows. For leaders who demand excellence in every process.",
         "icon": "⚙️",
-        "image": "proyectos/imagen3.webp"
+        "image": "../proyectos/imagen3.webp"
     },{ "id": 2,
         "title": "Unistock",
         "shortDesc": "Proprietary inventory management system",
         "fullDesc": "The logistics brain that anticipates shortages, optimizes purchases and turns inventory into cash flow. For businesses that don't tolerate errors.",
         "icon": "📦",
-        "image": "proyectos/imagen2.webp"
+        "image": "../proyectos/imagen2.webp"
     },{ "id": 3,
         "title": "PortiFy",
         "shortDesc": "CRM specialized in technology portfolios",
         "fullDesc": "Your portfolio as a commercial weapon: turns technical projects into irresistible narratives for demanding clients.",
         "icon": "📊",
-        "image": "proyectos/imagen6.webp"
+        "image": "../proyectos/imagen6.webp"
     },{ "id": 4,
         "title": "PCAF",
         "shortDesc": "Gym management system",
         "fullDesc": "The system that makes your clients feel like they're training in a luxury gym: measurable progress instantly and exclusive communication. The secret tool to retain 3 times more.",
         "icon": "🏋️",
-        "image": "proyectos/imagen1.webp"
+        "image": "../proyectos/imagen1.webp"
     },{ "id": 5,
         "title": "Messungen",
         "shortDesc": "Physical progress tracking",
         "fullDesc": "System that links workouts with results: records measurements, correlates routines and demonstrates the tangible impact of your methodology. The proof that your work transforms.",
         "icon": "📏",
-        "image": "proyectos/imagen4.webp"
+        "image": "../proyectos/imagen4.webp"
     },{ "id": 6,
         "title": "PocketFlow",
         "shortDesc": "Personal financial management",
         "fullDesc": "Smart personal financial control: take charge of your money with professional clarity and precision.",
         "icon": "💰",
-        "image": "proyectos/imagen5.webp"
+        "image": "../proyectos/imagen5.webp"
     }
 ];
 

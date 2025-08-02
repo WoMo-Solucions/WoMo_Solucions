@@ -1743,37 +1743,37 @@ const projects = [
         "shortDesc": "Modulare universelle Prozessmanagement-Plattform",
         "fullDesc": "Es ist die Engine, die operatives Chaos in Hochleistungs-Automatisierungsflüsse verwandelt. Für Führungskräfte, die Exzellenz in jedem Prozess fordern.",
         "icon": "⚙️",
-        "image": "proyectos/imagen3.webp"
+        "image": "../proyectos/imagen3.webp"
     },{ "id": 2,
         "title": "Unistock",
         "shortDesc": "Eigenes Bestandsverwaltungssystem",
         "fullDesc": "Es ist das logistische Gehirn, das Engpässe vorhersagt, Einkäufe optimiert und Bestände in Cashflow verwandelt. Für Unternehmen, die keine Fehler tolerieren.",
         "icon": "📦",
-        "image": "proyectos/imagen2.webp"
+        "image": "../proyectos/imagen2.webp"
     },{ "id": 3,
         "title": "PortiFy",
         "shortDesc": "Spezialisiertes CRM für Technologieportfolios",
         "fullDesc": "Macht dein Portfolio zur kommerziellen Waffe: verwandelt technische Projekte in unwiderstehliche Narrative für anspruchsvolle Kunden.",
         "icon": "📊",
-        "image": "proyectos/imagen6.webp"
+        "image": "../proyectos/imagen6.webp"
     },{ "id": 4,
         "title": "PCAF",
         "shortDesc": "Verwaltungssystem für Fitnessstudios",
         "fullDesc": "Das System, das deine Kunden das Gefühl gibt, in einem Luxus-Fitnessstudio zu trainieren: sofort messbarer Fortschritt und exklusive Kommunikation. Das geheime Tool, um 3-mal mehr zu halten.",
         "icon": "🏋️",
-        "image": "proyectos/imagen1.webp"
+        "image": "../proyectos/imagen1.webp"
     },{ "id": 5,
         "title": "Messungen",
         "shortDesc": "Verfolgung des körperlichen Fortschritts",
         "fullDesc": "System, das Training mit Ergebnissen verknüpft: zeichnet Messungen auf, korreliert Routinen und zeigt die greifbaren Auswirkungen deiner Methodik. Der Beweis, dass deine Arbeit transformiert.",
         "icon": "📏",
-        "image": "proyectos/imagen4.webp"
+        "image": "../proyectos/imagen4.webp"
     },{ "id": 6,
         "title": "PocketFlow",
         "shortDesc": "Persönliches Finanzmanagement",
         "fullDesc": "Es ist die intelligente persönliche Finanzkontrolle: übernimm mit professioneller Klarheit und Präzision die Kontrolle über dein Geld.",
         "icon": "💰",
-        "image": "proyectos/imagen5.webp"
+        "image": "../proyectos/imagen5.webp"
     }
 ];
 

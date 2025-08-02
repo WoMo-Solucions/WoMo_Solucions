@@ -1743,37 +1743,37 @@ const projects = [
         "shortDesc": "Plataforma modular universal de gestão de processos",
         "fullDesc": "É o motor que transforma o caos operacional em fluxos automatizados de alto desempenho. Para líderes que exigem excelência em cada processo.",
         "icon": "⚙️",
-        "image": "projetos/imagen3.webp"
+        "image": "../proyectos/imagen3.webp"
     },{ "id": 2,
         "title": "Unistock",
         "shortDesc": "Sistema proprietário de gestão de inventários",
         "fullDesc": "É o cérebro logístico que antecipa escassez, otimiza compras e transforma inventários em fluxo de caixa. Para negócios que não toleram erros.",
         "icon": "📦",
-        "image": "projetos/imagen2.webp"
+        "image": "../proyectos/imagen2.webp"
     },{ "id": 3,
         "title": "PortiFy",
         "shortDesc": "CRM especializado em portfólios tecnológicos",
         "fullDesc": "Será seu portfólio como arma comercial: transforma projetos técnicos em narrativas irresistíveis para clientes exigentes.",
         "icon": "📊",
-        "image": "projetos/imagen6.webp"
+        "image": "../proyectos/imagen6.webp"
     },{ "id": 4,
         "title": "PCAF",
         "shortDesc": "Sistema de gestão para academias",
         "fullDesc": "O sistema que faz seus clientes sentirem que treinam em uma academia de luxo: progresso mensurável instantâneo e comunicação exclusiva. A ferramenta secreta para reter 3 vezes mais.",
         "icon": "🏋️",
-        "image": "projetos/imagen1.webp"
+        "image": "../proyectos/imagen1.webp"
     },{ "id": 5,
         "title": "Messungen",
         "shortDesc": "Acompanhamento do progresso físico",
         "fullDesc": "Sistema que vincula treinos com resultados: registra medições, correlaciona rotinas e demonstra o impacto tangível da sua metodologia. A prova de que seu trabalho transforma.",
         "icon": "📏",
-        "image": "projetos/imagen4.webp"
+        "image": "../proyectos/imagen4.webp"
     },{ "id": 6,
         "title": "PocketFlow",
         "shortDesc": "Gestão financeira pessoal",
         "fullDesc": "É o controle financeiro pessoal inteligente: tome as rédeas do seu dinheiro com clareza e precisão profissional.",
         "icon": "💰",
-        "image": "projetos/imagen5.webp"
+        "image": "../proyectos/imagen5.webp"
     }
 ];
 
