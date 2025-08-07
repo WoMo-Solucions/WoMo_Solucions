@@ -7,7 +7,7 @@
 
 ## 📋 Descripción del Sistema
 
-Plataforma tecnológica central desarrollada por **WoMo Soluciónˢ** para gestión integral de proyectos y soluciones digitales. Sistema núcleo que incluye:
+Plataforma tecnológica central para la gestión integral de proyectos y soluciones digitales. Sistema núcleo que incluye:
 
 - Gestión unificada de proyectos
 - Dashboard de monitorización
@@ -86,5 +86,4 @@ Este sistema demuestra capacidades avanzadas en:
 
 
 📅 **Control de Versiones**  
-📅 ![Versión](https://img.shields.io/badge/Versión-3.2.0-blue)  
-🔄 ![Última Actualización](https://img.shields.io/badge/Actualizado-Jun_2025-green)
+ ![Versión](https://img.shields.io/badge/Versión-3.2.0-blue) ![Última Actualización](https://img.shields.io/badge/Actualizado-Jun_2025-green)
