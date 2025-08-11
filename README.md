@@ -1,9 +1,7 @@
-# 🚀 WoMo Soluciónˢ - Plataforma Tecnológica Central
+   . <img width="333" height="43" alt="Image" src="https://github.com/user-attachments/assets/24519130-f605-4762-a4f2-374c450f2b64" />           
+ # Plataforma Tecnológica Central 
 
-![Estado](https://img.shields.io/badge/🚀_En_Desarrollo-active-orange) 
-![Licencia](https://img.shields.io/badge/Licencia-🔒_Privada-red)
-![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-000000?logo=flask&logoColor=white)
+![Estado](https://img.shields.io/badge/🚀_Integración_Final-brightgreen)  ![Licencia](https://img.shields.io/badge/Licencia-🔒_Privada-red) ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white) ![Flask](https://img.shields.io/badge/Flask-000000?logo=flask&logoColor=white)
 
 ## 📋 Descripción del Sistema
 
@@ -65,14 +63,11 @@ Plataforma tecnológica central para la gestión integral de proyectos y solucio
 ## 📬 Contacto Corporativo
 
 **Julián Alberto Ramírez**  
-💻 CTO & Desarrollador Full Stack   
+💻 Socio Fundador & Visionario Tecnológico
 ⚙️ Automatización | 🧩 Soluciones software |💡 Innovador Tecnológico | 🔍 Apasionado por IA  
 🏢 **WoMo Soluciónˢ** - Soluciones Tecnológicas Avanzadas  
 
-📧 [Correo corporativo](mailto:womostd@gmail.com)  
-📧 [Correo alternativo](mailto:juliram81@hotmail.com)  
-📱 [WhatsApp](https://wa.me/573180401930)  
-🔗 [LinkedIn Corporativo](https://www.linkedin.com/company/womo-Solucions/)  
+<img width="200" height="200" alt="Image" src="https://github.com/user-attachments/assets/09c23a95-e483-452e-880f-e7c90c222014" />
    
 ---
 
@@ -87,3 +82,4 @@ Este sistema demuestra capacidades avanzadas en:
 
 📅 **Control de Versiones**  
  ![Versión](https://img.shields.io/badge/Versión-3.2.0-blue) ![Última Actualización](https://img.shields.io/badge/Actualizado-Jun_2025-green)
+
