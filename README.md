@@ -1,5 +1,5 @@
    . <img width="333" height="43" alt="Image" src="https://github.com/user-attachments/assets/24519130-f605-4762-a4f2-374c450f2b64" />           
- # Plataforma Tecnológica Central 
+ ## Plataforma Tecnológica Central 
  
 ![Estado](https://img.shields.io/badge/🚀_En_Producción-green)   ![Licencia](https://img.shields.io/badge/Licencia-🔒_Privada-red) ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white) ![Flask](https://img.shields.io/badge/Flask-000000?logo=flask&logoColor=white)
 
