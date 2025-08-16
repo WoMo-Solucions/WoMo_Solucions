@@ -2615,7 +2615,7 @@ body {
     height: auto;
   }
 }
-<style>
+
 @media (max-width: 600px) {
   .top-menu-links {
     justify-content: flex-start !important;
@@ -2632,4 +2632,3 @@ body {
     overflow-x: hidden;
   }
 }
-</style>
