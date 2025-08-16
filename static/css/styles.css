@@ -81,8 +81,15 @@ body {
     font-size: 3rem;
     margin-bottom: 1.5rem;
     background: linear-gradient(90deg, var(--verde), var(--azul));
+
+    /* estándar + prefijo (orden recomendado: estándar primero, prefijado después) */
+    background-clip: text;
     -webkit-background-clip: text;
+
+    /* fallback estándar + prefijo WebKit */
+    color: transparent;
     -webkit-text-fill-color: transparent;
+
     line-height: 1.2;
 }
 
@@ -2405,7 +2412,7 @@ body {
 }
 
 .womo-highlight {
-    color: #black;
+    color: black;
     font-weight: 700;
 }
 
