@@ -2552,20 +2552,24 @@ body {
     .lang-selector {
         top: 15px;
         right: 15px;
+        pointer-events: none; /* << evita que el contenedor tape el menú */
     }
     
     .lang-flag {
         width: 28px;
         height: 18px;
+        pointer-events: auto; /* << el ícono sí recibe el tap */
     }
     
     .lang-dropdown {
         min-width: 140px;
         right: -10px;
+        pointer-events: auto; /* << el dropdown sí recibe el tap */
     }
     
     /* Activar con click en móviles */
     .lang-selector.active .lang-dropdown {
+        display: block;
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
@@ -2595,44 +2599,78 @@ body {
     }
 }
 
-@media (max-width: 768px) {
-  .top-menu-links {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    justify-content: flex-start;
-    gap: 0.3rem;
-    padding: 0.3rem 0.5rem; /* MENOS ESPACIO HORIZONTAL */
-  }
-
-  .top-menu-link {
-    white-space: nowrap;
-    font-size: 0.85rem;
-    padding: 0.4rem 0.5rem; /* MENOS ESPACIO HORIZONTAL POR BOTÓN */
-    flex-shrink: 0;
-  }
-
-  .lang-selector {
-    text-align: right;
-    padding: 3rem 0.8rem 0.6rem 0;
-  }
-
-  .lang-flag {
-    width: 42px;
+/* === FIX CELULARES: reducir hitbox del selector y evitar hover fantasma === */
+@media (max-width: 768px){
+  /* El contenedor NO debe captar toques ni tener rellenos que invadan el menú */
+  .lang-selector{
+    position: fixed;   /* asegura su lugar en la esquina */
+    top: 10px;         /* ajusta si lo quieres más arriba/abajo */
+    right: 10px;       /* ajusta si lo quieres más a la derecha/izquierda */
+    display: inline-block;
+    width: auto;
     height: auto;
+    padding: 0;        /* ← elimina el área “fantasma” */
+    margin: 0;
+    pointer-events: none;  /* el contenedor no recibe taps */
+    z-index: 900;          /* por debajo del menú fijo (menú suele estar en 1000) */
+  }
+
+  /* SOLO estos elementos deben aceptar toques */
+  .lang-selector .lang-flag,
+  .lang-selector .lang-dropdown{
+    pointer-events: auto;
+  }
+
+  /* Hitbox del ícono: pequeño y exacto */
+  .lang-selector .lang-flag{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;   /* si tu icono es otro tamaño, cámbialo aquí */
+    height: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 3px;
+  }
+
+  /* Dropdown: se abre debajo del ícono y queda por encima cuando está visible */
+  .lang-dropdown{
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: 6px;
+    z-index: 1100;
+  }
+
+  /* En móvil NO abrir por hover (evita aperturas accidentales al pasar el dedo) */
+  .lang-selector:hover .lang-dropdown{
+    display: none !important;
+  }
+
+  /* Si tu JS agrega .active al tocar la bandera, se muestra el menú */
+  .lang-selector.active .lang-dropdown{
+    display: block !important;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
   }
 }
 
 @media (max-width: 600px) {
   .top-menu-links {
-    justify-content: flex-start !important;
-    flex-wrap: wrap;
-    padding: 0 10px;
+    display: flex !important;
+    justify-content: space-between; /* reparte espacio */
+    flex-wrap: nowrap;              /* no permite saltar de línea */
+    overflow-x: hidden !important;  /* elimina scroll */
+    width: 100%;
+    padding: 0 5px;
   }
 
   .top-menu-link {
-    font-size: 14px;
-    word-break: break-word;
+    flex: 1;              /* cada item ocupa el mismo ancho */
+    text-align: center;
+    font-size: 0.8rem;     /* texto más pequeño en móvil */
+    padding: 0.5rem 0.3rem;
+    white-space: nowrap;   /* mantiene cada palabra en su celda */
   }
 
   body {
