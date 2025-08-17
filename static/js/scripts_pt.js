@@ -1918,7 +1918,7 @@ document.addEventListener('DOMContentLoaded', () => {
             closePopup();
         }
     });
-    
+ 
     // Fechar com Escape
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && document.getElementById('project-popup').classList.contains('active')) {
