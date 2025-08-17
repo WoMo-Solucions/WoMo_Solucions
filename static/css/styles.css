@@ -2600,52 +2600,61 @@ body {
 }
 
 
-
+/* ==== FIX SOLO CELULARES (≤768px): icono DEBAJO del menú, más grande y sin fantasma ==== */
 @media (max-width: 768px){
-  /* Contenedor del selector */
+
+  /* El menú va arriba de todo en móvil */
+  .top-menu{
+    z-index: 2000 !important;
+  }
+
+  /* El icono de idioma queda DEBAJO del menú y sin área extra */
   .lang-selector{
-    position: fixed;
-    top: 60px;                /* ↓ lo empuja debajo del top menu */
-    right: 10px;
-    display: inline-flex;
+    position: fixed !important;
+    top: 72px !important;          /* ≈ altura del menú; ajústalo si tu menú es más alto/bajo */
+    right: 10px !important;
+    display: inline-flex !important;
     align-items: center;
     justify-content: center;
-    padding: 0 !important;    /* sin área extra */
+    padding: 0 !important;         /* sin área fantasma */
     margin: 0 !important;
     width: auto !important;
     height: auto !important;
-    z-index: 900 !important;  /* ↓ debajo del .top-menu (que está en 1000) */
+    z-index: 900 !important;       /* debajo del menú (2000) */
+    pointer-events: auto !important;
   }
 
-  /* Icono (un poco más grande en móvil) */
+  /* Icono un poco más grande en celular (responsive) */
   .lang-flag{
-    width: 36px !important;   /* antes 28px: ahora se ve mejor */
+    width: 36px !important;        /* ajústalo si quieres aún más grande */
     height: 24px !important;
-    display: inline-block;
-    pointer-events: auto;      /* solo el icono recibe el toque */
+    display: inline-block !important;
+    pointer-events: auto !important;
   }
 
-  /* Evitar hover fantasma en móvil */
+  /* En móvil NO abrir por hover (evita aperturas accidentales) */
   .lang-selector:hover .lang-dropdown{
     display: none !important;
   }
 
-  /* Dropdown: aparece SOBRE todo cuando se abre */
+  /* El dropdown aparece sobre todo CUANDO esté abierto */
   .lang-dropdown{
-    position: absolute;
-    right: 0;
-    top: 100%;
-    margin-top: 6px;
-    display: none;
-    z-index: 1100 !important;  /* ↑ sobre el menú cuando esté abierto */
-    pointer-events: auto;
-    min-width: 140px;
+    position: absolute !important;
+    right: 0 !important;
+    top: 100% !important;
+    margin-top: 6px !important;
+    display: none !important;
+    min-width: 140px !important;
+    z-index: 2001 !important;      /* por encima del menú cuando se abre */
+    pointer-events: auto !important;
   }
+
+  /* Muestra el dropdown cuando apliques la clase .active (si ya la estás usando) */
   .lang-selector.active .lang-dropdown{
     display: block !important;
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
   }
 }
 
