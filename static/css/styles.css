@@ -2634,7 +2634,7 @@ body {
 
   /* En móvil NO abrir por hover (evita aperturas accidentales) */
   .lang-selector:hover .lang-dropdown{
-    display: none !important;
+    display: block !important;
   }
 
   /* El dropdown aparece sobre todo CUANDO esté abierto */
