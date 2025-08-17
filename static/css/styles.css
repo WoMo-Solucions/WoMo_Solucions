@@ -2600,46 +2600,46 @@ body {
 }
 
 
-@media (max-width: 768px) {
-  /* El contenedor no tiene área extra: no tapa el menú */
+
+@media (max-width: 768px){
+  /* Contenedor del selector */
   .lang-selector{
-    position: fixed;         /* conserva su posición en la esquina */
-    top: 10px;
+    position: fixed;
+    top: 60px;                /* ↓ lo empuja debajo del top menu */
     right: 10px;
-    display: inline-flex;    /* ajustado al tamaño del icono */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0 !important;   /* ← elimina el padding que lo hacía gigante */
+    padding: 0 !important;    /* sin área extra */
     margin: 0 !important;
     width: auto !important;
     height: auto !important;
-    pointer-events: auto !important;  /* el contenedor acepta el tap solo en su caja real */
-    z-index: 1000;           /* igual que tu top-menu; el dropdown sube más abajo */
+    z-index: 900 !important;  /* ↓ debajo del .top-menu (que está en 1000) */
   }
 
-  /* Icono visible y con hitbox exacto */
+  /* Icono (un poco más grande en móvil) */
   .lang-flag{
-    width: 28px !important;  /* ajusta si tu imagen real es otra */
-    height: 18px !important;
+    width: 36px !important;   /* antes 28px: ahora se ve mejor */
+    height: 24px !important;
     display: inline-block;
-    pointer-events: auto;
+    pointer-events: auto;      /* solo el icono recibe el toque */
   }
 
-  /* En móvil NO abrir por hover (evita aperturas accidentales) */
+  /* Evitar hover fantasma en móvil */
   .lang-selector:hover .lang-dropdown{
     display: none !important;
   }
 
-  /* Dropdown solo cuando corresponda (p. ej., al agregar .active desde tu HTML/JS) */
+  /* Dropdown: aparece SOBRE todo cuando se abre */
   .lang-dropdown{
     position: absolute;
     right: 0;
     top: 100%;
     margin-top: 6px;
     display: none;
-    z-index: 1100;           /* cuando se abre, queda por encima */
+    z-index: 1100 !important;  /* ↑ sobre el menú cuando esté abierto */
     pointer-events: auto;
-    min-width: 140px;        /* coherente con tu estilo */
+    min-width: 140px;
   }
   .lang-selector.active .lang-dropdown{
     display: block !important;
@@ -2648,7 +2648,6 @@ body {
     transform: translateY(0);
   }
 }
-
 
 
 @media (max-width: 600px) {
