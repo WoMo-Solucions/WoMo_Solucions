@@ -1,4 +1,3 @@
-<img width="333" height="43" alt="Image" src="https://github.com/user-attachments/assets/24519130-f605-4762-a4f2-374c450f2b64" />.  
 # 💼 WoMo Soluciónˢ  
 ## Plataforma Personalizada de Gestión de Portafolios Corporativos  
 
